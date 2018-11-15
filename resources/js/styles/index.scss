@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed');
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.fr{
+  float: right !important;
+}
+.el-header{
+  padding: 0px !important;
+}
