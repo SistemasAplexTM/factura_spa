@@ -5,7 +5,7 @@
       <el-header>
         <navbar></navbar>
       </el-header>
-      <el-main>Principal</el-main>
+      <el-main class="main-app"><router-view></router-view></el-main>
     </el-container>
   </el-container>
 </template>
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style>
-
+  .main-app{
+    margin-top: 30px;
+  }
 </style>

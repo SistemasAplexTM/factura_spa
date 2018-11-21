@@ -1,0 +1,23 @@
+{
+    "routePrefix": "payments",
+    "readSuffix": "data",
+    "crtNo": false,
+    "lengthMenu": [10, 15, 20, 25, 30],
+    "buttons": [
+        {
+            "type": "row",
+            "icon": "edit",
+            "class": "has-text-purple",
+            "event": "edit",
+            "label": "Editar"
+        }
+    ],
+    "columns": [
+        {
+            "label": "Descripción",
+            "data": "descripcion",
+            "name": "descripcion",
+            "meta": ["searchable", "sortable"]
+        }
+    ]
+}

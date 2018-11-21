@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('payments')->as('payments.')->group(function(){
+	Route::get('init', 'PaymentsController@init')->name('init');
+	Route::get('data', 'PaymentsController@data')->name('data');
+});
