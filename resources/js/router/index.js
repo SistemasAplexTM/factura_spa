@@ -5,6 +5,7 @@ Vue.use(Router)
 import errors from './modules/error'
 import Layout from '../views/layouts/Index'
 import Payments from '../views/payment/Index'
+import Terceros from '../views/tercero/Index'
 
 export const routes = [{
         path: '/',
@@ -15,6 +16,9 @@ export const routes = [{
         }, {
             path: '/payments',
             component: Payments
+        },{
+            path: '/terceros',
+            component: Terceros
         }]
     },
     errors

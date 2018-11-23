@@ -18,7 +18,7 @@
         <div class="icon-menu"><fa icon="money-bill" /></div>
         <span>Forma de pago</span>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="terceros">
         <div class="icon-menu"><fa icon="users" /></div>
         <span>Terceros</span>
       </el-menu-item>

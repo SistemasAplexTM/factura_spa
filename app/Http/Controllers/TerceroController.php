@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Payments;
+use App\Tercero;
 use LaravelEnso\VueDatatable\app\Traits\Datatable;
-use App\Http\Controllers\Tables\Builders\PaymentsTable;
+use App\Http\Controllers\Tables\Builders\TerceroTable;
 use Illuminate\Support\Facades\DB;
 
-class PaymentsController extends Controller
+class TerceroController extends Controller
 {
     use Datatable;
 
-    protected $tableClass = PaymentsTable::class;
+    protected $tableClass = TerceroTable::class;
 
     public function save(Request $request)
     {
         DB::beginTransaction();
         try {
-            Payments::create($request->all());
+            Tercero::create($request->all());
             $answer = array(
                 "datos"  => '',
                 "code"   => 200
@@ -39,7 +39,7 @@ class PaymentsController extends Controller
     {
         DB::beginTransaction();
         try {
-            Payments::where('id', $request->id)->update($request->all());
+            Tercero::where('id', $request->id)->update($request->all());
             $answer = array(
                 "datos"  => '',
                 "code"   => 200
@@ -59,7 +59,7 @@ class PaymentsController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $data = Payments::findOrFail($request->id);
+            $data = Tercero::findOrFail($request->id);
             if ($data->delete()) {
                 // $this->AddToLog('Registro de tabla admin eliminada (id :'.$data->id.')');
                 $answer = array(
@@ -76,8 +76,8 @@ class PaymentsController extends Controller
         }
     }
 
-    public function paymentById($id){
-        $data = Payments::findOrFail($id);
+    public function terceroById($id){
+        $data = Tercero::findOrFail($id);
         return $data;
     }
 }

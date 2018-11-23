@@ -5,6 +5,7 @@ window.axios = require('axios')
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/es'
 import 'element-ui/lib/theme-chalk/index.css';
 
 import './styles/index.scss' // global css
@@ -28,7 +29,7 @@ library.add(fas)
 
 Vue.component('fa', FontAwesomeIcon)
 
-Vue.use(ElementUI);
+Vue.use(ElementUI, { locale });
 Vue.use(VTooltip)
 
 const app = new Vue({

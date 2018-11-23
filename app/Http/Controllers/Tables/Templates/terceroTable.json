@@ -1,0 +1,48 @@
+{
+    "routePrefix": "terceros",
+    "readSuffix": "data",
+    "crtNo": false,
+    "lengthMenu": [10, 15, 20, 25, 30],
+    "buttons": [
+        {
+            "type": "row",
+            "icon": "el-icon-edit",
+            "class": "el-button el-button--primary el-button--small is-circle",
+            "event": "edit",
+            "label": "Editar"
+        },
+        {
+            "type": "row",
+            "icon": "el-icon-delete",
+            "class": "el-button el-button--danger el-button--small is-circle",
+            "event": "destroy",
+            "confirmation": true
+        }
+    ],
+    "columns": [
+        {
+            "label": "Documento",
+            "data": "documento",
+            "name": "documento",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Nombre",
+            "data": "nombre",
+            "name": "nombre",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Telefono",
+            "data": "telefono",
+            "name": "telefono",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Email",
+            "data": "email",
+            "name": "email",
+            "meta": ["searchable", "sortable"]
+        }
+    ]
+}

@@ -1,10 +1,10 @@
 <template lang="html">
-  	<vue-table class="box" path="api/payments/init" id="payments" ref="tblPayment" @updateCell="updateForm" @destroy="deleteForm" @edit="editForm"></vue-table>
+  	<vue-table class="box" path="api/terceros/init" id="terceros" ref="tblTerceros" @updateCell="updateForm" @destroy="deleteForm" @edit="editForm"></vue-table>
 </template>
 
 <script>
 import VueTable from '@/components/enso/vuedatatable/VueTable.vue';
-import { update, deleteRow } from '@/api/payment'
+import { update, deleteRow } from '@/api/tercero'
 
 export default {
   components: {
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
   	refresh(){
-  		this.$refs.tblPayment.getData()
+  		this.$refs.tblTerceros.getData()
   	},
   	updateForm(value){
   		var data = {
@@ -43,7 +43,7 @@ export default {
         })
   	},
   	editForm(value){
-  		this.$store.dispatch('paymentEditing', value.dtRowId)
+  		this.$store.dispatch('terceroEditing', value.dtRowId)
   	},
   	deleteForm(value){
   		deleteRow({'id':value.dtRowId}).then(({ data }) => {

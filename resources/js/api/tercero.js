@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function save(data) {
   return request({
-    url: 'api/payments/save',
+    url: 'api/terceros/save',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function save(data) {
 
 export function update(data) {
   return request({
-    url: 'api/payments/update',
+    url: 'api/terceros/update',
     method: 'put',
     data
   })
@@ -18,15 +18,15 @@ export function update(data) {
 
 export function deleteRow(id) {
   return request({
-    url: 'api/payments/delete',
+    url: 'api/terceros/delete',
     method: 'delete',
     data: id
   })
 }
 
-export function paymentById(id) {
+export function terceroById(id) {
   return request({
-    url: 'api/payments/paymentById/' + id,
+    url: 'api/terceros/terceroById/' + id,
     method: 'get'
   })
 }
