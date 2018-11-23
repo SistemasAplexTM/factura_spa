@@ -1,7 +1,7 @@
 <template>
 
     <div class="card">
-        <header class="card-header has-background-light"
+        <header class="card-header"
             v-if="header">
             <p class="card-header-title">
                 <span class="icon is-small has-margin-right-small"
@@ -243,39 +243,28 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
     .card {
         position: relative;
+    }
 
-        &.is-rounded {
-            border-radius: 0.5em;
+    .card-header-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-            .card-header {
-                border-radius: 0.5em;
-            }
-        }
+    .card-content {
+        transition: max-height .400s ease;
+    }
 
-        .card-header {
+    .icon.angle[aria-hidden="true"] {
+        transform: rotate(180deg);
+    }
 
-            .card-header-title {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .icon.angle[aria-hidden="true"] {
-                transform: rotate(180deg);
-            }
-
-            .icon.angle {
-                transition: transform .300s ease;
-            }
-        }
-
-        .card-content {
-            transition: max-height .400s ease;
-        }
+    .icon.angle {
+        transition: transform .300s ease;
     }
 
 </style>

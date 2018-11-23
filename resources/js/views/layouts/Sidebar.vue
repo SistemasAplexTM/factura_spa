@@ -42,8 +42,14 @@ export default {
 </script>
 
 <style lang="css">
+.el-menu--collapse{
+  width: 40px !important;
+}
+.el-menu-item{
+  padding: 0px !important;
+}
 .sidebar:not(.el-menu--collapse) {
-    width: 200px;
+    width: 170px;
   }
 .sidebar{
   height: -webkit-fill-available;

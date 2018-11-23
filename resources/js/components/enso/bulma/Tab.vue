@@ -4,23 +4,18 @@
         :duration="300"
         enter-active-class="fadeIn"
         leave-active-class="fadeOut">
-        <component :is="tab"
-            :active="active">
+        <div class="animated"
+            v-if="active">
             <slot/>
-        </component>
+        </div>
     </transition>
 
 </template>
 
 <script>
 
-import AliveTab from './AliveTab.vue';
-import StaticTab from './StaticTab.vue';
-
 export default {
     name: 'Tab',
-
-    components: { AliveTab, StaticTab },
 
     props: {
         id: {
@@ -35,18 +30,9 @@ export default {
             type: Boolean,
             default: false,
         },
-        keepAlive: {
-            type: Boolean,
-            default: false,
-        },
     },
 
     computed: {
-        tab() {
-            return this.keepAlive
-                ? 'alive-tab'
-                : 'static-tab';
-        },
         index() {
             return this.$parent.tabs
                 .findIndex(tab => JSON.stringify(tab) === JSON.stringify(this.id));

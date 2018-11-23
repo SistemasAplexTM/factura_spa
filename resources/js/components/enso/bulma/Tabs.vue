@@ -1,19 +1,15 @@
 <template>
     <div>
         <div :class="[
-                'tabs', 'is-' + alignment, 'is-' + size, { 'is-boxed': boxed },
-                { 'is-toggle': toggle || custom }, { 'is-toggle-rounded': toggleRounded },
-                { 'is-fullwidth': fullwidth || custom }, { 'is-custom': custom }
-            ]">
-            <ul :class="[
-                    'tab-list',
-                    { 'has-background-grey-light' : custom }
-                ]">
+            'tabs', 'is-' + alignment, 'is-' + size, { 'is-boxed': boxed },
+            { 'is-toggle': toggle || custom }, { 'is-toggle-rounded': toggleRounded },
+            { 'is-fullwidth': fullwidth || custom }, { 'is-custom': custom }
+        ]">
+            <ul class="tab-list">
                 <li v-for="(tab, index) in tabs"
                     :class="{ 'is-active': index === active }"
                     :key="index">
-                    <a :class="{ 'has-background-white has-text-grey-dark': custom && index === active }"
-                        @click="activate(index)"
+                    <a @click="setActive(index)"
                         :disabled="disabled.includes(index)">
                         <slot name="label"
                             :tab="tab">
@@ -36,14 +32,22 @@ export default {
         alignment: {
             type: String,
             default: 'left',
-            validator: value => ['left', 'centered', 'right']
-                .includes(value),
+            validator: value => ['left', 'centered', 'right'].includes(value),
+        },
+        size: {
+            type: String,
+            default: 'normal',
+            validator: value => ['normal', 'small', 'medium', 'large'].includes(value),
         },
         boxed: {
             type: Boolean,
             default: false,
         },
-        custom: {
+        toggle: {
+            type: Boolean,
+            default: false,
+        },
+        toggleRounded: {
             type: Boolean,
             default: false,
         },
@@ -51,17 +55,7 @@ export default {
             type: Boolean,
             default: false,
         },
-        size: {
-            type: String,
-            default: 'normal',
-            validator: value => ['normal', 'small', 'medium', 'large']
-                .includes(value),
-        },
-        toggle: {
-            type: Boolean,
-            default: false,
-        },
-        toggleRounded: {
+        custom: {
             type: Boolean,
             default: false,
         },
@@ -76,17 +70,17 @@ export default {
     },
 
     methods: {
-        activate(index) {
+        setActive(index) {
             if (this.active === index || this.disabled.includes(index)) {
                 return;
             }
 
-            this.setActive(index);
-            this.$emit('selected', this.tabs[index]);
-        },
-        setActive(index) {
             this.active = null;
-            setTimeout(() => (this.active = index), 300);
+
+            setTimeout(() => {
+                this.active = index;
+                this.$emit('selected', this.tabs[this.active]);
+            }, 300);
         },
         disable(index) {
             if (!this.disabled.includes(index)) {
@@ -107,12 +101,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
     @import "./node_modules/bulma/sass/utilities/initial-variables";
 
     .tabs.is-fullwidth.is-toggle.is-custom {
         .tab-list {
-            border-radius: $radius;
+            background: $grey-lighter;
+            border-radius: 0.3em;
 
             li {
                 padding: 0.5em;
@@ -120,8 +114,10 @@ export default {
 
             .is-active {
                 a {
+                    background: $white;
                     opacity: 1;
                     font-weight: 600;
+                    color: $grey-dark;
                 }
             }
 

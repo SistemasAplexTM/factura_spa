@@ -2,12 +2,7 @@
 
     <div class="vue-filter">
         <div class="has-text-centered">
-            <strong>{{ title }}</strong>
-            <span class="icon lock has-text-muted"
-                v-if="readonly">
-                <fa icon="lock"
-                    size="xs"/>
-            </span>
+            <b>{{ title }}</b>
         </div>
         <div class="tabs is-toggle is-fullwidth is-small filter-tabs">
             <ul>
@@ -15,30 +10,25 @@
                     v-for="(option, index) in options"
                     :key="index">
                     <a @click="update(option.value)">
-                        <span :class="['icon is-small', option.class]"
+                        <span class="icon is-small"
+                            :class="option.class"
                             v-if="icons">
                             <fa :icon="option.label"/>
                         </span>
-                        <span class="filter-label"
-                            :class="option.class"
-                            v-else>
+                        <span class="filter-label" v-else
+                            :class="option.class">
                             {{ option.label }}
                         </span>
                     </a>
                 </li>
                 <li :class="{ 'is-active': value === null }"
                     v-if="!hideOff">
-                    <a @click="update()">
-                        <span :class="[
-                                'icon is-small',
-                                value === null ? 'has-text-danger' : 'has-text-success'
-                            ]">
+                    <a @click="update(null)">
+                        <span class="icon is-small"
+                            :class="value === null ? 'has-text-danger' : 'has-text-success'">
                             <fa icon="power-off"/>
                         </span>
-                        <span class="filter-label"
-                            v-if="!icons && offLabel">
-                            {{ offLabel }}
-                        </span>
+                        <span class="filter-label" v-if="!icons && offLabel">{{ offLabel }}</span>
                     </a>
                 </li>
             </ul>
@@ -50,25 +40,25 @@
 <script>
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPowerOff, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPowerOff, faLock);
+library.add(faPowerOff);
 
 export default {
     name: 'VueFilter',
 
     props: {
-        hideOff: {
-            type: Boolean,
-            default: false,
-        },
-        icons: {
-            type: Boolean,
-            default: false,
+        title: {
+            type: String,
+            default: null,
         },
         offLabel: {
             type: String,
             default: '',
+        },
+        icons: {
+            type: Boolean,
+            default: false,
         },
         options: {
             type: Array,
@@ -76,20 +66,14 @@ export default {
                 return [];
             },
         },
-        readonly: {
-            type: Boolean,
-            default: false,
-        },
-        title: {
-            type: String,
-            default: null,
-        },
         value: {
             type: null,
             default: null,
         },
-
-
+        hideOff: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     data() {
@@ -99,10 +83,8 @@ export default {
     },
 
     methods: {
-        update(value = null) {
-            if (!this.readonly) {
-                this.$emit('input', value);
-            }
+        update(value) {
+            this.$emit('input', value);
         },
     },
 };
@@ -113,22 +95,9 @@ export default {
 
     .vue-filter {
         padding: 0.5em;
-        position: relative;
-
-        .has-text-centered {
-
-            .lock {
-                position: absolute;
-                right: 0;
-            }
-        }
 
         .filter-tabs {
             padding-top: 0.5em;
-
-            li > a {
-                transition: background 0.4s;
-            }
 
             .filter-label {
                 font-size: 0.9em;

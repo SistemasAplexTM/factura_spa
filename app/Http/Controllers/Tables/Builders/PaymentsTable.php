@@ -11,7 +11,6 @@ use LaravelEnso\VueDatatable\app\Classes\Table;
 class PaymentsTable extends Table
 {
 	
-	// protected $templatePath = __DIR__ . '/../Templates/paymentsTable.json';
 	protected $templatePath = __DIR__.'/../Templates/paymentsTable.json';
 
 	public function query(){

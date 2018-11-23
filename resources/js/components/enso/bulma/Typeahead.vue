@@ -1,47 +1,40 @@
 <template>
 
-    <div class="wrapper">
+    <div>
         <div class="control has-icons-left has-icons-right"
             :class="{ 'is-loading': loading }">
-            <input :class="[
-                    'input is-fullwidth',
-                    { 'is-rounded': isRounded },
-                    { 'is-danger': hasError }
-                ]"
-                type="text"
+            <input class="input" type="text"
+                :class="{ 'is-danger': hasError }"
                 :disabled="disabled"
                 :placeholder="placeholder"
                 :value="value"
-                @blur="dropdown=false"
                 @input="update($event.target.value);getData();"
                 @keydown.up="keyUp"
                 @keydown.down="keyDown"
                 @keydown.enter="hit"
-                @keydown.esc="update('')">
+                @keydown.esc="update('')"
+                @blur="dropdown=false">
             <span class="icon is-small is-left">
                 <fa icon="search"/>
             </span>
             <span class="icon is-small is-right clear-button"
                 v-if="value && !loading"
-                @click="update('')">
+                @click="$emit('input', null)">
                 <a class="delete is-small"/>
             </span>
         </div>
-        <slot name="controls"
-            :items="items"/>
         <div :class="['dropdown typeahead', { 'is-active': showDropdown }]">
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
                 <div class="dropdown-content">
                     <a href="#" class="dropdown-item"
-                        v-for="(item, index) in filter(items)"
+                        v-for="(item, index) in items"
                         :key="index"
                         :class="{ 'is-active': position === index }"
                         @mousedown.prevent="hit"
                         @mousemove="position = index">
                         <slot name="option"
                             :highlight="highlight"
-                            :item="item"
-                            :label="label">
+                            :item="item">
                             <span v-html="highlight(item[label])"/>
                         </slot>
                     </a>
@@ -51,7 +44,7 @@
                             {{ searching }}
                         </span>
                         <span v-else>
-                            {{ noResults }}
+                            {{ notResults }}
                         </span>
                     </a>
                 </div>
@@ -72,6 +65,10 @@ library.add(faSearch);
 export default {
     name: 'Typeahead',
 
+    filters: {
+
+    },
+
     props: {
         disabled: {
             type: Boolean,
@@ -79,7 +76,7 @@ export default {
         },
         length: {
             type: Number,
-            default: 100,
+            default: 10,
         },
         source: {
             type: String,
@@ -91,15 +88,15 @@ export default {
         },
         label: {
             type: String,
-            default: 'label',
+            required: true,
         },
         placeholder: {
             type: String,
             default: 'What are you searching for today?',
         },
-        noResults: {
+        notResults: {
             type: String,
-            default: 'Nothing found...',
+            default: 'No results found matching the criteria...',
         },
         searching: {
             type: String,
@@ -119,14 +116,6 @@ export default {
             type: String,
             default: '',
         },
-        isRounded: {
-            type: Boolean,
-            default: false,
-        },
-        filter: {
-            type: Function,
-            default: items => (items),
-        },
     },
 
     data() {
@@ -142,13 +131,16 @@ export default {
         hasError() {
             return this.validator && this.value && !this.regExp.test(this.value);
         },
-        route() {
-            return typeof route === 'function'
-                ? route(this.source)
-                : this.source;
-        },
         showDropdown() {
             return !this.hideDropdown && this.value && !this.hasError;
+        },
+    },
+
+    watch: {
+        value() {
+            if (!this.value) {
+                this.items = [];
+            }
         },
     },
 
@@ -164,23 +156,18 @@ export default {
 
             this.loading = true;
 
-            axios.get(this.route, {
-                params: {
-                    query: this.value,
-                    length: this.length,
-                    params: this.params,
-                },
+            axios.get(this.source, {
+                params: { query: this.value, length: this.length, params: this.params },
             }).then((response) => {
                 this.hideDropdown = false;
                 this.items = response.data;
                 this.loading = false;
-            }).catch(error => this.handleError(error));
+            }).catch((error) => {
+                this.loading = false;
+                this.handleError(error);
+            });
         },
         update(value) {
-            if (value === '') {
-                this.items = [];
-            }
-
             this.$emit('selected', this.items[this.position]);
             this.$emit('input', value);
         },
@@ -213,34 +200,24 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
-    .wrapper {
+    .dropdown.typeahead {
         width: 100%;
+        position:absolute;
 
-        .dropdown.typeahead {
-            width: calc(100% - 1.4em);
-            position:absolute;
+        .dropdown-menu {
+            width: 100%;
 
-            .dropdown-menu {
-                width: 100%;
-
-                .dropdown-content {
-                    max-height: 20em;
-                    overflow-y: scroll;
-
-                    a.dropdown-item {
-                        text-overflow: ellipsis;
-                        overflow-x: hidden;
-                        padding-right: 1em;
-                    }
-                }
+            .dropdown-content a.dropdown-item {
+                text-overflow: ellipsis;
+                overflow-x: hidden;
             }
         }
+    }
 
-        .control.has-icons-right .icon.clear-button {
-            pointer-events: all;
-        }
+    .control.has-icons-right .icon.clear-button {
+        pointer-events: all;
     }
 
 </style>

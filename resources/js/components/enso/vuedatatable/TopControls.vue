@@ -13,9 +13,7 @@
                     :template="template"
                     :i18n="i18n"
                     v-on="$listeners"/>
-                <style-selector
-                    :template="template"
-                    class="is-hidden-mobile"/>
+                
                 <button class="button"
                     @click="$emit('reload')">
                     <span class="icon is-small">
@@ -55,7 +53,7 @@
                     <span class="is-hidden-mobile"/>
                 </button>
             </div>
-            <div class="column has-padding-small is-one-third-desktop search-input">
+            <div class="column has-padding-small is-one-third-desktop search-input fr">
                 <p class="control has-icons-left has-icons-right"
                     v-if="template.searchable">
                     <input class="input has-text-centered is-rounded"

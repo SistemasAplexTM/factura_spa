@@ -15,6 +15,6 @@ class Payments extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'description', 'usado'
+        'id', 'descripcion', 'usado'
     ];
 }

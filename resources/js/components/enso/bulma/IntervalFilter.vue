@@ -7,28 +7,30 @@
         <div class="columns is-mobile">
             <div class="column">
                 <div class="control has-icons-right">
-                    <input :class="['input control', { 'is-danger': invalid }]"
-                        v-model="interval.min"
-                        :placeholder="minLabel"
+                    <input class="input control"
                         :type="type"
-                        @input="update">
+                        :placeholder="minLabel"
+                        :locale="locale"
+                        :value="min"
+                        @input="$emit('update-min', $event.target.value || null)">
                     <span class="icon is-small is-right clear-button"
-                        @click="interval.min = null;update()"
-                        v-if="interval.min">
+                        v-if="min"
+                        @click="$emit('update-min', null)">
                         <a class="delete is-small"/>
                     </span>
                 </div>
             </div>
             <div class="column">
                 <div class="control has-icons-right">
-                    <input :class="['input control', { 'is-danger': invalid }]"
-                        v-model="interval.max"
-                        :placeholder="maxLabel"
+                    <input class="input control"
                         :type="type"
-                        @input="update">
+                        :placeholder="maxLabel"
+                        :locale="locale"
+                        :value="max"
+                        @input="$emit('update-max', $event.target.value || null)">
                     <span class="icon is-small is-right clear-button"
-                        @click="interval.max = null;update()"
-                        v-if="interval.max">
+                        v-if="max"
+                        @click="$emit('update-max', null)">
                         <a class="delete is-small"/>
                     </span>
                 </div>
@@ -44,42 +46,33 @@ export default {
     name: 'IntervalFilter',
 
     props: {
-        maxLabel: {
-            type: String,
-            default: 'Max',
-        },
-        minLabel: {
-            type: String,
-            default: 'Min',
-        },
         title: {
             type: String,
             default: null,
         },
         type: {
             type: String,
-            default: 'number',
+            required: true,
         },
-    },
-
-    data: () => ({
-        interval: {
-            min: null,
-            max: null,
+        min: {
+            type: null,
+            required: true,
         },
-    }),
-
-    computed: {
-        invalid() {
-            return this.interval.min !== null
-                && this.interval.max !== null
-                && this.interval.min > this.interval.max;
+        max: {
+            type: null,
+            required: true,
         },
-    },
-
-    methods: {
-        update() {
-            this.$emit('update', this.interval);
+        locale: {
+            type: String,
+            default: 'en',
+        },
+        minLabel: {
+            type: String,
+            default: 'Min',
+        },
+        maxLabel: {
+            type: String,
+            default: 'Max',
         },
     },
 };

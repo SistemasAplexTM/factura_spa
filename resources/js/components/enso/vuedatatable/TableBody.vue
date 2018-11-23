@@ -46,7 +46,9 @@
                 :hidden-controls="cascadesHiddenControls && idx === 0"
                 :column="column"
                 :value="row[column.name]"
-                @clicked="clicked(row, column)">
+                @clicked="clicked(row, column)"
+                @updateCell="updateCell(row,column, ...arguments)"
+                >
                 <span slot="hidden-controls"
                     class="hidden-controls"
                     v-if="cascadesHiddenControls && idx === 0"
@@ -67,16 +69,22 @@
             :class="template.align"
             v-if="template.actions && !isChild(row)">
             <span class="table-action-buttons">
-                <a v-for="(button, index) in template.buttons.row"
+              <template v-for="(button, index) in template.buttons.row">
+                <confirm-button v-if="button.event == 'destroy'" @confirmation-success="doAction(button, row)"></confirm-button>
+                <el-tooltip v-else class="item" effect="dark" :content="button.label" placement="top-start">
+                  <a
                     :key="index"
-                    class="button is-small is-table-button has-margin-left-small"
+                    class=""
                     :class="button.class"
                     :href="button.action === 'href' ? getPath(button, row.dtRowId) : null"
                     @click="button.confirmation ? showModal(button, row) : doAction(button, row)">
-                    <span class="icon is-small">
-                        <fa :icon="button.icon"/>
+                    <span class="">
+                      <i :class="button.icon"></i>
+                      <!-- <fa :icon="button.icon"/> -->
                     </span>
-                </a>
+                  </a>
+                </el-tooltip>
+              </template>
             </span>
         </td>
         <td :colspan="hiddenColSpan"
@@ -120,6 +128,7 @@ import { faMinusSquare, faPlusSquare, faEye, faPencilAlt, faTrashAlt, faCloudDow
     from '@fortawesome/free-solid-svg-icons';
 import TableCell from './TableCell.vue';
 import Modal from './Modal.vue';
+import ConfirmButton from '@/components/Buttons/ConfirmButton.vue'
 
 library.add([
     faMinusSquare, faPlusSquare, faEye, faPencilAlt, faTrashAlt, faCloudDownloadAlt,
@@ -128,7 +137,7 @@ library.add([
 export default {
     name: 'TableBody',
 
-    components: { TableCell, Modal },
+    components: { TableCell, Modal, ConfirmButton },
 
     props: {
         template: {
@@ -290,6 +299,11 @@ export default {
             if (column.meta.clickable) {
                 this.$emit('clicked', { column, row });
             }
+        },
+        updateCell(row,column, data) {
+            // if (column.meta.clickable) {
+                this.$emit('updateCell', { row,column, data });
+            // }
         },
         selectPage(status) {
             this.body.data.forEach((row) => {

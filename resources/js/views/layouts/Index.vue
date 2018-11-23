@@ -22,6 +22,9 @@ export default {
 
 <style>
   .main-app{
-    margin-top: 30px;
+    background-color: whitesmoke;
+  }
+  ul{
+    list-style: none !important;
   }
 </style>
