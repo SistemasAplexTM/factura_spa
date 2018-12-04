@@ -7,6 +7,7 @@ import Layout from '../views/layouts/Index'
 import Payments from '../views/payment/Index'
 import Terceros from '../views/tercero/Index'
 import Cupons from '../views/cupons/Index'
+import Documents from '../views/documents/Index'
 
 export const routes = [{
         path: '/',
@@ -23,6 +24,9 @@ export const routes = [{
         },{
             path: '/cupons',
             component: Cupons
+        },{
+            path: '/documents',
+            component: Documents
         }]
     },
     errors
