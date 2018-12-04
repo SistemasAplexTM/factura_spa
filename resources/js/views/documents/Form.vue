@@ -98,19 +98,471 @@ export default {
   		form: {
   			fecha: null
   		},
-  		tableData: [{
-            item: 1,
-            producto: 'camisa',
-            cantidad: 2,
-            precio: 25000,
-            descuento: 9000,
-            iva: 7500,
-            monto_total: 150000
-          }]
+  		tableData: [
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+				{
+          item: 1,
+          producto: 'camisa',
+          cantidad: 2,
+          precio: 25000,
+          descuento: 9000,
+          iva: 7500,
+          monto_total: 150000
+        },
+			]
   	}
   },
   methods:{
-    
+
   }
 }
 </script>

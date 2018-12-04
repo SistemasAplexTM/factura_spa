@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<sticky :className="'sub-navbar draft'">
+		<sticky :stickyTop="60">
 			<el-row :gutter="24" class="content-total">
 				<el-col :span="24">
 					<div class="lb-total">$ 999.999</div>
@@ -114,11 +114,11 @@ export default {
   },
   data(){
   	return {
-  		
+
   	}
   },
   methods:{
-    
+
   }
 }
 </script>
