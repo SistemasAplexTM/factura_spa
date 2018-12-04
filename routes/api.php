@@ -34,3 +34,12 @@ Route::prefix('terceros')->as('terceros.')->group(function(){
 	Route::put('update', 'TerceroController@update')->name('update');
 	Route::delete('delete', 'TerceroController@destroy')->name('delete');
 });
+
+Route::prefix('cupons')->as('cupons.')->group(function(){
+	Route::get('init', 'CuponsController@init')->name('init');
+	Route::get('data', 'CuponsController@data')->name('data');
+	Route::get('cuponsById/{id}', 'CuponsController@paymentById')->name('cuponsById');
+	Route::post('save', 'CuponsController@save')->name('save');
+	Route::put('update', 'CuponsController@update')->name('update');
+	Route::delete('delete', 'CuponsController@destroy')->name('delete');
+});

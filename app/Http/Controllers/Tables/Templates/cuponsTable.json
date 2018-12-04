@@ -1,0 +1,68 @@
+{
+    "routePrefix": "cupons",
+    "readSuffix": "data",
+    "crtNo": false,
+    "lengthMenu": [5, 10, 15, 20, 25, 30],
+    "buttons": [
+        {
+            "type": "row",
+            "icon": "el-icon-edit",
+            "class": "el-button el-button--primary el-button--small is-circle",
+            "event": "edit",
+            "label": "Editar"
+        },
+        {
+            "type": "row",
+            "icon": "el-icon-delete",
+            "class": "el-button el-button--danger el-button--small is-circle",
+            "event": "destroy",
+            "confirmation": true
+        }
+    ],
+    "columns": [
+        {
+            "label": "Códido",
+            "data": "codigo_barras",
+            "name": "codigo_barras",
+            "meta": ["searchable", "sortable", "clickable"]
+        },
+        {
+            "label": "Descuento",
+            "data": "descuento",
+            "name": "descuento",
+            "meta": ["searchable", "sortable"],
+            "money": {
+                "symbol": "$",
+                "decimal": ".",
+                "thousand": ",",
+                "precision": 0,
+                "format": "%s%v"
+            }
+        },
+        {
+            "label": "Descripción",
+            "data": "descripcion",
+            "name": "descripcion",
+            "meta": ["searchable", "sortable", "clickable"]
+        },
+        {
+            "label": "Fecha inicio",
+            "data": "fecha_inicio",
+            "name": "fecha_inicio",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Fecha fin",
+            "data": "fecha_fin",
+            "name": "fecha_fin",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Cantidad",
+            "data": "cantidad",
+            "name": "cantidad",
+            "meta": ["searchable", "sortable", "clickable"]
+        }
+        
+    ]
+}

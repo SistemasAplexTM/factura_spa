@@ -10,7 +10,7 @@
         <div class="icon-menu"><fa icon="file-invoice" /></div>
         <span>Documentos</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="cupons">
         <div class="icon-menu"><fa icon="bookmark" /></div>
         <span>Cupones</span>
       </el-menu-item>

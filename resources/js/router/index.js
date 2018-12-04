@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
-// import Layout from '../views/layout/Layout'
+
 import errors from './modules/error'
 import Layout from '../views/layouts/Index'
 import Payments from '../views/payment/Index'
 import Terceros from '../views/tercero/Index'
+import Cupons from '../views/cupons/Index'
 
 export const routes = [{
         path: '/',
@@ -19,6 +20,9 @@ export const routes = [{
         },{
             path: '/terceros',
             component: Terceros
+        },{
+            path: '/cupons',
+            component: Cupons
         }]
     },
     errors
