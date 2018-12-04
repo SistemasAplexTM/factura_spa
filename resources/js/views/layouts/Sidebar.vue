@@ -6,7 +6,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       :router="true">
-      <el-menu-item index="home">
+      <el-menu-item index="documents">
         <div class="icon-menu"><fa icon="file-invoice" /></div>
         <span>Documentos</span>
       </el-menu-item>
