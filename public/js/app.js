@@ -496,7 +496,7 @@ function applyToTag (styleElement, obj) {
 /* harmony export (immutable) */ __webpack_exports__["c"] = deepMerge;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__);
 
 
@@ -17045,7 +17045,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(17);
-var createDesc = __webpack_require__(27);
+var createDesc = __webpack_require__(28);
 module.exports = __webpack_require__(18) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -17058,7 +17058,7 @@ module.exports = __webpack_require__(18) ? function (object, key, value) {
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(26);
+var anObject = __webpack_require__(27);
 var IE8_DOM_DEFINE = __webpack_require__(79);
 var toPrimitive = __webpack_require__(45);
 var dP = Object.defineProperty;
@@ -17103,7 +17103,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(49)('wks');
-var uid = __webpack_require__(30);
+var uid = __webpack_require__(31);
 var Symbol = __webpack_require__(9).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -18092,6 +18092,31 @@ module.exports = function (exec) {
 
 /***/ }),
 /* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_element_ui__);
+
+
+
+// Creación de la intancia de Axios
+var service = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
+  baseURL: Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).BASE_API, // api base_url
+  timeout: 5000 // Tiempo máximo de espera para una solicitud ajax
+  // headers: {
+  //   'Authorization': 'Bearer ' + getToken(),
+  //   'Content-Type': 'application/json',
+  //   'X-Requested-With': 'XMLHttpRequest'
+  // }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (service);
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -18450,7 +18475,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(23);
@@ -18461,7 +18486,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -18475,7 +18500,7 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
@@ -18488,14 +18513,14 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = true;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -18506,14 +18531,14 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18538,31 +18563,6 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 } : function (obj) {
   return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 };
-
-/***/ }),
-/* 33 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_element_ui__);
-
-
-
-// Creación de la intancia de Axios
-var service = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
-  baseURL: Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).BASE_API, // api base_url
-  timeout: 5000 // Tiempo máximo de espera para una solicitud ajax
-  // headers: {
-  //   'Authorization': 'Bearer ' + getToken(),
-  //   'Content-Type': 'application/json',
-  //   'X-Requested-With': 'XMLHttpRequest'
-  // }
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (service);
 
 /***/ }),
 /* 34 */
@@ -20003,7 +20003,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(49)('keys');
-var uid = __webpack_require__(30);
+var uid = __webpack_require__(31);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -20022,7 +20022,7 @@ var store = global[SHARED] || (global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: core.version,
-  mode: __webpack_require__(29) ? 'pure' : 'global',
+  mode: __webpack_require__(30) ? 'pure' : 'global',
   copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
 
@@ -20077,7 +20077,7 @@ exports.f = __webpack_require__(20);
 
 var global = __webpack_require__(9);
 var core = __webpack_require__(22);
-var LIBRARY = __webpack_require__(29);
+var LIBRARY = __webpack_require__(30);
 var wksExt = __webpack_require__(54);
 var defineProperty = __webpack_require__(17).f;
 module.exports = function (name) {
@@ -20197,7 +20197,7 @@ module.exports = Component.exports
 /* harmony export (immutable) */ __webpack_exports__["d"] = update;
 /* harmony export (immutable) */ __webpack_exports__["a"] = deleteRow;
 /* harmony export (immutable) */ __webpack_exports__["b"] = paymentById;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(25);
 
 
 function save(data) {
@@ -20240,7 +20240,7 @@ function paymentById(id) {
 /* harmony export (immutable) */ __webpack_exports__["d"] = update;
 /* harmony export (immutable) */ __webpack_exports__["a"] = deleteRow;
 /* harmony export (immutable) */ __webpack_exports__["c"] = terceroById;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(25);
 
 
 function save(data) {
@@ -20283,7 +20283,7 @@ function terceroById(id) {
 /* harmony export (immutable) */ __webpack_exports__["d"] = update;
 /* harmony export (immutable) */ __webpack_exports__["b"] = deleteRow;
 /* harmony export (immutable) */ __webpack_exports__["a"] = cuponsById;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(25);
 
 
 function save(data) {
@@ -54565,7 +54565,7 @@ module.exports = function (it) {
 
 "use strict";
 
-var LIBRARY = __webpack_require__(29);
+var LIBRARY = __webpack_require__(30);
 var $export = __webpack_require__(44);
 var redefine = __webpack_require__(86);
 var hide = __webpack_require__(16);
@@ -54647,7 +54647,7 @@ module.exports = __webpack_require__(16);
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(26);
+var anObject = __webpack_require__(27);
 var dPs = __webpack_require__(163);
 var enumBugKeys = __webpack_require__(50);
 var IE_PROTO = __webpack_require__(48)('IE_PROTO');
@@ -61457,7 +61457,7 @@ if (GlobalVue) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(97);
-module.exports = __webpack_require__(399);
+module.exports = __webpack_require__(405);
 
 
 /***/ }),
@@ -61481,13 +61481,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__App_vue__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__App_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__router__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__store__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__store__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_v_tooltip__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bulma__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bulma__ = __webpack_require__(402);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bulma___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_bulma__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fortawesome_fontawesome_svg_core__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fortawesome_free_solid_svg_icons__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fortawesome_vue_fontawesome__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fortawesome_vue_fontawesome__ = __webpack_require__(404);
 window._ = __webpack_require__(98);
 
 window.axios = __webpack_require__(62);
@@ -79834,7 +79834,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(25)(content, options);
+var update = __webpack_require__(26)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -88529,7 +88529,7 @@ exports.default = aria.Utils;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validator___ = __webpack_require__(181);
@@ -88864,9 +88864,9 @@ module.exports = function (it) {
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(28);
+var getKeys = __webpack_require__(29);
 var gOPS = __webpack_require__(51);
-var pIE = __webpack_require__(31);
+var pIE = __webpack_require__(32);
 var toObject = __webpack_require__(84);
 var IObject = __webpack_require__(82);
 var $assign = Object.assign;
@@ -89021,7 +89021,7 @@ module.exports = function (TO_STRING) {
 "use strict";
 
 var create = __webpack_require__(87);
-var descriptor = __webpack_require__(27);
+var descriptor = __webpack_require__(28);
 var setToStringTag = __webpack_require__(53);
 var IteratorPrototype = {};
 
@@ -89039,8 +89039,8 @@ module.exports = function (Constructor, NAME, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(17);
-var anObject = __webpack_require__(26);
-var getKeys = __webpack_require__(28);
+var anObject = __webpack_require__(27);
+var getKeys = __webpack_require__(29);
 
 module.exports = __webpack_require__(18) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
@@ -89195,22 +89195,22 @@ var META = __webpack_require__(173).KEY;
 var $fails = __webpack_require__(24);
 var shared = __webpack_require__(49);
 var setToStringTag = __webpack_require__(53);
-var uid = __webpack_require__(30);
+var uid = __webpack_require__(31);
 var wks = __webpack_require__(20);
 var wksExt = __webpack_require__(54);
 var wksDefine = __webpack_require__(55);
 var enumKeys = __webpack_require__(174);
 var isArray = __webpack_require__(175);
-var anObject = __webpack_require__(26);
+var anObject = __webpack_require__(27);
 var isObject = __webpack_require__(23);
 var toIObject = __webpack_require__(19);
 var toPrimitive = __webpack_require__(45);
-var createDesc = __webpack_require__(27);
+var createDesc = __webpack_require__(28);
 var _create = __webpack_require__(87);
 var gOPNExt = __webpack_require__(176);
 var $GOPD = __webpack_require__(177);
 var $DP = __webpack_require__(17);
-var $keys = __webpack_require__(28);
+var $keys = __webpack_require__(29);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
 var gOPN = gOPNExt.f;
@@ -89334,10 +89334,10 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(88).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(31).f = $propertyIsEnumerable;
+  __webpack_require__(32).f = $propertyIsEnumerable;
   __webpack_require__(51).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(29)) {
+  if (DESCRIPTORS && !__webpack_require__(30)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -89424,7 +89424,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(30)('meta');
+var META = __webpack_require__(31)('meta');
 var isObject = __webpack_require__(23);
 var has = __webpack_require__(13);
 var setDesc = __webpack_require__(17).f;
@@ -89484,9 +89484,9 @@ var meta = module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(28);
+var getKeys = __webpack_require__(29);
 var gOPS = __webpack_require__(51);
-var pIE = __webpack_require__(31);
+var pIE = __webpack_require__(32);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -89540,8 +89540,8 @@ module.exports.f = function getOwnPropertyNames(it) {
 /* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(31);
-var createDesc = __webpack_require__(27);
+var pIE = __webpack_require__(32);
+var createDesc = __webpack_require__(28);
 var toIObject = __webpack_require__(19);
 var toPrimitive = __webpack_require__(45);
 var has = __webpack_require__(13);
@@ -89705,7 +89705,7 @@ function whitespace(rule, value, source, errors, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__required__ = __webpack_require__(89);
@@ -90354,7 +90354,7 @@ function date(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(5);
 
@@ -91183,7 +91183,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(25)(content, options);
+var update = __webpack_require__(26)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -91263,7 +91263,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(25)(content, options);
+var update = __webpack_require__(26)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -91288,7 +91288,7 @@ exports = module.exports = __webpack_require__(1)(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed);", ""]);
 
 // module
-exports.push([module.i, "body {\n  height: 100%;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  text-rendering: optimizeLegibility;\n  font-family: \"Roboto Condensed\", sans-serif; }\n\n.fr {\n  float: right !important; }\n\n.fl {\n  float: left; }\n\n.el-header {\n  padding: 0px !important; }\n\n.width-full {\n  width: 100% !important; }\n\n.el-card__header {\n  padding: 0; }\n\n.navbar-laravel {\n  background-color: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }\n\n.content ul {\n  margin-left: 0px !important;\n  margin-top: 0px !important; }\n\n@media screen and (min-width: 1088px) {\n  .navbar, .navbar-menu, .navbar-start, .navbar-end {\n    display: inherit !important; } }\n\n.text-right {\n  text-align: right !important; }\n\n.sub-navbar {\n  height: 50px;\n  line-height: 50px;\n  position: relative;\n  width: 100%;\n  text-align: right;\n  padding-right: 20px;\n  transition: 600ms ease position;\n  background-color: #fff; }\n  .sub-navbar .subtitle {\n    font-size: 20px;\n    color: #fff; }\n  .sub-navbar.deleted {\n    background: #d0d0d0; }\n\n.bl {\n  border-left: 1px solid rgba(0, 0, 0, 0.2); }\n", ""]);
+exports.push([module.i, "body {\n  height: 100%;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  text-rendering: optimizeLegibility;\n  font-family: \"Roboto Condensed\", sans-serif; }\n\n.fr {\n  float: right !important; }\n\n.fl {\n  float: left; }\n\n.el-header {\n  padding: 0px !important; }\n\n.width-full {\n  width: 100% !important; }\n\n.el-card__header {\n  padding: 0; }\n\n.navbar-laravel {\n  background-color: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }\n\n.content ul {\n  margin-left: 0px !important;\n  margin-top: 0px !important; }\n\n@media screen and (min-width: 1088px) {\n  .navbar, .navbar-menu, .navbar-start, .navbar-end {\n    display: inherit !important; } }\n\n.text-right {\n  text-align: right !important; }\n\n.sub-navbar {\n  height: 50px;\n  line-height: 50px;\n  position: relative;\n  width: 100%;\n  text-align: right;\n  padding-right: 20px;\n  transition: 600ms ease position;\n  background-color: #fff; }\n  .sub-navbar .subtitle {\n    font-size: 20px;\n    color: #fff; }\n  .sub-navbar.deleted {\n    background: #d0d0d0; }\n\n.bl {\n  border-left: 1px solid rgba(0, 0, 0, 0.2); }\n\n.br {\n  border-right: 1px solid rgba(0, 0, 0, 0.2); }\n", ""]);
 
 // exports
 
@@ -94729,7 +94729,7 @@ if (false) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = logout;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(25);
 
 
 function logout() {
@@ -104531,7 +104531,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(378)
 /* template */
-var __vue_template__ = __webpack_require__(389)
+var __vue_template__ = __webpack_require__(395)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -104677,7 +104677,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(382)
 /* template */
-var __vue_template__ = __webpack_require__(388)
+var __vue_template__ = __webpack_require__(394)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -104750,7 +104750,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.name_document{\n\tmargin-left: 10px;\n}\n.title_detail{\n\ttext-align: center;\n\tpadding-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.name_document{\n\t\tmargin-left: 10px;\n}\n.title_detail{\n\t\ttext-align: right;\n    padding-right: 20px;\n    width: 50%;\n    float: left;\n}\n.por_mayor{\n    text-align: left;\n    width: 50%;\n    float: left;\n}\n", ""]);
 
 // exports
 
@@ -104763,6 +104763,8 @@ exports.push([module.i, "\n.name_document{\n\tmargin-left: 10px;\n}\n.title_deta
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Totals__ = __webpack_require__(383);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Totals___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Totals__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Detail__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Detail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Detail__);
 //
 //
 //
@@ -104845,433 +104847,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Totals: __WEBPACK_IMPORTED_MODULE_0__Totals___default.a
+    Totals: __WEBPACK_IMPORTED_MODULE_0__Totals___default.a, Detail: __WEBPACK_IMPORTED_MODULE_1__Detail___default.a
   },
   data: function data() {
     return {
       form: {
-        fecha: null
-      },
-      tableData: [{
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }, {
-        item: 1,
-        producto: 'camisa',
-        cantidad: 2,
-        precio: 25000,
-        descuento: 9000,
-        iva: 7500,
-        monto_total: 150000
-      }]
+        fecha: null,
+        terceros_id: null,
+        dias: null,
+        fecha_recibido: null,
+        vendedor_id: null,
+        cruce: null,
+        observacion: null,
+        pormayor: null
+      }
     };
   },
 
@@ -105377,6 +104971,9 @@ exports.push([module.i, "\n.lb-total{\n\ttext-align: center;\n    font-size: 40p
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Sticky__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Sticky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Sticky__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(21);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -105453,6 +105050,437 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Sticky: __WEBPACK_IMPORTED_MODULE_0__components_Sticky___default.a
+  },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])(['totals'])),
+  watch: {
+    totals: function totals(value) {
+      console.log(value);
+    }
+  },
+  data: function data() {
+    return {
+      subtotal_1: 0,
+      descuento_1: 0,
+      descuento_2: 0,
+      subtotal_2: 0,
+      iva: 0,
+      retefuente: 0,
+      reteica: 0,
+      total: 0,
+      anticipo: 0,
+      recibido: 0,
+      devolucion: 0,
+      cupon: 0,
+      netoa: 0
+    };
+  },
+
+  methods: {}
+});
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "sticky",
+        { attrs: { stickyTop: 60 } },
+        [
+          _c(
+            "el-row",
+            { staticClass: "content-total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 24 } }, [
+                _c("div", { staticClass: "lb-total" }, [
+                  _vm._v(_vm._s(_vm.netoa))
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tSubtotal 1\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.subtotal_1) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tDescuento 1\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.descuento_1) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tDescuento 2\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 12 } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: ".00", size: "mini" },
+                    model: {
+                      value: _vm.descuento_2,
+                      callback: function($$v) {
+                        _vm.descuento_2 = $$v
+                      },
+                      expression: "descuento_2"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tSubtotal 2\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.subtotal_2) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tIVA\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.iva) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tRetefuente\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.retefuente) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tReteica\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.reteica) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tTotal\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.total) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tAnticipo\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 12 } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: ".00", size: "mini" },
+                    model: {
+                      value: _vm.anticipo,
+                      callback: function($$v) {
+                        _vm.anticipo = $$v
+                      },
+                      expression: "anticipo"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tRecibido\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.recibido) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tDevolución\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\t" + _vm._s(_vm.devolucion) + "\n\t\t  \t")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "value_total", attrs: { gutter: 24 } },
+            [
+              _c("el-col", { attrs: { span: 12 } }, [
+                _vm._v("\n\t\t  \t\tCupón\n\t\t  \t")
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 12 } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: ".00", size: "mini" },
+                    model: {
+                      value: _vm.cupon,
+                      callback: function($$v) {
+                        _vm.cupon = $$v
+                      },
+                      expression: "cupon"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1fa16f05", module.exports)
+  }
+}
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(389)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(391)
+/* template */
+var __vue_template__ = __webpack_require__(393)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/views/documents/Detail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0adcd8a7", Component.options)
+  } else {
+    hotAPI.reload("data-v-0adcd8a7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(390);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("45419d22", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0adcd8a7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Detail.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0adcd8a7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Detail.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 391 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_document__ = __webpack_require__(392);
 //
 //
 //
@@ -105488,18 +105516,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Sticky: __WEBPACK_IMPORTED_MODULE_0__components_Sticky___default.a
-  },
-  data: function data() {
-    return {};
-  },
+	components: {},
+	data: function data() {
+		return {
+			tableData: [],
+			total_monto: 0
+		};
+	},
 
-  methods: {}
+	methods: {
+		getData: function getData(code) {
+			var _this = this;
+
+			Object(__WEBPACK_IMPORTED_MODULE_0__api_document__["a" /* getProductByCode */])(code).then(function (_ref) {
+				var data = _ref.data;
+
+				_this.tableData.push(data.data[0]);
+				_this.generateTotals(_this.tableData);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		},
+		calculateMonto: function calculateMonto(index, cantidad) {
+			this.tableData[index].monto_total = this.tableData[index].precio * cantidad - parseFloat(this.tableData[index].descuento) + parseFloat(this.tableData[index].iva);
+			this.generateTotals(this.tableData);
+		},
+		generateTotals: function generateTotals(data) {
+			this.$store.dispatch('updateSubtotal', data);
+		},
+		deleteRow: function deleteRow(index, rows) {
+			rows.splice(index, 1);
+		}
+	}
 });
 
 /***/ }),
-/* 387 */
+/* 392 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getProductByCode;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(25);
+
+
+function getProductByCode(code) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
+    url: 'api/documentDetail/documentDetail/' + code,
+    method: 'get'
+  });
+}
+
+/***/ }),
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -105510,223 +105578,117 @@ var render = function() {
     "div",
     [
       _c(
-        "sticky",
-        { attrs: { stickyTop: 60 } },
+        "el-button",
+        {
+          attrs: {
+            size: "small",
+            type: "primary",
+            icon: "el-icon-edit-outline"
+          },
+          on: {
+            click: function($event) {
+              _vm.getData(254)
+            }
+          }
+        },
+        [_vm._v("\n            agregar\n         ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        { staticStyle: { width: "100%" }, attrs: { data: _vm.tableData } },
         [
-          _c(
-            "el-row",
-            { staticClass: "content-total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 24 } }, [
-                _c("div", { staticClass: "lb-total" }, [_vm._v("$ 999.999")])
-              ])
-            ],
-            1
-          ),
+          _c("el-table-column", {
+            attrs: { prop: "producto", label: "Producto" }
+          }),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tSubtotal 1\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
+          _c("el-table-column", {
+            attrs: { prop: "cantidad", label: "Cantidad" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c("el-input", {
+                      attrs: { type: "number", size: "small", min: "1" },
+                      on: {
+                        change: function($event) {
+                          _vm.calculateMonto(scope.$index, scope.row.cantidad)
+                        }
+                      },
+                      model: {
+                        value: scope.row.cantidad,
+                        callback: function($$v) {
+                          _vm.$set(scope.row, "cantidad", $$v)
+                        },
+                        expression: "scope.row.cantidad"
+                      }
+                    })
+                  ]
+                }
+              }
+            ])
+          }),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tDescuento 1\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
+          _c("el-table-column", {
+            attrs: { prop: "precio", label: "Precio Unit." }
+          }),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tDescuento 2\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c(
-                "el-col",
-                { attrs: { span: 12 } },
-                [
-                  _c("el-input", {
-                    attrs: { placeholder: ".00", size: "mini" }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          ),
+          _c("el-table-column", {
+            attrs: { prop: "descuento", label: "Desto %-$" }
+          }),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tSubtotal 2\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
+          _c("el-table-column", { attrs: { prop: "iva", label: "% IVA" } }),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tIVA\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
+          _c("el-table-column", {
+            attrs: { prop: "monto_total", label: "Monto Total" }
+          }),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tRetefuente\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tReteica\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tTotal\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tAnticipo\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c(
-                "el-col",
-                { attrs: { span: 12 } },
-                [
-                  _c("el-input", {
-                    attrs: { placeholder: ".00", size: "mini" }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tRecibido\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tDevolución\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\t$ 999.999.999\n\t\t  \t")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { staticClass: "value_total", attrs: { gutter: 24 } },
-            [
-              _c("el-col", { attrs: { span: 12 } }, [
-                _vm._v("\n\t\t  \t\tCupón\n\t\t  \t")
-              ]),
-              _vm._v(" "),
-              _c(
-                "el-col",
-                { attrs: { span: 12 } },
-                [
-                  _c("el-input", {
-                    attrs: { placeholder: ".00", size: "mini" }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _c("el-table-column", {
+            attrs: { label: "Acciones" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-tooltip",
+                      {
+                        staticClass: "item",
+                        attrs: {
+                          effect: "dark",
+                          content: "Eliminar",
+                          placement: "top"
+                        }
+                      },
+                      [
+                        _c("el-button", {
+                          attrs: {
+                            type: "danger",
+                            icon: "el-icon-delete",
+                            circle: "",
+                            size: "mini"
+                          },
+                          nativeOn: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.deleteRow(scope.$index, _vm.tableData)
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", [_vm._v(_vm._s(_vm.total_monto))])
     ],
     1
   )
@@ -105737,12 +105699,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1fa16f05", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0adcd8a7", module.exports)
   }
 }
 
 /***/ }),
-/* 388 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -105776,7 +105738,7 @@ var render = function() {
             [
               _c(
                 "el-col",
-                { attrs: { span: 18 } },
+                { staticClass: "br", attrs: { span: 18 } },
                 [
                   _c(
                     "el-form",
@@ -105793,7 +105755,18 @@ var render = function() {
                               _c(
                                 "el-form-item",
                                 { attrs: { label: "NIT cliente" } },
-                                [_c("el-input", { attrs: { size: "small" } })],
+                                [
+                                  _c("el-input", {
+                                    attrs: { size: "small" },
+                                    model: {
+                                      value: _vm.form.terceros_id,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "terceros_id", $$v)
+                                      },
+                                      expression: "form.terceros_id"
+                                    }
+                                  })
+                                ],
                                 1
                               )
                             ],
@@ -105843,6 +105816,13 @@ var render = function() {
                                       size: "small",
                                       type: "number",
                                       min: "0"
+                                    },
+                                    model: {
+                                      value: _vm.form.dias,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "dias", $$v)
+                                      },
+                                      expression: "form.dias"
                                     }
                                   })
                                 ],
@@ -105859,7 +105839,27 @@ var render = function() {
                               _c(
                                 "el-form-item",
                                 { attrs: { label: "Entrega / Vencimiento" } },
-                                [_c("el-input", { attrs: { size: "small" } })],
+                                [
+                                  _c("el-date-picker", {
+                                    staticClass: "width-full",
+                                    attrs: {
+                                      type: "date",
+                                      placeholder: "Vencimiento",
+                                      size: "small"
+                                    },
+                                    model: {
+                                      value: _vm.form.fecha_recibido,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.form,
+                                          "fecha_recibido",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "form.fecha_recibido"
+                                    }
+                                  })
+                                ],
                                 1
                               )
                             ],
@@ -105880,7 +105880,18 @@ var render = function() {
                               _c(
                                 "el-form-item",
                                 { attrs: { label: "Atendido por" } },
-                                [_c("el-input", { attrs: { size: "small" } })],
+                                [
+                                  _c("el-input", {
+                                    attrs: { size: "small" },
+                                    model: {
+                                      value: _vm.form.vendedor_id,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "vendedor_id", $$v)
+                                      },
+                                      expression: "form.vendedor_id"
+                                    }
+                                  })
+                                ],
                                 1
                               )
                             ],
@@ -105894,7 +105905,18 @@ var render = function() {
                               _c(
                                 "el-form-item",
                                 { attrs: { label: "Documento cruce" } },
-                                [_c("el-input", { attrs: { size: "small" } })],
+                                [
+                                  _c("el-input", {
+                                    attrs: { size: "small" },
+                                    model: {
+                                      value: _vm.form.curce,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "curce", $$v)
+                                      },
+                                      expression: "form.curce"
+                                    }
+                                  })
+                                ],
                                 1
                               )
                             ],
@@ -105910,7 +105932,21 @@ var render = function() {
                                 {
                                   attrs: { label: "Observación / Referencia" }
                                 },
-                                [_c("el-input", { attrs: { size: "small" } })],
+                                [
+                                  _c("el-input", {
+                                    attrs: {
+                                      size: "small",
+                                      "prefix-icon": "el-icon-edit"
+                                    },
+                                    model: {
+                                      value: _vm.form.observacion,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "observacion", $$v)
+                                      },
+                                      expression: "form.observacion"
+                                    }
+                                  })
+                                ],
                                 1
                               )
                             ],
@@ -105918,95 +105954,47 @@ var render = function() {
                           )
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c("el-form-item", { staticClass: "title_detail" }, [
+                        _vm._v(
+                          "\n              DETALLE DEL DOCUMENTO - VENTA:\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        {
+                          staticClass: "labelOff por_mayor",
+                          attrs: { prop: "pormayor" }
+                        },
+                        [
+                          _c("el-switch", {
+                            attrs: {
+                              "inactive-text": "Normal",
+                              "active-text": "Por mayor"
+                            },
+                            model: {
+                              value: _vm.form.pormayor,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "pormayor", $$v)
+                              },
+                              expression: "form.pormayor"
+                            }
+                          })
+                        ],
+                        1
                       )
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "title_detail" }, [
-                    _vm._v("DETALLE DEL DOCUMENTO - VENTA:")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "el-table",
-                    {
-                      staticStyle: { width: "100%" },
-                      attrs: { data: _vm.tableData }
-                    },
-                    [
-                      _c("el-table-column", {
-                        attrs: { prop: "item", label: "Item", width: "80" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { prop: "producto", label: "Producto" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { prop: "cantidad", label: "Cantidad" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { prop: "precio", label: "Precio Unit." }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { prop: "descuento", label: "Desto %-$" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { prop: "iva", label: "% IVA" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { prop: "monto_total", label: "Monto Total" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-table-column", {
-                        attrs: { label: "Acciones" },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(scope) {
-                              return [
-                                _c(
-                                  "el-button",
-                                  {
-                                    attrs: { type: "text", size: "small" },
-                                    nativeOn: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.deleteRow(
-                                          scope.$index,
-                                          _vm.tableData4
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n\t\t\t\t\t\t        Eliminar\n\t\t\t\t\t        "
-                                    )
-                                  ]
-                                )
-                              ]
-                            }
-                          }
-                        ])
-                      })
-                    ],
-                    1
-                  )
+                  _c("detail")
                 ],
                 1
               ),
               _vm._v(" "),
-              _c(
-                "el-col",
-                { staticClass: "bl", attrs: { span: 6 } },
-                [_c("totals")],
-                1
-              )
+              _c("el-col", { attrs: { span: 6 } }, [_c("totals")], 1)
             ],
             1
           )
@@ -106028,7 +106016,7 @@ if (false) {
 }
 
 /***/ }),
-/* 389 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -106171,18 +106159,20 @@ if (false) {
 }
 
 /***/ }),
-/* 390 */
+/* 396 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_app__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_payments__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_terceros__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_cupons__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__getters__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_app__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_payments__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_terceros__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_cupons__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_documents__ = __webpack_require__(407);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getters__ = __webpack_require__(401);
+
 
 
 
@@ -106198,15 +106188,16 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     app: __WEBPACK_IMPORTED_MODULE_2__modules_app__["a" /* default */],
     payment: __WEBPACK_IMPORTED_MODULE_3__modules_payments__["a" /* default */],
     terceros: __WEBPACK_IMPORTED_MODULE_4__modules_terceros__["a" /* default */],
-    cupons: __WEBPACK_IMPORTED_MODULE_5__modules_cupons__["a" /* default */]
+    cupons: __WEBPACK_IMPORTED_MODULE_5__modules_cupons__["a" /* default */],
+    documents: __WEBPACK_IMPORTED_MODULE_6__modules_documents__["a" /* default */]
   },
-  getters: __WEBPACK_IMPORTED_MODULE_6__getters__["a" /* default */]
+  getters: __WEBPACK_IMPORTED_MODULE_7__getters__["a" /* default */]
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
-/* 391 */
+/* 397 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106236,7 +106227,7 @@ var app = {
 /* harmony default export */ __webpack_exports__["a"] = (app);
 
 /***/ }),
-/* 392 */
+/* 398 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106280,7 +106271,7 @@ var payment = {
 /* harmony default export */ __webpack_exports__["a"] = (payment);
 
 /***/ }),
-/* 393 */
+/* 399 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106324,7 +106315,7 @@ var tercero = {
 /* harmony default export */ __webpack_exports__["a"] = (tercero);
 
 /***/ }),
-/* 394 */
+/* 400 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106368,7 +106359,7 @@ var cupons = {
 /* harmony default export */ __webpack_exports__["a"] = (cupons);
 
 /***/ }),
-/* 395 */
+/* 401 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106384,18 +106375,22 @@ var getters = {
   },
   cupons_editing: function cupons_editing(state) {
     return state.cupons.cupons_editing;
+  },
+  // documentos
+  totals: function totals(state) {
+    return state.documents.totals_l;
   }
 };
 /* harmony default export */ __webpack_exports__["a"] = (getters);
 
 /***/ }),
-/* 396 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(397);
+var content = __webpack_require__(403);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -106403,7 +106398,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(25)(content, options);
+var update = __webpack_require__(26)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -106420,7 +106415,7 @@ if(false) {
 }
 
 /***/ }),
-/* 397 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -106434,7 +106429,7 @@ exports.push([module.i, "/*! bulma.io v0.7.2 | MIT License | github.com/jgthms/b
 
 
 /***/ }),
-/* 398 */
+/* 404 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106947,10 +106942,51 @@ var FontAwesomeLayersText = {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(7)))
 
 /***/ }),
-/* 399 */
+/* 405 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 406 */,
+/* 407 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var documents = {
+	state: {
+		totals_l: {
+			subtotal_1: 0,
+			descuento_1: 0,
+			subtotal_2: 0,
+			iva: 0,
+			retefuente: 0,
+			reteica: 0,
+			total: 0,
+			recibido: 0,
+			devolucion: 0,
+			neto: 0
+		}
+	},
+	mutations: {
+		SET_MONTO_TOTAL: function SET_MONTO_TOTAL(state, monto_total) {
+			state.totals_1.neto = monto_total;
+		}
+	},
+	actions: {
+		updateSubtotal: function updateSubtotal(_ref, data) {
+			var commit = _ref.commit;
+
+			var montoTotal = 0;
+			for (var value in data) {
+				montoTotal += parseFloat(data[value].monto_total);
+			}
+			commit('SET_MONTO_TOTAL', montoTotal);
+		}
+	}
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (documents);
 
 /***/ })
 /******/ ]);

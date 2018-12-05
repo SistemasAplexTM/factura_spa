@@ -4,6 +4,7 @@ import app from './modules/app'
 import payment from './modules/payments'
 import terceros from './modules/terceros'
 import cupons from './modules/cupons'
+import documents from './modules/documents'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     app,
     payment,
     terceros,
-    cupons
+    cupons,
+    documents
   },
   getters
 })

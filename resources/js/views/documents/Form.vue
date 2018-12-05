@@ -5,13 +5,13 @@
 		    <span class="name_document">Factura nombre</span>
 		  </div>
 		  	<el-row :gutter="24">
-		  		<el-col :span="18">
+		  		<el-col :span="18"  class="br">
 		  		<!-- FILA 1 -->
 					<el-form ref="form" :model="form">
 			  			<el-row :gutter="12">
 				  			<el-col :span="6">
 							  <el-form-item label="NIT cliente">
-							    <el-input size="small" ></el-input>
+							    <el-input v-model="form.terceros_id" size="small"></el-input>
 							  </el-form-item>
 							</el-col>
 							<el-col :span="6">
@@ -27,12 +27,18 @@
 							</el-col>
 							<el-col :span="6">
 							  	<el-form-item label="Dias de credito">
-							    	<el-input size="small" type="number" min="0"></el-input>
+							    	<el-input v-model="form.dias" size="small" type="number" min="0"></el-input>
 							  	</el-form-item>
 							</el-col>
 							<el-col :span="6">
 								<el-form-item label="Entrega / Vencimiento">
-									<el-input size="small" ></el-input>
+                  <el-date-picker
+                      v-model="form.fecha_recibido"
+                      type="date"
+                      placeholder="Vencimiento"
+                      class="width-full"
+                      size="small">
+                    </el-date-picker>
 							  	</el-form-item>
 							</el-col>
 						</el-row>
@@ -40,46 +46,33 @@
 						<el-row :gutter="12">
 				  			<el-col :span="6">
 							  <el-form-item label="Atendido por">
-							    <el-input size="small" ></el-input>
+							    <el-input v-model="form.vendedor_id" size="small" ></el-input>
 							  </el-form-item>
 							</el-col>
 							<el-col :span="6">
 						  		<el-form-item label="Documento cruce">
-								    <el-input size="small" ></el-input>
+								    <el-input v-model="form.curce" size="small" ></el-input>
 								 </el-form-item>
 							</el-col>
 							<el-col :span="12">
 							  	<el-form-item label="Observación / Referencia">
-							    	<el-input size="small" ></el-input>
+							    	<el-input v-model="form.observacion" size="small" prefix-icon="el-icon-edit"></el-input>
 							  	</el-form-item>
 							</el-col>
 						</el-row>
-					</el-form>
+            <el-form-item class="title_detail">
+              DETALLE DEL DOCUMENTO - VENTA:
+            </el-form-item>
+            <el-form-item class="labelOff por_mayor" prop="pormayor">
+              <el-switch v-model="form.pormayor" inactive-text="Normal" active-text="Por mayor"></el-switch>
+            </el-form-item>
+          </el-form>
 
-					<div class="title_detail">DETALLE DEL DOCUMENTO - VENTA:</div>
 
-					<el-table :data="tableData" style="width: 100%">
-					    <el-table-column prop="item" label="Item" width="80"></el-table-column>
-					    <el-table-column prop="producto" label="Producto"></el-table-column>
-					    <el-table-column prop="cantidad" label="Cantidad"></el-table-column>
-					    <el-table-column prop="precio" label="Precio Unit."></el-table-column>
-					    <el-table-column prop="descuento" label="Desto %-$"></el-table-column>
-					    <el-table-column prop="iva" label="% IVA"></el-table-column>
-					    <el-table-column prop="monto_total" label="Monto Total"></el-table-column>
-					    <el-table-column label="Acciones">
-					    	<template slot-scope="scope">
-						        <el-button
-							        @click.native.prevent="deleteRow(scope.$index, tableData4)"
-							        type="text"
-							        size="small">
-							        Eliminar
-						        </el-button>
-					     	</template>
-					    </el-table-column>
-				    </el-table>
-
+  					<!-- DETALLE -->
+            <detail></detail>
 		  		</el-col>
-			  	<el-col :span="6" class="bl">
+			  	<el-col :span="6">
 			  		<totals></totals>
 			  	</el-col>
 		  	</el-row>
@@ -89,476 +82,23 @@
 
 <script>
 import Totals from './Totals'
+import Detail from './Detail'
 export default {
   components: {
-    Totals
+    Totals, Detail
   },
   data(){
   	return {
   		form: {
-  			fecha: null
-  		},
-  		tableData: [
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-				{
-          item: 1,
-          producto: 'camisa',
-          cantidad: 2,
-          precio: 25000,
-          descuento: 9000,
-          iva: 7500,
-          monto_total: 150000
-        },
-			]
+  			fecha: null,
+        terceros_id: null,
+        dias: null,
+        fecha_recibido: null,
+        vendedor_id: null,
+        cruce: null,
+        observacion: null,
+        pormayor: null,
+  		}
   	}
   },
   methods:{
@@ -572,7 +112,14 @@ export default {
 		margin-left: 10px;
 	}
 	.title_detail{
-		text-align: center;
-		padding-bottom: 10px;
+		text-align: right;
+    padding-right: 20px;
+    width: 50%;
+    float: left;
 	}
+  .por_mayor{
+    text-align: left;
+    width: 50%;
+    float: left;
+  }
 </style>
