@@ -11,7 +11,7 @@ const documents = {
 			recibido:0,
 			devolucion:0,
 			neto:0
-	  	}
+  	}
 	},
 	mutations:{
 		SET_SUBTOTAL_1:(state, subtotal_1) => {
@@ -30,7 +30,10 @@ const documents = {
 			state.totals.total = total
 		},
 		SET_NETO:(state, neto) => {
-			state.totals.neto = neto
+			state.totals.neto  = neto
+		},
+		SET_TOTALS:(state, obj) => {
+			state.totals  = obj
 		},
 	},
 	actions:{
@@ -41,23 +44,27 @@ const documents = {
 			let subtotal_2 	= 0;
 			let total 		= 0;
 			let neto 		= 0;
-
 			for (var value in data) {
 				subtotal_1 	+= parseFloat(data[value].cantidad) * parseFloat(data[value].precio)
 				descuento_1 += parseFloat(data[value].descuento)
 				iva 		+= parseFloat(data[value].iva)
 			}
-
 			subtotal_2 	= parseFloat(subtotal_1 - descuento_1)
 			total 		= parseFloat(subtotal_2)
 			neto 		= parseFloat(total)
-
-			commit('SET_SUBTOTAL_1', subtotal_1)
-			commit('SET_DESCUENTO_1', descuento_1)
-			commit('SET_IVA', iva)
-			commit('SET_SUBTOTAL_2', subtotal_2)
-			commit('SET_TOTAL', total)
-			commit('SET_NETO', neto)
+			var obj = {
+				subtotal_1: subtotal_1,
+				descuento_1: descuento_1,
+				subtotal_2: subtotal_2,
+				iva: iva,
+				retefuente:0,
+				reteica:0,
+				total: total,
+				recibido:0,
+				devolucion:0,
+				neto: neto
+	  	}
+			commit('SET_TOTALS', obj)
 		}
 	}
 }
