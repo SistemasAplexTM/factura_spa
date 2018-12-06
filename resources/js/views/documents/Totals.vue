@@ -3,7 +3,7 @@
 		<sticky :stickyTop="60">
 			<el-row :gutter="24" class="content-total">
 				<el-col :span="24">
-					<div class="lb-total">$ 999.999</div>
+					<div class="lb-total">{{ netoa }}</div>
 				</el-col>
 			</el-row>
 			<el-row :gutter="24" class="value_total">
@@ -11,7 +11,7 @@
 			  		Subtotal 1
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ subtotal_1 }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -19,7 +19,7 @@
 			  		Descuento 1
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ descuento_1 }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -27,7 +27,7 @@
 			  		Descuento 2
 			  	</el-col>
 			  	<el-col :span="12">
-			  		<el-input placeholder=".00" size="mini"></el-input>
+			  		<el-input placeholder=".00" size="mini" v-model="descuento_2"></el-input>
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -35,7 +35,7 @@
 			  		Subtotal 2
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ subtotal_2 }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -43,7 +43,7 @@
 			  		IVA
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ iva }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -51,7 +51,7 @@
 			  		Retefuente
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ retefuente }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -59,7 +59,7 @@
 			  		Reteica
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ reteica }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -67,7 +67,7 @@
 			  		Total
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ total }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -75,7 +75,7 @@
 			  		Anticipo
 			  	</el-col>
 			  	<el-col :span="12">
-			  		<el-input placeholder=".00" size="mini"></el-input>
+			  		<el-input placeholder=".00" size="mini" v-model="anticipo"></el-input>
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -83,7 +83,7 @@
 			  		Recibido
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ recibido }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -91,7 +91,7 @@
 			  		Devolución
 			  	</el-col>
 			  	<el-col :span="12">
-			  		$ 999.999.999
+			  		{{ devolucion }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -99,7 +99,7 @@
 			  		Cupón
 			  	</el-col>
 			  	<el-col :span="12">
-			  		<el-input placeholder=".00" size="mini"></el-input>
+			  		<el-input placeholder=".00" size="mini" v-model="cupon"></el-input>
 			  	</el-col>
 			 </el-row>
 		</sticky>
@@ -108,13 +108,37 @@
 
 <script>
 import Sticky from '@/components/Sticky'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     Sticky
   },
+  computed:{
+  	...mapGetters([
+  		'totals'
+  	])
+  },
+  watch:{
+  	totals: function(value){
+  		console.log(value)
+  	}
+  },
   data(){
   	return {
-
+		subtotal_1: 0,
+		descuento_1: 0,
+		descuento_2:0,
+		subtotal_2:0,
+		iva:0,
+		retefuente:0,
+		reteica:0,
+		total:0,
+		anticipo:0,
+		recibido:0,
+		devolucion:0,
+		cupon:0,
+		netoa:0
   	}
   },
   methods:{

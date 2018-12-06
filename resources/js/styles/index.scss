@@ -235,3 +235,10 @@ div:focus{
 .multiselect--active {
   z-index: 1000 !important;
 }
+
+.bl{
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+.br{
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}

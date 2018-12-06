@@ -43,3 +43,7 @@ Route::prefix('cupons')->as('cupons.')->group(function(){
 	Route::put('update', 'CuponsController@update')->name('update');
 	Route::delete('delete', 'CuponsController@destroy')->name('delete');
 });
+
+Route::prefix('documentDetail')->as('documentDetail.')->group(function(){
+	Route::get('documentDetail/{code}', 'DocumentDetailController@getDetailByIdDocument');
+});
