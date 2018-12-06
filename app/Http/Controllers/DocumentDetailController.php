@@ -20,7 +20,8 @@ class DocumentDetailController extends Controller
 						1 AS cantidad,
 						0 AS descuento,
 						((1 * a.precio_venta) + ROUND(b.valor * a.precio_venta / 100)) AS monto_total,
-						ROUND(b.valor * a.precio_venta / 100) AS iva
+						ROUND(b.valor * a.precio_venta / 100) AS iva,
+						ROUND(b.valor,0) AS porcentaje_iva
 						FROM
 						producto AS a
 						INNER JOIN iva AS b ON a.iva_id = b.id
