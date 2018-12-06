@@ -60,6 +60,7 @@
 							  	</el-form-item>
 							</el-col>
 						</el-row>
+						<hr>
             <el-form-item class="title_detail">
               DETALLE DEL DOCUMENTO - VENTA:
             </el-form-item>
