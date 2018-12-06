@@ -1,6 +1,6 @@
 const app = {
   state: {
-    sidebar: false,
+    sidebar: true,
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {

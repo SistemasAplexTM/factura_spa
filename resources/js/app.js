@@ -32,6 +32,9 @@ Vue.component('fa', FontAwesomeIcon)
 Vue.use(ElementUI, { locale });
 Vue.use(VTooltip)
 
+import IconAplex from '@/components/Icon/Icon'
+Vue.component('icon-aplex', IconAplex)
+
 const app = new Vue({
     el: '#app',
     router,
