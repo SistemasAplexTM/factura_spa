@@ -1,5 +1,6 @@
 <template lang="html">
     <el-menu
+      :show-timeout="200"
       class="sidebar"
       :collapse="sidebar"
       background-color="#545c64"

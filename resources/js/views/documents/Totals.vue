@@ -3,7 +3,7 @@
 		<sticky :stickyTop="60">
 			<el-row :gutter="24" class="content-total">
 				<el-col :span="24">
-					<div class="lb-total">{{ netoa }}</div>
+					<div class="lb-total">{{ neto }}</div>
 				</el-col>
 			</el-row>
 			<el-row :gutter="24" class="value_total">
@@ -119,13 +119,50 @@ export default {
   		'totals'
   	])
   },
-  watch:{
-  	totals: function(value){
-  		console.log(value)
-  	}
-  },
+  compiled: function() {
+        this.$watch(
+            function() {
+                return this.totals.length
+            },
+            function(newVal, oldVal) {
+                console.log(newVal, oldVal)
+            }
+        )
+    },
+  // watch:{
+  // 	totals:{
+  // 		handler(val, oldVal){
+  // 			this.subtotal_1 	= val.subtotal_1;
+  // 			this.descuento_1 	= val.descuento_1;
+  // 			this.subtotal_2 	= val.subtotal_2;
+  // 			this.iva 			= val.iva;
+  // 			this.total 			= val.total;
+  // 			this.neto 			= val.neto;
+  // 			console.log(val,oldVal);
+  // 			var vm = this
+		//     var animationFrame
+		// 	function animate (time) {
+		// 		TWEEN.update(time)
+		// 		animationFrame = requestAnimationFrame(animate)
+		// 	}
+		//       new TWEEN.Tween({ tweeningNumber: oldVal.neto })
+		//         .easing(TWEEN.Easing.Quadratic.Out)
+		//         .to({ tweeningNumber: val.neto }, 500)
+		//         .onUpdate(function () {
+		//           vm.neto = this.tweeningNumber.toFixed(0)
+		//         })
+		//         .onComplete(function () {
+		//           cancelAnimationFrame(animationFrame)
+		//         })
+		//         .start()
+		//       animationFrame = requestAnimationFrame(animate)
+  // 		},
+  // 		deep: true
+  // 	}
+  // },
   data(){
   	return {
+  		animatedNumber: 0,
 		subtotal_1: 0,
 		descuento_1: 0,
 		descuento_2:0,
@@ -138,7 +175,7 @@ export default {
 		recibido:0,
 		devolucion:0,
 		cupon:0,
-		netoa:0
+		neto:0
   	}
   },
   methods:{

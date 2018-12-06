@@ -13,20 +13,33 @@
 		    </el-table-column>
 		    <el-table-column prop="precio" label="Precio Unit."></el-table-column>
 		    <el-table-column prop="descuento" label="Desto %-$"></el-table-column>
-		    <el-table-column prop="iva" label="% IVA"></el-table-column>
-		    <el-table-column prop="monto_total" label="Monto Total"></el-table-column>
-		    <el-table-column label="Acciones">
+		    <el-table-column prop="iva" label="IVA">
 		    	<template slot-scope="scope">
-		    		<el-tooltip class="item" effect="dark" content="Eliminar" placement="top">
-		    			<el-button type="danger" icon="el-icon-delete" circle
-		    			@click.native.prevent="deleteRow(scope.$index, tableData)"
-		    			size="mini">
+		    		{{ scope.row.iva }} <el-button size="mini" round>{{ scope.row.porcentaje_iva }}%</el-button>
+		    	</template>
+		    </el-table-column>
+		    <el-table-column prop="monto_total" label="Monto Total" width="110"></el-table-column>
+		    <el-table-column align="center" width="50">
+		    	<template slot-scope="scope">
+		    		<el-dropdown class="avatar-container right-menu-item" trigger="click">
+				        <el-button type="text" size="mini">
+		    				<icon-aplex name="ellipsis-v" :type="'awesome'"/>
 		    			</el-button>
-		    		</el-tooltip>
+				        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+				          	<el-dropdown-item>
+				          		<span @click="deleteRow(scope.$index, tableData)">Eliminar</span>
+				          	</el-dropdown-item>
+				          	<el-dropdown-item divided>
+				            	<span>Resetear</span>
+				          	</el-dropdown-item>
+				        </el-dropdown-menu>
+				    </el-dropdown>
 		     	</template>
 		    </el-table-column>
+		    <template slot="empty">
+		    	Es que no pensas meter datos o que!!
+		    </template>
 	    </el-table>
-	    <div>{{ total_monto }}</div>
 	</div>
 </template>
 
@@ -53,6 +66,7 @@
 			},
 			calculateMonto(index, cantidad){
 				this.tableData[index].monto_total = (this.tableData[index].precio * cantidad) - parseFloat(this.tableData[index].descuento) + parseFloat(this.tableData[index].iva)
+				this.tableData[index].iva = Math.round((this.tableData[index].precio * cantidad) * this.tableData[index].porcentaje_iva / 100, 0)
 				this.generateTotals(this.tableData);
 			},
 			generateTotals(data){
@@ -60,6 +74,7 @@
 			},
 			deleteRow(index, rows) {
 		        rows.splice(index, 1);
+		        this.generateTotals(this.tableData);
 		    },
 
 		}

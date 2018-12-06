@@ -3,7 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import errors from './modules/error'
-import Layout from '../views/layouts/Index'
+import Layout from '../views/layout/Layout'
 import Payments from '../views/payment/Index'
 import Terceros from '../views/tercero/Index'
 import Cupons from '../views/cupons/Index'
