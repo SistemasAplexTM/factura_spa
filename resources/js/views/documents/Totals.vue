@@ -96,7 +96,7 @@
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
 			  	<el-col :span="12">
-			  		Cupón
+			  		Cupón de
 			  	</el-col>
 			  	<el-col :span="12">
 			  		<el-input placeholder=".00" size="mini" v-model="cupon"></el-input>
