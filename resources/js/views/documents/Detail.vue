@@ -7,8 +7,9 @@
 		    <el-table-column prop="producto" label="Producto"></el-table-column>
 		    <el-table-column prop="cantidad" label="Cantidad">
 		    	<template slot-scope="scope">
-		    		<el-input type="number" v-model="scope.row.cantidad" size="small" min="1" 
-		    		@change="calculateMonto(scope.$index, scope.row.cantidad)"></el-input>
+						<el-input-number v-model="scope.row.cantidad"
+						@change="calculateMonto(scope.$index, scope.row.cantidad)"
+						size="small" :min="1" :max="10"></el-input-number>
 		    	</template>
 		    </el-table-column>
 		    <el-table-column prop="precio" label="Precio Unit."></el-table-column>
@@ -47,7 +48,7 @@
 	import { getProductByCode } from '@/api/document'
 	export default {
 		components: {
-		    
+
 		},
 		data(){
 		  	return {
@@ -82,6 +83,5 @@
 </script>
 
 <style>
-	
-</style>
 
+</style>
