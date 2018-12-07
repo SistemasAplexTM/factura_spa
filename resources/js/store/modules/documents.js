@@ -3,6 +3,7 @@ const documents = {
 		totals:{
 			subtotal_1: 0,
 			descuento_1: 0,
+			descuento_2: 0,
 			subtotal_2:0,
 			iva:0,
 			retefuente:0,
@@ -14,47 +15,43 @@ const documents = {
   	}
 	},
 	mutations:{
-		SET_SUBTOTAL_1:(state, subtotal_1) => {
-			state.totals.subtotal_1 = subtotal_1
-		},
-		SET_DESCUENTO_1:(state, descuento_1) => {
-			state.totals.descuento_1 = descuento_1
-		},
-		SET_IVA:(state, iva) => {
-			state.totals.iva = iva
-		},
-		SET_SUBTOTAL_2:(state, subtotal_2) => {
-			state.totals.subtotal_2 = subtotal_2
-		},
-		SET_TOTAL:(state, total) => {
-			state.totals.total = total
-		},
-		SET_NETO:(state, neto) => {
-			state.totals.neto  = neto
-		},
 		SET_TOTALS:(state, obj) => {
 			state.totals  = obj
 		},
+		SET_DESCUENTO_2:(state, descuento_2) => {
+			state.totals.descuento_2  = descuento_2
+		}
 	},
 	actions:{
-		updateSubtotal({ commit }, data){
+		updateSubtotal({ commit, state }, data){
 			let subtotal_1 	= 0;
 			let descuento_1 = 0;
-			let iva 		= 0;
-			let subtotal_2 	= 0;
-			let total 		= 0;
-			let neto 		= 0;
-			for (var value in data) {
-				subtotal_1 	+= parseFloat(data[value].cantidad) * parseFloat(data[value].precio)
-				descuento_1 += parseFloat(data[value].descuento)
-				iva 		+= parseFloat(data[value].iva)
+			let iva 				= 0;
+			let retefuente 	= 0;
+			let reteica 		= 0;
+
+			if(data == null){
+				subtotal_1 	= state.totals.subtotal_1
+				descuento_1 = state.totals.descuento_1
+				iva 				= state.totals.iva
+				retefuente 	= state.totals.retefuente
+				reteica 		= state.totals.reteica
+			}else{
+				for (var value in data) {
+					subtotal_1 	+= parseFloat(data[value].cantidad) * parseFloat(data[value].precio)
+					descuento_1 += parseFloat(data[value].descuento)
+					iva 				+= parseFloat(data[value].iva)
+				}
 			}
-			subtotal_2 	= parseFloat(subtotal_1 - descuento_1)
-			total 		= parseFloat(subtotal_2)
-			neto 		= parseFloat(total)
+			let subtotal_2 	= parseFloat(subtotal_1 - descuento_1 - parseFloat(state.totals.descuento_2))
+			// EL 19 DE IVA DEBE SER UNA VARIABLE QUE ESTE EN LA CONFIGURACION DEL DOCUMENTO
+			iva 						= ((data == null) ? (Math.round(subtotal_2 * 19 / 100)) : iva)
+			let total 			= parseFloat(subtotal_2 + iva + retefuente + reteica)
+			let neto 				= parseFloat(total)
 			var obj = {
 				subtotal_1: subtotal_1,
 				descuento_1: descuento_1,
+				descuento_2: parseFloat(state.totals.descuento_2),
 				subtotal_2: subtotal_2,
 				iva: iva,
 				retefuente:0,
