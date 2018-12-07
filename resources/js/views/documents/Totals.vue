@@ -10,7 +10,7 @@
 			  	<el-col :span="12">
 			  		Subtotal 1
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(subtotal_1) }}
 			  	</el-col>
 			 </el-row>
@@ -18,7 +18,7 @@
 			  	<el-col :span="12">
 			  		Descuento 1
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(descuento_1) }}
 			  	</el-col>
 			 </el-row>
@@ -26,7 +26,7 @@
 			  	<el-col :span="12">
 			  		Descuento 2
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		<el-input placeholder=".00" size="mini" v-model="descuento_2" @blur="calculateTotals()"></el-input>
 			  	</el-col>
 			 </el-row>
@@ -34,7 +34,7 @@
 			  	<el-col :span="12">
 			  		Subtotal 2
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(subtotal_2) }}
 			  	</el-col>
 			 </el-row>
@@ -42,7 +42,7 @@
 			  	<el-col :span="12">
 			  		IVA
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(iva) }}
 			  	</el-col>
 			 </el-row>
@@ -50,7 +50,7 @@
 			  	<el-col :span="12">
 			  		Retefuente
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(retefuente) }}
 			  	</el-col>
 			 </el-row>
@@ -58,7 +58,7 @@
 			  	<el-col :span="12">
 			  		Reteica
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(reteica) }}
 			  	</el-col>
 			 </el-row>
@@ -66,7 +66,7 @@
 			  	<el-col :span="12">
 			  		Total
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(total) }}
 			  	</el-col>
 			 </el-row>
@@ -74,7 +74,7 @@
 			  	<el-col :span="12">
 			  		Anticipo
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		<el-input placeholder=".00" size="mini" v-model="anticipo"></el-input>
 			  	</el-col>
 			 </el-row>
@@ -82,7 +82,7 @@
 			  	<el-col :span="12">
 			  		Recibido
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(recibido) }}
 			  	</el-col>
 			 </el-row>
@@ -90,7 +90,7 @@
 			  	<el-col :span="12">
 			  		Devolución
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		{{ format(devolucion) }}
 			  	</el-col>
 			 </el-row>
@@ -98,7 +98,7 @@
 			  	<el-col :span="12">
 			  		Cupón de
 			  	</el-col>
-			  	<el-col :span="12">
+			  	<el-col :span="12" class="text-right">
 			  		<el-input placeholder=".00" size="mini" v-model="cupon"></el-input>
 			  	</el-col>
 			 </el-row>
