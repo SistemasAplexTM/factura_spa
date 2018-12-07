@@ -1,8 +1,14 @@
 <template>
 	<div>
-		<el-button size="small" type="primary" icon="el-icon-edit-outline" @click="getData(254)">
-            agregar
-         </el-button>
+		<el-row :gutter="24">
+			<el-col :span="18">
+				<el-button size="small" type="primary" icon="el-icon-edit-outline" @click="getData(254)">agregar</el-button>
+			</el-col>
+			<el-col :span="6" class="labelOff">
+					<el-switch v-model="pormayor" inactive-text="Normal" active-text="Por mayor"></el-switch>
+			</el-col>
+		</el-row>
+
 		<el-table :data="tableData" style="width: 100%">
 		    <el-table-column prop="producto" label="Producto"></el-table-column>
 		    <el-table-column prop="cantidad" label="Cantidad">
@@ -17,7 +23,11 @@
 						{{ format(scope.row.precio) }}
 					</template>
 				</el-table-column>
-		    <el-table-column prop="descuento" label="Desto %-$"></el-table-column>
+		    <el-table-column prop="descuento" label="Dcto.">
+					<template slot-scope="scope">
+						{{ scope.row.descuento }}
+					</template>
+				</el-table-column>
 		    <el-table-column prop="iva" label="IVA">
 		    	<template slot-scope="scope">
 		    		{{ format(scope.row.iva) }} <el-button size="mini" round>{{ scope.row.porcentaje_iva }}%</el-button>
@@ -36,10 +46,16 @@
 		    			</el-button>
 				        <el-dropdown-menu slot="dropdown" class="user-dropdown">
 				          	<el-dropdown-item>
-				          		<span @click="deleteRow(scope.$index, tableData)">Eliminar</span>
+				          		<span @click="deleteRow(scope.$index, tableData)" class="text-danger">
+												<i class="el-icon-close"></i>
+												Eliminar
+											</span>
 				          	</el-dropdown-item>
 				          	<el-dropdown-item divided>
-				            	<span>Resetear</span>
+				            	<span class="text-primary">
+												<i class="el-icon-refresh"></i>
+												Resetear
+											</span>
 				          	</el-dropdown-item>
 				        </el-dropdown-menu>
 				    </el-dropdown>
@@ -62,7 +78,8 @@
 		data(){
 		  	return {
 		  		tableData: [],
-		  		total_monto: 0
+		  		total_monto: 0,
+					pormayor: 0
 		  	}
 		},
 		methods:{
@@ -70,9 +87,9 @@
 				getProductByCode(code).then(({data}) => {
             this.tableData.push(data.data[0])
             this.generateTotals(this.tableData);
-        	}).catch(error => {
+        }).catch(error => {
           	console.log(error)
-        	});
+        });
 			},
 			calculateMonto(index, cantidad){
 				this.tableData[index].monto_total = (this.tableData[index].precio * cantidad) - parseFloat(this.tableData[index].descuento) + parseFloat(this.tableData[index].iva)
@@ -94,6 +111,10 @@
 			},
 			deleteRow(index, rows) {
 		        rows.splice(index, 1);
+						console.log(this.tableData.length);
+						if(this.tableData.length <= 0){
+							this.$store.dispatch('defaultTotals')
+						}
 		        this.generateTotals(this.tableData);
 		    },
 

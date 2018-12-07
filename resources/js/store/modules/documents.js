@@ -40,12 +40,14 @@ const documents = {
 				for (var value in data) {
 					subtotal_1 	+= parseFloat(data[value].cantidad) * parseFloat(data[value].precio)
 					descuento_1 += parseFloat(data[value].descuento)
-					iva 				+= parseFloat(data[value].iva)
+					// iva 				+= parseFloat(data[value].iva)
 				}
 			}
 			let subtotal_2 	= parseFloat(subtotal_1 - descuento_1 - parseFloat(state.totals.descuento_2))
+			subtotal_2 			= (subtotal_2 <= 0) ? 0 : subtotal_2
 			// EL 19 DE IVA DEBE SER UNA VARIABLE QUE ESTE EN LA CONFIGURACION DEL DOCUMENTO
-			iva 						= ((data == null) ? (Math.round(subtotal_2 * 19 / 100)) : iva)
+			// iva 						= ((data == null || data == 'null') ? (Math.round(subtotal_2 * (19 / 100))) : iva)
+			iva 						= (Math.round(subtotal_2 * (19 / 100)))
 			let total 			= parseFloat(subtotal_2 + iva + retefuente + reteica)
 			let neto 				= parseFloat(total)
 			var obj = {
@@ -60,6 +62,22 @@ const documents = {
 				recibido:0,
 				devolucion:0,
 				neto: neto
+	  	}
+			commit('SET_TOTALS', obj)
+		},
+		defaultTotals({ commit }){
+			var obj = {
+				subtotal_1: 0,
+				descuento_1: 0,
+				descuento_2: 0,
+				subtotal_2: 0,
+				iva: 0,
+				retefuente:0,
+				reteica:0,
+				total: 0,
+				recibido:0,
+				devolucion:0,
+				neto: 0
 	  	}
 			commit('SET_TOTALS', obj)
 		}

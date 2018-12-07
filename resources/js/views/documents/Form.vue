@@ -61,15 +61,7 @@
 							</el-col>
 						</el-row>
 						<hr>
-            <el-form-item class="title_detail">
-              DETALLE DEL DOCUMENTO - VENTA:
-            </el-form-item>
-            <el-form-item class="labelOff por_mayor" prop="pormayor">
-              <el-switch v-model="form.pormayor" inactive-text="Normal" active-text="Por mayor"></el-switch>
-            </el-form-item>
           </el-form>
-
-
   					<!-- DETALLE -->
             <detail></detail>
 		  		</el-col>

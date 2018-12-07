@@ -6,3 +6,10 @@ export function getProductByCode(code) {
     method: 'get'
   })
 }
+
+export function getCupon(data) {
+  return request({
+    url: 'api/document/getCupon/' + data,
+    method: 'get'
+  })
+}

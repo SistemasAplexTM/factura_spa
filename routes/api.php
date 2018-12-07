@@ -44,6 +44,10 @@ Route::prefix('cupons')->as('cupons.')->group(function(){
 	Route::delete('delete', 'CuponsController@destroy')->name('delete');
 });
 
+Route::prefix('document')->as('document.')->group(function(){
+	Route::get('getCupon/{data}', 'DocumentController@getCupon');
+});
+
 Route::prefix('documentDetail')->as('documentDetail.')->group(function(){
 	Route::get('documentDetail/{code}', 'DocumentDetailController@getDetailByIdDocument');
 });
