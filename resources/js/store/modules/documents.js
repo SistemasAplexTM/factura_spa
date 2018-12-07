@@ -14,27 +14,9 @@ const documents = {
   	}
 	},
 	mutations:{
-		SET_SUBTOTAL_1:(state, subtotal_1) => {
-			state.totals.subtotal_1 = subtotal_1
-		},
-		SET_DESCUENTO_1:(state, descuento_1) => {
-			state.totals.descuento_1 = descuento_1
-		},
-		SET_IVA:(state, iva) => {
-			state.totals.iva = iva
-		},
-		SET_SUBTOTAL_2:(state, subtotal_2) => {
-			state.totals.subtotal_2 = subtotal_2
-		},
-		SET_TOTAL:(state, total) => {
-			state.totals.total = total
-		},
-		SET_NETO:(state, neto) => {
-			state.totals.neto  = neto
-		},
 		SET_TOTALS:(state, obj) => {
 			state.totals  = obj
-		},
+		}
 	},
 	actions:{
 		updateSubtotal({ commit }, data){
@@ -50,8 +32,8 @@ const documents = {
 				iva 		+= parseFloat(data[value].iva)
 			}
 			subtotal_2 	= parseFloat(subtotal_1 - descuento_1)
-			total 		= parseFloat(subtotal_2)
-			neto 		= parseFloat(total)
+			total 			= parseFloat(subtotal_2)
+			neto 				= parseFloat(total)
 			var obj = {
 				subtotal_1: subtotal_1,
 				descuento_1: descuento_1,

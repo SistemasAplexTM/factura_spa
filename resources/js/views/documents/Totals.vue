@@ -126,51 +126,77 @@ export default {
   			this.subtotal_1 	= val.subtotal_1;
   			this.descuento_1 	= val.descuento_1;
   			this.subtotal_2 	= val.subtotal_2;
-  			this.iva 			= val.iva;
-  			this.total 			= val.total;
-  			this.neto 			= val.neto;
+  			this.iva 					= val.iva;
+  			this.total 				= val.total;
+  			this.neto 				= val.neto;
 
-  			var vm = this
-		    var animationFrame
-				function animate (time) {
-					TWEEN.update(time)
-					animationFrame = requestAnimationFrame(animate)
-				}
-	      new TWEEN.Tween({ tweeningNumber: oldVal.neto })
-	        .easing(TWEEN.Easing.Quadratic.Out)
-	        .to({ tweeningNumber: val.neto }, 500)
-	        .onUpdate(function () {
-	          vm.neto = this.tweeningNumber.toFixed(0)
-	        })
-	        .onComplete(function () {
-	          cancelAnimationFrame(animationFrame)
-	        })
-	        .start()
-	      animationFrame = requestAnimationFrame(animate)
+				this.animateNumber(val.neto, oldVal.neto, 'neto')
+				this.animateNumber(val.subtotal_1, oldVal.subtotal_1, 'subtotal_1')
+				this.animateNumber(val.descuento_1, oldVal.descuento_1, 'descuento_1')
+				this.animateNumber(val.subtotal_2, oldVal.subtotal_2, 'subtotal_2')
+				this.animateNumber(val.iva, oldVal.iva, 'iva')
+				this.animateNumber(val.total, oldVal.total, 'total')
   		}
   	}
   },
   data(){
   	return {
   		animatedNumber: 0,
-		subtotal_1: 0,
-		descuento_1: 0,
-		descuento_2:0,
-		subtotal_2:0,
-		iva:0,
-		retefuente:0,
-		reteica:0,
-		total:0,
-		anticipo:0,
-		recibido:0,
-		devolucion:0,
-		cupon:0,
-		neto:0
+			subtotal_1: 0,
+			descuento_1: 0,
+			descuento_2:0,
+			subtotal_2:0,
+			iva:0,
+			retefuente:0,
+			reteica:0,
+			total:0,
+			anticipo:0,
+			recibido:0,
+			devolucion:0,
+			cupon:0,
+			neto:0
   	}
   },
   methods:{
-		animateNumber(){
+		animateNumber(val, oldVal, name){
+			var vm = this
+			var animationFrame
+			function animate (time) {
+				TWEEN.update(time)
+				animationFrame = requestAnimationFrame(animate)
+			}
+			new TWEEN.Tween({ tweeningNumber: oldVal })
+				.easing(TWEEN.Easing.Quadratic.Out)
+				.to({ tweeningNumber: val }, 500)
+				.onUpdate(function () {
+					switch (name) {
+						case 'neto':
+								vm.neto = this.tweeningNumber.toFixed(0)
+							break;
+						case 'subtotal_1':
+								vm.subtotal_1 = this.tweeningNumber.toFixed(0)
+							break;
+						case 'descuento_1':
+								vm.descuento_1 = this.tweeningNumber.toFixed(0)
+							break;
+						case 'subtotal_2':
+								vm.subtotal_2 = this.tweeningNumber.toFixed(0)
+							break;
+						case 'iva':
+								vm.iva = this.tweeningNumber.toFixed(0)
+							break;
+						case 'total':
+								vm.total = this.tweeningNumber.toFixed(0)
+							break;
+						default:
 
+					}
+				})
+				.onComplete(function () {
+					cancelAnimationFrame(animationFrame)
+				})
+				.start()
+			animationFrame = requestAnimationFrame(animate)
 		}
   }
 }
