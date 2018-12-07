@@ -9,20 +9,28 @@
 		    	<template slot-scope="scope">
 						<el-input-number v-model="scope.row.cantidad"
 						@change="calculateMonto(scope.$index, scope.row.cantidad)"
-						size="small" :min="1" :max="10"></el-input-number>
+						size="small" :min="1"></el-input-number>
 		    	</template>
 		    </el-table-column>
-		    <el-table-column prop="precio" label="Precio Unit."></el-table-column>
+		    <el-table-column prop="precio" label="Precio Unit.">
+					<template slot-scope="scope">
+						{{ format(scope.row.precio) }}
+					</template>
+				</el-table-column>
 		    <el-table-column prop="descuento" label="Desto %-$"></el-table-column>
 		    <el-table-column prop="iva" label="IVA">
 		    	<template slot-scope="scope">
-		    		{{ scope.row.iva }} <el-button size="mini" round>{{ scope.row.porcentaje_iva }}%</el-button>
+		    		{{ format(scope.row.iva) }} <el-button size="mini" round>{{ scope.row.porcentaje_iva }}%</el-button>
 		    	</template>
 		    </el-table-column>
-		    <el-table-column prop="monto_total" label="Monto Total" width="110"></el-table-column>
+		    <el-table-column prop="monto_total" label="Monto Total" width="110">
+					<template slot-scope="scope">
+						{{ format(scope.row.monto_total) }}
+					</template>
+				</el-table-column>
 		    <el-table-column align="center" width="50">
 		    	<template slot-scope="scope">
-		    		<el-dropdown class="avatar-container right-menu-item" trigger="click">
+		    		<el-dropdown class="avatar-container right-menu-item">
 				        <el-button type="text" size="mini">
 		    				<icon-aplex name="ellipsis-v" :type="'awesome'"/>
 		    			</el-button>
@@ -45,6 +53,7 @@
 </template>
 
 <script>
+	import accounting from 'accounting-js';
 	import { getProductByCode } from '@/api/document'
 	export default {
 		components: {
@@ -59,11 +68,11 @@
 		methods:{
 			getData(code){
 				getProductByCode(code).then(({data}) => {
-		            this.tableData.push(data.data[0])
-		            this.generateTotals(this.tableData);
-	          	}).catch(error => {
-	            	console.log(error)
-	          	});
+            this.tableData.push(data.data[0])
+            this.generateTotals(this.tableData);
+        	}).catch(error => {
+          	console.log(error)
+        	});
 			},
 			calculateMonto(index, cantidad){
 				this.tableData[index].monto_total = (this.tableData[index].precio * cantidad) - parseFloat(this.tableData[index].descuento) + parseFloat(this.tableData[index].iva)
@@ -72,6 +81,16 @@
 			},
 			generateTotals(data){
 				this.$store.dispatch('updateSubtotal', data)
+			},
+			format(val){
+				var options = {
+					symbol : "$ ",
+					decimal : ",",
+					thousand: ".",
+					precision : 0,
+					format: "%s%v"
+				};
+				return accounting.formatMoney(val, options)
 			},
 			deleteRow(index, rows) {
 		        rows.splice(index, 1);
