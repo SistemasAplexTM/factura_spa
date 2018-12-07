@@ -3,7 +3,7 @@
 		<sticky :stickyTop="60">
 			<el-row :gutter="24" class="content-total">
 				<el-col :span="24">
-					<div class="lb-total">$ {{ neto }}</div>
+					<div class="lb-total">{{ format(neto) }}</div>
 				</el-col>
 			</el-row>
 			<el-row :gutter="24" class="value_total">
@@ -11,7 +11,7 @@
 			  		Subtotal 1
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ subtotal_1 }}
+			  		{{ format(subtotal_1) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -19,7 +19,7 @@
 			  		Descuento 1
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ descuento_1 }}
+			  		{{ format(descuento_1) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -35,7 +35,7 @@
 			  		Subtotal 2
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ subtotal_2 }}
+			  		{{ format(subtotal_2) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -43,7 +43,7 @@
 			  		IVA
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ iva }}
+			  		{{ format(iva) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -51,7 +51,7 @@
 			  		Retefuente
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ retefuente }}
+			  		{{ format(retefuente) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -59,7 +59,7 @@
 			  		Reteica
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ reteica }}
+			  		{{ format(reteica) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -67,7 +67,7 @@
 			  		Total
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ total }}
+			  		{{ format(total) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -83,7 +83,7 @@
 			  		Recibido
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ recibido }}
+			  		{{ format(recibido) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -91,7 +91,7 @@
 			  		Devolución
 			  	</el-col>
 			  	<el-col :span="12">
-			  		{{ devolucion }}
+			  		{{ format(devolucion) }}
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -108,6 +108,7 @@
 
 <script>
 import Sticky from '@/components/Sticky'
+import accounting from 'accounting-js';
 import { mapGetters } from 'vuex'
 
 export default {
@@ -153,24 +154,34 @@ export default {
   data(){
   	return {
   		animatedNumber: 0,
-		subtotal_1: 0,
-		descuento_1: 0,
-		descuento_2:0,
-		subtotal_2:0,
-		iva:0,
-		retefuente:0,
-		reteica:0,
-		total:0,
-		anticipo:0,
-		recibido:0,
-		devolucion:0,
-		cupon:0,
-		neto:0
+			subtotal_1: 0,
+			descuento_1: 0,
+			descuento_2:0,
+			subtotal_2:0,
+			iva:0,
+			retefuente:0,
+			reteica:0,
+			total:0,
+			anticipo:0,
+			recibido:0,
+			devolucion:0,
+			cupon:0,
+			neto:0
   	}
   },
   methods:{
 		animateNumber(){
 
+		},
+		format(val){
+			var options = {
+				symbol : "$ ",
+				decimal : ",",
+				thousand: ".",
+				precision : 0,
+				format: "%s%v"
+			};
+			return accounting.formatMoney(val, options)
 		}
   }
 }
