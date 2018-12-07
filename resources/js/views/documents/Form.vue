@@ -10,41 +10,41 @@
 					<el-form ref="form" :model="form">
 			  			<el-row :gutter="12">
 				  			<el-col :span="6">
-							  <el-form-item label="NIT cliente">
-							    <el-input v-model="form.terceros_id" size="small"></el-input>
-							  </el-form-item>
-							</el-col>
-							<el-col :span="6">
-							  <el-form-item label="Fecha">
-							    <el-date-picker
-					              v-model="form.fecha"
-					              type="date"
-					              placeholder="Selecciona fecha"
-					              class="width-full"
-					              size="small">
-					            </el-date-picker>
-							  </el-form-item>
-							</el-col>
-							<el-col :span="6">
-							  	<el-form-item label="Dias de credito">
-							    	<el-input v-model="form.dias" size="small" type="number" min="0"></el-input>
-							  	</el-form-item>
-							</el-col>
-							<el-col :span="6">
-								<el-form-item label="Entrega / Vencimiento">
-                  <el-date-picker
-                      v-model="form.fecha_recibido"
-                      type="date"
-                      placeholder="Vencimiento"
-                      class="width-full"
-                      size="small">
-                    </el-date-picker>
-							  	</el-form-item>
-							</el-col>
+								  <el-form-item label="NIT cliente">
+								    <el-input v-model="form.terceros_id" size="small"></el-input>
+								  </el-form-item>
+								</el-col>
+								<el-col :span="6">
+								  <el-form-item label="Fecha">
+								    <el-date-picker
+						              v-model="form.fecha"
+						              type="date"
+						              placeholder="Selecciona fecha"
+						              class="width-full"
+						              size="small">
+						            </el-date-picker>
+								  </el-form-item>
+								</el-col>
+								<el-col :span="6">
+								  	<el-form-item label="Dias de credito">
+								    	<el-input v-model="form.dias" size="small" type="number" min="0"></el-input>
+								  	</el-form-item>
+								</el-col>
+								<el-col :span="6">
+									<el-form-item label="Entrega / Vencimiento">
+	                  <el-date-picker
+	                      v-model="form.fecha_recibido"
+	                      type="date"
+	                      placeholder="Vencimiento"
+	                      class="width-full"
+	                      size="small">
+	                    </el-date-picker>
+								  	</el-form-item>
+								</el-col>
 						</el-row>
 						<!-- FILA 2 -->
 						<el-row :gutter="12">
-				  			<el-col :span="6">
+				  		<el-col :span="6">
 							  <el-form-item label="Atendido por">
 							    <el-input v-model="form.vendedor_id" size="small" ></el-input>
 							  </el-form-item>
@@ -123,4 +123,7 @@ export default {
     width: 50%;
     float: left;
   }
+	.el-date-editor.el-input, .el-date-editor.el-input__inner{
+		width: 100%
+	}
 </style>
