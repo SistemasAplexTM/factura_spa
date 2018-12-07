@@ -27,7 +27,7 @@
 			  		Descuento 2
 			  	</el-col>
 			  	<el-col :span="12">
-			  		<el-input placeholder=".00" size="mini" v-model="descuento_2"></el-input>
+			  		<el-input placeholder=".00" size="mini" v-model="descuento_2" @blur="calculateTotals()"></el-input>
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -158,6 +158,10 @@ export default {
   	}
   },
   methods:{
+		calculateTotals(){
+			this.$store.commit('SET_DESCUENTO_2', this.descuento_2)
+			this.$store.dispatch('updateSubtotal', null)
+		},
 		animateNumber(val, oldVal, name){
 			var vm = this
 			var animationFrame
