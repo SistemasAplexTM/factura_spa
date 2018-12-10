@@ -10,8 +10,31 @@
 					<el-form ref="form" :model="form">
 			  			<el-row :gutter="12">
 				  			<el-col :span="6">
-								  <el-form-item label="NIT cliente">
-								    <el-input v-model="form.terceros_id" size="small"></el-input>
+								  <el-form-item label="Cliente">
+											<el-autocomplete
+													popper-class="my-autocomplete"
+													v-model="client"
+													:fetch-suggestions="querySearch"
+													:trigger-on-focus="false"
+													placeholder="Busca el cliente"
+													size="small"
+													@select="handleSelect">
+													<i
+														class="el-icon-search el-input__icon"
+														slot="suffix"
+														@click="handleIconClick">
+													</i>
+												<template slot-scope="{ item }">
+														<div class="value">
+															{{ item.nombre }}
+															<small>
+																{{ item.documento }}
+															</small>
+														</div>
+														<!-- <span class="link"></span> -->
+												</template>
+											</el-autocomplete>
+											<el-button type="success" icon="el-icon-plus" circle size="mini"  @click="dialogFormVisible = true"></el-button>
 								  </el-form-item>
 								</el-col>
 								<el-col :span="6">
@@ -46,7 +69,28 @@
 						<el-row :gutter="12">
 				  		<el-col :span="6">
 							  <el-form-item label="Atendido por">
-							    <el-input v-model="form.vendedor_id" size="small" ></el-input>
+									<el-autocomplete
+											popper-class="my-autocomplete"
+											v-model="seller"
+											:fetch-suggestions="querySearchSeller"
+											:trigger-on-focus="false"
+											placeholder="Busca el vendedor"
+											size="small"
+											@select="handleSelectSeller">
+											<i
+												class="el-icon-search el-input__icon"
+												slot="suffix"
+												@click="handleIconClickSeller">
+											</i>
+										<template slot-scope="{ item }">
+												<div class="value">
+													{{ item.nombre }}
+													<small>
+														{{ item.documento }}
+													</small>
+												</div>
+										</template>
+									</el-autocomplete>
 							  </el-form-item>
 							</el-col>
 							<el-col :span="6">
@@ -70,15 +114,20 @@
 			  	</el-col>
 		  	</el-row>
 		</el-card>
+		<el-dialog title="Agregar cliente" :visible.sync="dialogFormVisible" top width="35%">
+			<form-module @refresh=""></form-module>
+		</el-dialog>
 	</div>
 </template>
 
 <script>
 import Totals from './Totals'
 import Detail from './Detail'
+import FormModule from '@/views/tercero/Form'
+import { searchThird } from '@/api/document'
 export default {
   components: {
-    Totals, Detail
+    Totals, Detail, FormModule
   },
   data(){
   	return {
@@ -91,11 +140,41 @@ export default {
         cruce: null,
         observacion: null,
         pormayor: null,
-  		}
+  		},
+			result: [],
+			resultSeller: [],
+			client: '',
+			seller: '',
+			dialogFormVisible: false,
   	}
   },
   methods:{
-
+	 querySearch(queryString, cb) {
+			searchThird(queryString, 'cliente').then(({data}) => {
+					cb(data.data);
+			}).catch( error => { console.log(error) })
+		},
+	 querySearchSeller(queryString, cb) {
+			searchThird(queryString, 'vendedor').then(({data}) => {
+					cb(data.data);
+			}).catch( error => { console.log(error) })
+		},
+		handleSelect(item) {
+			this.client = item.nombre
+			this.form.terceros_id = item.id
+			console.log(item);
+		},
+		handleIconClick(ev) {
+			console.log(ev);
+		},
+		handleSelectSeller(item) {
+			this.seller = item.nombre
+			this.form.vendedor_id = item.id
+			console.log(item);
+		},
+		handleIconClickSeller(ev) {
+			console.log(ev);
+		}
   }
 }
 </script>
@@ -116,6 +195,19 @@ export default {
     float: left;
   }
 	.el-date-editor.el-input, .el-date-editor.el-input__inner{
-		width: 100%
+		width: 100%;
 	}
+	.el-autocomplete{
+		width: 80%;
+	}
+	.el-form-item__label{
+		width: 100%;
+		text-align: left;
+	}
+	.value {
+  	display: grid;
+		padding: 10px 0px;
+		line-height: normal;
+  }
+
 </style>

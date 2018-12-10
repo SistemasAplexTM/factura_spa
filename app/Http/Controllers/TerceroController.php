@@ -80,4 +80,9 @@ class TerceroController extends Controller
         $data = Tercero::findOrFail($id);
         return $data;
     }
+
+    public function terceroSearch($data, $type){
+        $answer = Tercero::where($type, 1)->where('nombre', 'LIKE', '%' . $data . '%')->orWhere('documento', 'LIKE', $data . '%')->get();
+        return array( 'data' => $answer );
+    }
 }

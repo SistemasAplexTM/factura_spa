@@ -13,3 +13,10 @@ export function getCupon(data) {
     method: 'get'
   })
 }
+
+export function searchThird(data, type) {
+  return request({
+    url: 'api/terceros/terceroSearch/' + data + '/' + type,
+    method: 'get'
+  })
+}

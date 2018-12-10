@@ -30,6 +30,7 @@ Route::prefix('terceros')->as('terceros.')->group(function(){
 	Route::get('init', 'TerceroController@init')->name('init');
 	Route::get('data', 'TerceroController@data')->name('data');
 	Route::get('terceroById/{id}', 'TerceroController@terceroById')->name('terceroById');
+	Route::get('terceroSearch/{data}/{type}', 'TerceroController@terceroSearch')->name('terceroSearch');
 	Route::post('save', 'TerceroController@save')->name('save');
 	Route::put('update', 'TerceroController@update')->name('update');
 	Route::delete('delete', 'TerceroController@destroy')->name('delete');
