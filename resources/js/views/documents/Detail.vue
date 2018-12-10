@@ -2,7 +2,10 @@
 	<div>
 		<el-row :gutter="24">
 			<el-col :span="18">
-				<el-button size="small" type="primary" icon="el-icon-edit-outline" @click="getData(254)">agregar</el-button>
+				<el-input type="search" placeholder="Ingresar código" size="small" style="width:400px">
+					<el-button slot="append" type="primary" icon="el-icon-search" @click="getData(254)">
+					</el-button>
+				</el-input>
 			</el-col>
 			<el-col :span="6" class="labelOff">
 					<el-switch v-model="pormayor" inactive-text="Normal" active-text="Por mayor"></el-switch>
@@ -10,7 +13,7 @@
 		</el-row>
 
 		<el-table :data="tableData" style="width: 100%">
-		    <el-table-column prop="producto" label="Producto"></el-table-column>
+		    <el-table-column prop="producto" label="Producto" width="250"></el-table-column>
 		    <el-table-column prop="cantidad" label="Cantidad">
 		    	<template slot-scope="scope">
 						<el-input-number v-model="scope.row.cantidad"
