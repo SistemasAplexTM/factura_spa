@@ -106,7 +106,7 @@ export default {
           ciudad: null,
           email: null,
           nacimiento: null,
-          cliente: false,
+          cliente: true,
           vendedor: false,
           proveedor: false,
         },
@@ -187,7 +187,7 @@ export default {
             return false;
           }
         });
-        
+
       },
       update() {
         //
