@@ -50,5 +50,5 @@ Route::prefix('document')->as('document.')->group(function(){
 });
 
 Route::prefix('documentDetail')->as('documentDetail.')->group(function(){
-	Route::get('documentDetail/{code}', 'DocumentDetailController@getDetailByIdDocument');
+	Route::get('documentDetail/{code}/{pormayor}', 'DocumentDetailController@getDetailByIdDocument');
 });
