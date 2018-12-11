@@ -9,6 +9,7 @@ const documents = {
 			retefuente:0,
 			reteica:0,
 			total:0,
+			anticipo:0,
 			recibido:0,
 			devolucion:0,
 			neto:0
@@ -19,8 +20,10 @@ const documents = {
 			state.totals  = obj
 		},
 		SET_DESCUENTO_2:(state, descuento_2) => {
-			console.log(descuento_2);
 			state.totals.descuento_2  = descuento_2
+		},
+		SET_ANTICIPO:(state, anticipo) => {
+			state.totals.anticipo  = (anticipo == '') ? 0 : anticipo
 		}
 	},
 	actions:{
@@ -50,7 +53,7 @@ const documents = {
 			// iva 						= ((data == null || data == 'null') ? (Math.round(subtotal_2 * (19 / 100))) : iva)
 			iva 						= (Math.round(subtotal_2 * (19 / 100)))
 			let total 			= parseFloat(subtotal_2 + iva + retefuente + reteica)
-			let neto 				= parseFloat(total)
+			let neto 				= parseFloat(total) - parseFloat(state.totals.anticipo)
 			var obj = {
 				subtotal_1: subtotal_1,
 				descuento_1: descuento_1,
@@ -60,6 +63,7 @@ const documents = {
 				retefuente:0,
 				reteica:0,
 				total: total,
+				anticipo: parseFloat(state.totals.anticipo),
 				recibido:0,
 				devolucion:0,
 				neto: neto
@@ -76,6 +80,7 @@ const documents = {
 				retefuente:0,
 				reteica:0,
 				total: 0,
+				anticipo:0,
 				recibido:0,
 				devolucion:0,
 				neto: 0

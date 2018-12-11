@@ -25,6 +25,9 @@
 			 <el-row :gutter="24" class="value_total">
 			  	<el-col :span="12">
 			  		Descuento <icon-aplex name="tag" :type="'awesome'" class="icon-menu"/>
+						<el-tooltip class="item" effect="dark" content="Borrar descuento" placement="top-start">
+							<i class="el-icon-circle-close remove-dcto" @click="removeDcto()" v-show="descuento_2 > 0"></i>
+						</el-tooltip>
 			  	</el-col>
 			  	<el-col :span="12" class="text-right">
 						{{ format(descuento_2) }}
@@ -69,7 +72,7 @@
 			  	<el-col :span="12">
 			  		Total
 			  	</el-col>
-			  	<el-col :span="12" class="text-right">
+			  	<el-col :span="12" class="text-right" style="font-weight: bold;">
 			  		{{ format(total) }}
 			  	</el-col>
 			 </el-row>
@@ -78,7 +81,7 @@
 			  		Anticipo
 			  	</el-col>
 			  	<el-col :span="12" class="text-right">
-			  		<el-input placeholder=".00" size="mini" v-model="anticipo"></el-input>
+			  		<el-input placeholder=".00" size="mini" v-model="anticipo" @change="calculateTotals()"></el-input>
 			  	</el-col>
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
@@ -120,9 +123,7 @@ import { mapGetters } from 'vuex'
 import { getCupon } from '@/api/document'
 
 export default {
-  components: {
-    Sticky
-  },
+  components: {Sticky}, 
   computed:{
   	...mapGetters([
   		'totals'
@@ -170,6 +171,7 @@ export default {
   },
   methods:{
 		calculateTotals(){
+			this.$store.commit('SET_ANTICIPO', this.anticipo)
 			this.$store.commit('SET_DESCUENTO_2', this.descuento_2)
 			this.$store.dispatch('updateSubtotal', null)
 		},
@@ -258,6 +260,10 @@ export default {
 				format: "%s%v"
 			};
 			return accounting.formatMoney(val, options)
+		},
+		removeDcto(){
+			this.$store.commit('SET_DESCUENTO_2', 0)
+			this.$store.dispatch('updateSubtotal', null)
 		}
   }
 }
@@ -265,11 +271,12 @@ export default {
 
 <style>
 	.lb-total{
-		text-align: center;
+			text-align: center;
 	    font-size: 40px;
 	    color: forestgreen;
 	    border: 1px solid forestgreen;
 	    border-radius: 30px;
+			font-weight: bold;
 	}
 	.content-total{
 		margin-bottom: 10px;
@@ -282,5 +289,12 @@ export default {
 	}
 	.el-input-group__append, .el-input-group__prepend{
 		padding: 0 5px;
+	}
+	.remove-dcto{
+		color:#f56c6c;
+		cursor: pointer;
+	}
+	.remove-dcto:hover{
+		color: #ec3d3d;
 	}
 </style>
