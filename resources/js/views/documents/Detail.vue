@@ -2,19 +2,19 @@
 	<div>
 		<el-row :gutter="24">
 			<el-col :span="18">
-				<el-input type="search" placeholder="Ingresar código" size="small" style="width:400px">
-					<el-button slot="append" type="primary" icon="el-icon-search" @click="getData(254)">
+				<el-input type="search" placeholder="Ingresar código" size="small" style="width:400px" v-model="bar_code" @keyup.enter.native="getData(bar_code)">
+					<el-button slot="append" type="primary" icon="el-icon-search" @click="">
 					</el-button>
 				</el-input>
 			</el-col>
 			<el-col :span="6" class="labelOff">
-					<el-switch v-model="pormayor" inactive-text="Normal" active-text="Por mayor"></el-switch>
+					<el-switch v-model="pormayor" inactive-text="Normal" active-text="Por mayor" @change="updateValueDetail()"></el-switch>
 			</el-col>
 		</el-row>
 
 		<el-table :data="tableData" style="width: 100%">
 		    <el-table-column prop="producto" label="Producto" width="250"></el-table-column>
-		    <el-table-column prop="cantidad" label="Cantidad">
+		    <el-table-column prop="cantidad" label="Cantidad" width="150">
 		    	<template slot-scope="scope">
 						<el-input-number v-model="scope.row.cantidad"
 						@change="calculateMonto(scope.$index, scope.row.cantidad)"
@@ -23,7 +23,7 @@
 		    </el-table-column>
 		    <el-table-column prop="precio" label="Precio Unit.">
 					<template slot-scope="scope">
-						{{ format(scope.row.precio) }}
+						{{ (pormayor) ? format(scope.row.precio_pormayor) : format(scope.row.precio) }}
 					</template>
 				</el-table-column>
 		    <el-table-column prop="descuento" label="Dcto.">
@@ -54,12 +54,6 @@
 												Eliminar
 											</span>
 				          	</el-dropdown-item>
-				          	<el-dropdown-item divided>
-				            	<span class="text-primary">
-												<i class="el-icon-refresh"></i>
-												Resetear
-											</span>
-				          	</el-dropdown-item>
 				        </el-dropdown-menu>
 				    </el-dropdown>
 		     	</template>
@@ -82,25 +76,54 @@
 		  	return {
 		  		tableData: [],
 		  		total_monto: 0,
-					pormayor: 0
+					pormayor: 0,
+					bar_code: null
 		  	}
 		},
 		methods:{
 			getData(code){
-				getProductByCode(code).then(({data}) => {
-            this.tableData.push(data.data[0])
-            this.generateTotals(this.tableData);
+				getProductByCode(code, this.pormayor).then(({data}) => {
+					if(data.data.length > 0){
+						let datos = this.tableData;
+						let position_search = datos.findIndex( buscar => buscar.id === data.data[0].id );
+						if(position_search < 0){
+	            this.tableData.push(data.data[0])
+	            this.generateTotals(this.tableData);
+							this.bar_code = null;
+						}else{
+							this.tableData[position_search].cantidad = parseInt(this.tableData[position_search].cantidad) + 1;
+							this.calculateMonto(position_search, parseInt(this.tableData[position_search].cantidad));
+							this.bar_code = null;
+						};
+					}else{
+						this.$message({
+							type: 'warning',
+							message: 'No existe un producto con ese código!'
+						});
+					}
         }).catch(error => {
           	console.log(error)
         });
 			},
 			calculateMonto(index, cantidad){
-				this.tableData[index].monto_total = (this.tableData[index].precio * cantidad) - parseFloat(this.tableData[index].descuento) + parseFloat(this.tableData[index].iva)
-				this.tableData[index].iva = Math.round((this.tableData[index].precio * cantidad) * this.tableData[index].porcentaje_iva / 100, 0)
+				let precio = this.tableData[index].precio;
+				if(this.pormayor == true){
+					precio = this.tableData[index].precio_pormayor;
+				}
+				this.tableData[index].iva = Math.round((precio * cantidad) * this.tableData[index].porcentaje_iva / 100, 0)
+				this.tableData[index].monto_total = (precio * cantidad) - parseFloat(this.tableData[index].descuento) + parseFloat(this.tableData[index].iva)
 				this.generateTotals(this.tableData);
 			},
-			generateTotals(data){
-				this.$store.dispatch('updateSubtotal', data)
+			generateTotals(datos){
+				this.$store.dispatch('updateSubtotal', { data:datos, pormayor: this.pormayor})
+			},
+			updateValueDetail(){
+				let me = this;
+				if(this.tableData.length > 0){
+					this.tableData.forEach( function(value, index, array) {
+					    me.calculateMonto(index, value.cantidad)
+					});
+				}
 			},
 			format(val){
 				var options = {
@@ -114,7 +137,6 @@
 			},
 			deleteRow(index, rows) {
 		        rows.splice(index, 1);
-						console.log(this.tableData.length);
 						if(this.tableData.length <= 0){
 							this.$store.dispatch('defaultTotals')
 						}

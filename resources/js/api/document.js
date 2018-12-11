@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getProductByCode(code) {
+export function getProductByCode(code, pormayor) {
   return request({
-    url: 'api/documentDetail/documentDetail/' + code,
+    url: 'api/documentDetail/documentDetail/' + code + '/' + pormayor,
     method: 'get'
   })
 }

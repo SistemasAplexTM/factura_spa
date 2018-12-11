@@ -19,6 +19,7 @@ const documents = {
 			state.totals  = obj
 		},
 		SET_DESCUENTO_2:(state, descuento_2) => {
+			console.log(descuento_2);
 			state.totals.descuento_2  = descuento_2
 		}
 	},
@@ -37,9 +38,9 @@ const documents = {
 				retefuente 	= state.totals.retefuente
 				reteica 		= state.totals.reteica
 			}else{
-				for (var value in data) {
-					subtotal_1 	+= parseFloat(data[value].cantidad) * parseFloat(data[value].precio)
-					descuento_1 += parseFloat(data[value].descuento)
+				for (var value in data.data) {
+					subtotal_1 	+= parseFloat(data.data[value].cantidad) * ((data.pormayor) ? parseFloat(data.data[value].precio_pormayor) : parseFloat(data.data[value].precio))
+					descuento_1 += parseFloat(data.data[value].descuento)
 					// iva 				+= parseFloat(data[value].iva)
 				}
 			}
