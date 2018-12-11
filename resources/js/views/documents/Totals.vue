@@ -123,7 +123,7 @@ import { mapGetters } from 'vuex'
 import { getCupon } from '@/api/document'
 
 export default {
-  components: {Sticky},
+  components: {Sticky}, 
   computed:{
   	...mapGetters([
   		'totals'
