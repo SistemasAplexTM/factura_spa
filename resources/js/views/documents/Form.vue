@@ -11,7 +11,31 @@
 			  			<el-row :gutter="12">
 				  			<el-col :span="6">
 								  <el-form-item label="Cliente">
+										<el-popover
+									    placement="top-start"
+									    title="Datos del cliente"
+									    width="200"
+									    trigger="hover"
+									    :content="client">
+											<ul class="list-class">
+								        <li>
+								          <div class="row">
+								            {{ client }}
+								          </div>
+								        </li>
+								        <li>
+								          <div class="row">
+								            {{ client }}
+								          </div>
+								        </li>
+								        <li>
+								          <div class="row">
+								            {{ client }}
+								          </div>
+								        </li>
+								      </ul>
 											<el-autocomplete
+													slot="reference"
 													popper-class="my-autocomplete"
 													v-model="client"
 													:fetch-suggestions="querySearch"
@@ -34,6 +58,7 @@
 														<!-- <span class="link"></span> -->
 												</template>
 											</el-autocomplete>
+										</el-popover>
 											<el-button type="success" icon="el-icon-plus" circle size="mini"  @click="dialogFormVisible = true"></el-button>
 								  </el-form-item>
 								</el-col>
