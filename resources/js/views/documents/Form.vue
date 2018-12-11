@@ -50,7 +50,7 @@
 								</el-col>
 								<el-col :span="6">
 								  	<el-form-item label="Dias de credito">
-								    	<el-input v-model="form.dias" size="small" type="number" min="0"></el-input>
+								    	<el-input v-model="form.dias" size="small" type="number" min="0" @change="expirationDate()"></el-input>
 								  	</el-form-item>
 								</el-col>
 								<el-col :span="6">
@@ -60,7 +60,8 @@
 	                      type="date"
 	                      placeholder="Vencimiento"
 	                      class="width-full"
-	                      size="small">
+	                      size="small"
+												:disabled="true">
 	                    </el-date-picker>
 								  	</el-form-item>
 								</el-col>
@@ -129,6 +130,10 @@ export default {
   components: {
     Totals, Detail, FormModule
   },
+	mounted(){
+		this.form.fecha = new Date();
+		this.form.fecha_recibido = new Date();
+	},
   data(){
   	return {
   		form: {
@@ -149,6 +154,37 @@ export default {
   	}
   },
   methods:{
+		expirationDate(){
+			console.log(this.form.fecha);
+			var fecha = new Date(this.form.fecha);
+			var dias = this.form.dias; // Número de días a agregar
+			if (dias == '') {
+					dias = 0;
+			}
+			fecha.setDate(fecha.getDate() + (parseInt(dias) + 1));
+
+			var d = new Date(fecha);
+
+			var month = d.getMonth() + 1;
+			var day = d.getDate();
+
+			var output = d.getFullYear() + '-' +
+							(month < 10 ? '0' : '') + month + '-' +
+							(day < 10 ? '0' : '') + day;
+
+			this.form.fecha_recibido = output;
+
+			/* CALCULAR DIFERENCIA DE DIAS */
+			// var fecha1 = moment();
+			// var fecha2 = moment($('#fecha_entrega').val());
+			//
+			// var dif = fecha2.diff(fecha1, 'days');
+			// if (dif < 0) {
+			// 		$('#fecha_entrega').css('border-color', '#ed5565');
+			// } else {
+			// 		$('#fecha_entrega').css('border-color', '');
+			// }
+		},
 	 querySearch(queryString, cb) {
 			searchThird(queryString, 'cliente').then(({data}) => {
 					cb(data.data);
