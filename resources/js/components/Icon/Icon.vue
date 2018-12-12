@@ -1,8 +1,6 @@
 <template>
   <div class="">
-    <i>
-      <fa v-if="type == 'awesome'" :icon="name" :scale="scale"/>
-    </i>
+    <fa v-if="type == 'awesome'" :icon="name" :scale="scale" :class="class_fa"/>
     <i v-if="type == 'lnr'" :class="'lnr lnr-' + name" :style="'font-size: '+ scale + 'em'"></i>
   </div>
 </template>
@@ -16,7 +14,7 @@
 export default {
   name: 'icon',
   // components: { IconVueAwesome },
-  props: ["name", "scale", "type"],
+  props: ["name", "scale", "type", "class_fa"],
   data(){
     return {
 

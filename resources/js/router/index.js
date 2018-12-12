@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
-
-import errors from './modules/error'
+// Middleware
+import verifySetup from '@/utils/verifySetup'
+// Componentes
+import Errors from './modules/error'
 import Layout from '../views/layout/Layout'
 import Payments from '../views/payment/Index'
 import Terceros from '../views/tercero/Index'
 import Cupons from '../views/cupons/Index'
 import Documents from '../views/documents/Index'
+import Setup from '../views/layout/Setup'
 
 export const routes = [{
         path: '/',
@@ -15,7 +18,7 @@ export const routes = [{
         children: [
           {
             path: '/',
-            component: Documents
+            component: Documents,
           },
           {
             path: '/documents',
@@ -35,11 +38,18 @@ export const routes = [{
           }
         ]
     },
-    errors
+    {
+      path: '/setup',
+      component: Setup,
+    },
+    Errors
 ]
 
 const router = new Router({
     mode: 'history',
     routes
 })
+
+router.beforeEach(verifySetup);
+
 export default router

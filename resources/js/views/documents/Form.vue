@@ -2,7 +2,7 @@
 	<div>
 		<el-card class="box-card">
 		  <div slot="header" class="clearfix">
-		    <span class="name_document">Factura nombre</span>
+		    <span class="name_document">{{ getSetup('type') }}</span>
 		  </div>
 		  	<el-row :gutter="24">
 		  		<el-col :span="18"  class="br">
@@ -254,6 +254,10 @@ export default {
 		},
 		handleIconClickSeller(ev) {
 			console.log(ev);
+		},
+		getSetup(param){
+			var data = localStorage.getItem('setup');
+			return JSON.parse(data)
 		}
   }
 }

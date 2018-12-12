@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tercero extends Model
+class BranchOffice extends Model
 {
     public $table = "setup";
 
@@ -18,4 +18,5 @@ class Tercero extends Model
         'nit',
         'razon_social'
     ];
+
 }

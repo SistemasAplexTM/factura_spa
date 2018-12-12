@@ -24,9 +24,11 @@
 			 </el-row>
 			 <el-row :gutter="24" class="value_total">
 			  	<el-col :span="12">
-			  		Descuento <icon-aplex name="tag" :type="'awesome'" class="icon-menu"/>
+			  		Descuento <icon-aplex name="tag" :type="'awesome'" class="icon-menu text-success"/>
 						<el-tooltip class="item" effect="dark" content="Borrar descuento" placement="top-start">
-							<i class="el-icon-circle-close remove-dcto" @click="removeDcto()" v-show="descuento_2 > 0"></i>
+							<span @click="removeDcto()" v-show="descuento_2 > 0">
+								<icon-aplex name="times-circle" :type="'awesome'" class="fa-sm text-danger pointer"/>
+							</span>
 						</el-tooltip>
 			  	</el-col>
 			  	<el-col :span="12" class="text-right">
@@ -290,12 +292,5 @@ export default {
 	}
 	.el-input-group__append, .el-input-group__prepend{
 		padding: 0 5px;
-	}
-	.remove-dcto{
-		color:#f56c6c;
-		cursor: pointer;
-	}
-	.remove-dcto:hover{
-		color: #ec3d3d;
 	}
 </style>
