@@ -131,6 +131,14 @@ div:focus{
   display: block;
 }
 
+.mb30 {
+  margin-bottom: 30px
+}
+
+.mb15 {
+  margin-bottom: 15px
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -186,7 +194,7 @@ div:focus{
 }
 
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 .sub-navbar {

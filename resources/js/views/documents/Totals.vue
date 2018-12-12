@@ -105,7 +105,7 @@
 			  		Cupón de
 			  	</el-col>
 			  	<el-col :span="12" class="text-right">
-			  		<el-input placeholder="Buscar" size="mini" v-model="cupon">
+			  		<el-input placeholder="Buscar" size="mini" v-model="cupon" @keyup.enter.native="(cupon) ? searchCupon() : false">
 							<el-button slot="append" size="mini" type="danger" @click="searchCupon()" :disabled="!cupon">
 								<icon-aplex name="tag" :type="'awesome'" class="icon-menu"/>
 							</el-button>
@@ -123,7 +123,7 @@ import { mapGetters } from 'vuex'
 import { getCupon } from '@/api/document'
 
 export default {
-  components: {Sticky}, 
+  components: {Sticky},
   computed:{
   	...mapGetters([
   		'totals'
@@ -189,6 +189,7 @@ export default {
 							type: 'success',
 							message: 'Descuento aplicado'
 						});
+						this.cupon = null
 						this.$store.commit('SET_DESCUENTO_2', data.data.descuento)
 						this.$store.dispatch('updateSubtotal', null)
 					}).catch(() => {

@@ -9,35 +9,56 @@
 		  		<!-- FILA 1 -->
 					<el-form ref="form" :model="form">
 			  			<el-row :gutter="12">
-				  			<el-col :span="6">
+				  			<el-col :span="10">
 								  <el-form-item label="Cliente">
 										<el-popover
 									    placement="top-start"
 									    title="Datos del cliente"
-									    width="200"
+									    width="300"
 									    trigger="hover"
-									    :content="client">
-											<ul class="list-class">
+									    :content="client.name">
+											<ul class="list-data-client" v-show="form.client_id">
 								        <li>
-								          <div class="row">
-								            {{ client }}
-								          </div>
+							            Documento:
+													<span class="fr">
+														{{ client.document }}
+													</span>
 								        </li>
 								        <li>
-								          <div class="row">
-								            {{ client }}
-								          </div>
+							            Nombre:
+													<span class="fr">
+														{{ client.name }}
+													</span>
 								        </li>
 								        <li>
-								          <div class="row">
-								            {{ client }}
-								          </div>
+							            Dirección:
+													<span class="fr">
+														{{ client.address }}
+													</span>
+								        </li>
+								        <li>
+							            Ciudad:
+													<span class="fr">
+														{{ client.city }}
+													</span>
+								        </li>
+								        <li>
+							            Teléfono:
+													<span class="fr">
+														{{ client.phone }}
+													</span>
+								        </li>
+								        <li>
+							            Correo:
+													<span class="fr">
+														{{ client.email }}
+													</span>
 								        </li>
 								      </ul>
 											<el-autocomplete
 													slot="reference"
-													popper-class="my-autocomplete"
-													v-model="client"
+													class="my-autocomplete"
+													v-model="client.name"
 													:fetch-suggestions="querySearch"
 													:trigger-on-focus="false"
 													placeholder="Busca el cliente"
@@ -62,7 +83,7 @@
 											<el-button type="success" icon="el-icon-plus" circle size="mini"  @click="dialogFormVisible = true"></el-button>
 								  </el-form-item>
 								</el-col>
-								<el-col :span="6">
+								<el-col :span="5">
 								  <el-form-item label="Fecha">
 								    <el-date-picker
 						              v-model="form.fecha"
@@ -73,12 +94,14 @@
 						            </el-date-picker>
 								  </el-form-item>
 								</el-col>
-								<el-col :span="6">
-								  	<el-form-item label="Dias de credito">
-								    	<el-input v-model="form.dias" size="small" type="number" min="0" @change="expirationDate()"></el-input>
+								<el-col :span="4">
+								  	<el-form-item label="Días de crédito">
+											<el-input-number v-model="form.dias"
+											@change="expirationDate()"
+											size="small" :min="0"></el-input-number>
 								  	</el-form-item>
 								</el-col>
-								<el-col :span="6">
+								<el-col :span="5">
 									<el-form-item label="Entrega / Vencimiento">
 	                  <el-date-picker
 	                      v-model="form.fecha_recibido"
@@ -93,10 +116,10 @@
 						</el-row>
 						<!-- FILA 2 -->
 						<el-row :gutter="12">
-				  		<el-col :span="6">
+				  		<el-col :span="10">
 							  <el-form-item label="Atendido por">
 									<el-autocomplete
-											popper-class="my-autocomplete"
+											class="w100"
 											v-model="seller"
 											:fetch-suggestions="querySearchSeller"
 											:trigger-on-focus="false"
@@ -119,12 +142,7 @@
 									</el-autocomplete>
 							  </el-form-item>
 							</el-col>
-							<el-col :span="6">
-						  		<el-form-item label="Documento cruce">
-								    <el-input v-model="form.curce" size="small" ></el-input>
-								 </el-form-item>
-							</el-col>
-							<el-col :span="12">
+							<el-col :span="14">
 							  	<el-form-item label="Observación / Referencia">
 							    	<el-input v-model="form.observacion" size="small" prefix-icon="el-icon-edit"></el-input>
 							  	</el-form-item>
@@ -163,17 +181,16 @@ export default {
   	return {
   		form: {
   			fecha: null,
-        terceros_id: null,
+        client_id: null,
         dias: null,
         fecha_recibido: null,
         vendedor_id: null,
-        cruce: null,
         observacion: null,
         pormayor: null,
   		},
 			result: [],
 			resultSeller: [],
-			client: '',
+			client: {},
 			seller: '',
 			dialogFormVisible: false,
   	}
@@ -221,9 +238,13 @@ export default {
 			}).catch( error => { console.log(error) })
 		},
 		handleSelect(item) {
-			this.client = item.nombre
-			this.form.terceros_id = item.id
-			console.log(item);
+			this.client.document = item.documento
+			this.client.name = item.nombre
+			this.client.email = item.email
+			this.client.city = item.ciudad
+			this.client.address = item.direccion
+			this.client.phone = item.telefono
+			this.form.client_id = item.id
 		},
 		handleIconClick(ev) {
 			console.log(ev);
@@ -231,7 +252,6 @@ export default {
 		handleSelectSeller(item) {
 			this.seller = item.nombre
 			this.form.vendedor_id = item.id
-			console.log(item);
 		},
 		handleIconClickSeller(ev) {
 			console.log(ev);
@@ -258,8 +278,8 @@ export default {
 	.el-date-editor.el-input, .el-date-editor.el-input__inner{
 		width: 100%;
 	}
-	.el-autocomplete{
-		width: 80%;
+	.my-autocomplete{
+		width: 85%;
 	}
 	.el-form-item__label{
 		width: 100%;
