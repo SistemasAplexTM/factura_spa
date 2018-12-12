@@ -12,22 +12,28 @@ import Documents from '../views/documents/Index'
 export const routes = [{
         path: '/',
         component: Layout,
-        children: [{
-            path: '/home',
-            component: Layout
-        }, {
-            path: '/payments',
-            component: Payments
-        },{
-            path: '/terceros',
-            component: Terceros
-        },{
-            path: '/cupons',
-            component: Cupons
-        },{
+        children: [
+          {
+            path: '/',
+            component: Documents
+          },
+          {
             path: '/documents',
             component: Documents
-        }]
+          },
+          {
+            path: '/payments',
+            component: Payments
+          },
+          {
+            path: '/terceros',
+            component: Terceros
+          },
+          {
+            path: '/cupons',
+            component: Cupons
+          }
+        ]
     },
     errors
 ]

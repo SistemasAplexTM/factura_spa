@@ -59,7 +59,11 @@
 		     	</template>
 		    </el-table-column>
 		    <template slot="empty">
-		    	Es que no pensas meter datos o que!!
+					<icon-aplex name="shopping-basket" :type="'awesome'" class="fa-10x"/>
+					<br>
+					<p class="mb30">
+						Aún no hay productos para facturar
+					</p>
 		    </template>
 	    </el-table>
 	</div>

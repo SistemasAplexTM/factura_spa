@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'sucursal_id', 'razon_social'
     ];
 
     /**
@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+   * Foranea con usermetas.
+   */
+    public function sucursal()
+    {
+        return $this->hasMany('App\BranchOffice');
+    }
 }

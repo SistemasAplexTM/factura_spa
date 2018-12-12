@@ -2,14 +2,16 @@
   <div>
       <sticky :className="'sub-navbar draft'">
       	<div class="text-right">
-          <el-button v-if="!editing" size="small" type="success" icon="el-icon-plus" :loading="loading" @click="submit()">
+          <el-button id="cancelButton" type="default" size="small" icon="el-icon-tickets" @click="">Listar</el-button>
+          <el-dropdown v-if="!editing" split-button type="success" :loading="loading" @click="submit" icon="el-icon-plus" size="small">
             Guardar
-          </el-button>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>Guardar borrador</el-dropdown-item>
+              <el-dropdown-item>Guardar e imprimir</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
           <el-button v-else size="small" type="primary" icon="el-icon-edit-outline" :loading="loading" @click="submit()">
             Actualizar
-          </el-button>
-          <el-button size="small" type="primary" icon="el-icon-edit-outline" :loading="loading" @click="submit()">
-            Cambiar bodega
           </el-button>
           <el-button id="cancelButton" type="default" size="small" icon="el-icon-circle-close" @click="reset(true)">Cancelar</el-button>
           <el-button id="cancelButton" type="danger" size="small" icon="el-icon-circle-close" @click="reset(true)">Anular</el-button>
@@ -38,6 +40,9 @@ export default {
   methods:{
     refreshTable(){
       this.$refs.list.refresh()
+    },
+    submit(){
+      alert('Guardar.!!!')
     }
   }
 }
