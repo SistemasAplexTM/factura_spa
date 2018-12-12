@@ -197,7 +197,6 @@ export default {
   },
   methods:{
 		expirationDate(){
-			console.log(this.form.fecha);
 			var fecha = new Date(this.form.fecha);
 			var dias = this.form.dias; // Número de días a agregar
 			if (dias == '') {
