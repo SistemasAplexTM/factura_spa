@@ -40,8 +40,7 @@ class DocumentController extends Controller
           'sucursal_id' => Auth::user()->sucursal_id
         ]);
 
-        $consecutive = DB::("CALL sp_getConsecutivo(?,?,?
-        )", array($type->id, $data->id, date('Y-m-d', strtotime(time()))))
+        $consecutive = DB::("CALL sp_getConsecutivo(?,?,?)", array($type->id, $data->id, date('Y-m-d', strtotime(time()))))
         $answer = array(
             "code"   => 200
         );
