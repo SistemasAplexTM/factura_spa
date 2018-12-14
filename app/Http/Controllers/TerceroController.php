@@ -18,9 +18,9 @@ class TerceroController extends Controller
     {
         DB::beginTransaction();
         try {
-            Tercero::create($request->all());
+            $data = Tercero::create($request->all());
             $answer = array(
-                "datos"  => '',
+                "data"  => $data,
                 "code"   => 200
             );
             DB::commit();

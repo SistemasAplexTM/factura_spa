@@ -31,6 +31,7 @@ Route::prefix('cupons')->as('cupons.')->group(function(){
 });
 
 Route::prefix('document')->as('document.')->group(function(){
+	Route::post('save', 'DocumentController@save')->name('save');
 	Route::get('getCupon/{data}', 'DocumentController@getCupon');
 });
 

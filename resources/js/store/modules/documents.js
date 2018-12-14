@@ -13,7 +13,10 @@ const documents = {
 			recibido:0,
 			devolucion:0,
 			neto:0
-  	}
+  	},
+		wholesale: false,
+		form_document: {},
+		table_detail: []
 	},
 	mutations:{
 		SET_TOTALS:(state, obj) => {
@@ -24,6 +27,15 @@ const documents = {
 		},
 		SET_ANTICIPO:(state, anticipo) => {
 			state.totals.anticipo  = (anticipo == '') ? 0 : anticipo
+		},
+		SET_WHOLESALE:(state, wholesale) => {
+			state.wholesale = wholesale
+		},
+		SET_TABLE_DETAIL:(state, tableData) => {
+			state.table_detail = tableData
+		},
+		SET_FORM_DOCUMENT:(state, form) => {
+			state.form_document = form
 		}
 	},
 	actions:{
@@ -42,7 +54,7 @@ const documents = {
 				reteica 		= state.totals.reteica
 			}else{
 				for (var value in data.data) {
-					subtotal_1 	+= parseFloat(data.data[value].cantidad) * ((data.pormayor) ? parseFloat(data.data[value].precio_pormayor) : parseFloat(data.data[value].precio))
+					subtotal_1 	+= parseFloat(data.data[value].cantidad) * ((data.wholesale) ? parseFloat(data.data[value].precio_pormayor) : parseFloat(data.data[value].precio))
 					descuento_1 += parseFloat(data.data[value].descuento)
 					// iva 				+= parseFloat(data[value].iva)
 				}
@@ -86,6 +98,12 @@ const documents = {
 				neto: 0
 	  	}
 			commit('SET_TOTALS', obj)
+		},
+		defaultAll({ commit, dispatch  }){
+			commit('SET_TABLE_DETAIL', [])
+			commit('SET_FORM_DOCUMENT', null)
+			dispatch('defaultTotals')
+
 		}
 	}
 }

@@ -17,9 +17,9 @@ export default {
     getSetup(){
       let me = this
       setup().then(({data}) => {
-        localStorage.setItem('setup', JSON.stringify(data.data.type.descripcion))
+        localStorage.setItem('setup', JSON.stringify(data.data))
         setTimeout(function () {
-          var route = (me.$route.query.route) ? me.$route.query.route : '/' 
+          var route = (me.$route.query.route) ? me.$route.query.route : '/'
           me.$router.push({path: route })
         }, 300);
       }).catch( error => { console.log(error); })

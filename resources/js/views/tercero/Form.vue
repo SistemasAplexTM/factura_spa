@@ -138,6 +138,7 @@ export default {
               save(this.form).then(({ data }) => {
                 if(data.code == 200){
                   this.reset()
+									this.$emit('save', data.data)
                   this.$message({
                     showClose: true,
                     message: 'Registro exitoso.',
