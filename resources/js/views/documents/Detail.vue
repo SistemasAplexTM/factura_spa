@@ -8,7 +8,7 @@
 				</el-input>
 			</el-col>
 			<el-col :span="6" class="labelOff">
-					<el-switch v-model="pormayor" inactive-text="Normal" active-text="Por mayor" @change="updateValueDetail()"></el-switch>
+					<el-switch v-model="wholesale" inactive-text="Normal" active-text="Por mayor" @change="updateValueDetail()"></el-switch>
 			</el-col>
 		</el-row>
 
@@ -23,7 +23,7 @@
 		    </el-table-column>
 		    <el-table-column prop="precio" label="Precio Unit.">
 					<template slot-scope="scope">
-						{{ (pormayor) ? format(scope.row.precio_pormayor) : format(scope.row.precio) }}
+						{{ (wholesale) ? format(scope.row.precio_pormayor) : format(scope.row.precio) }}
 					</template>
 				</el-table-column>
 		    <el-table-column prop="descuento" label="Dcto.">
@@ -72,21 +72,44 @@
 <script>
 	import accounting from 'accounting-js';
 	import { getProductByCode } from '@/api/document'
-	export default {
-		components: {
+	import { mapGetters } from 'vuex'
 
-		},
+	export default {
 		data(){
 		  	return {
 		  		tableData: [],
 		  		total_monto: 0,
-					pormayor: 0,
+					wholesale: false,
 					bar_code: null
 		  	}
 		},
+		computed:{
+			...mapGetters(['table_detail'])
+		},
+		watch:{
+			table_detail:{
+				deep: true,
+	  		handler(val, oldVal){
+					if(val.length == 0){
+						this.tableData = []
+					}
+				}
+			},
+			tableData:{
+				deep: true,
+	  		handler(val, oldVal){
+					if(val.length > 0){
+							this.$store.commit('SET_TABLE_DETAIL', val)
+					}
+				}
+			},
+			wholesale(val){
+				this.$store.commit('SET_WHOLESALE', val)
+			}
+		},
 		methods:{
 			getData(code){
-				getProductByCode(code, this.pormayor).then(({data}) => {
+				getProductByCode(code, this.wholesale).then(({data}) => {
 					if(data.data.length > 0){
 						let datos = this.tableData;
 						let position_search = datos.findIndex( buscar => buscar.id === data.data[0].id );
@@ -111,7 +134,7 @@
 			},
 			calculateMonto(index, cantidad){
 				let precio = this.tableData[index].precio;
-				if(this.pormayor == true){
+				if(this.wholesale == true){
 					precio = this.tableData[index].precio_pormayor;
 				}
 				this.tableData[index].iva = Math.round((precio * cantidad) * this.tableData[index].porcentaje_iva / 100, 0)
@@ -119,7 +142,7 @@
 				this.generateTotals(this.tableData);
 			},
 			generateTotals(datos){
-				this.$store.dispatch('updateSubtotal', { data:datos, pormayor: this.pormayor})
+				this.$store.dispatch('updateSubtotal', { data:datos, wholesale: this.wholesale})
 			},
 			updateValueDetail(){
 				let me = this;

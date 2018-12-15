@@ -2,7 +2,7 @@
 	<div>
 		<el-card class="box-card">
 		  <div slot="header" class="clearfix">
-		    <span class="name_document">Factura nombre</span>
+		    <span class="name_document">{{ getDescription() }}</span>
 		  </div>
 		  	<el-row :gutter="24">
 		  		<el-col :span="18"  class="br">
@@ -86,7 +86,7 @@
 								<el-col :span="5">
 								  <el-form-item label="Fecha">
 								    <el-date-picker
-						              v-model="form.fecha"
+						              v-model="form.date"
 						              type="date"
 						              placeholder="Selecciona fecha"
 						              class="width-full"
@@ -96,7 +96,7 @@
 								</el-col>
 								<el-col :span="4">
 								  	<el-form-item label="Días de crédito">
-											<el-input-number v-model="form.dias"
+											<el-input-number v-model="form.days"
 											@change="expirationDate()"
 											size="small" :min="0"></el-input-number>
 								  	</el-form-item>
@@ -104,7 +104,7 @@
 								<el-col :span="5">
 									<el-form-item label="Entrega / Vencimiento">
 	                  <el-date-picker
-	                      v-model="form.fecha_recibido"
+	                      v-model="form.date_receip"
 	                      type="date"
 	                      placeholder="Vencimiento"
 	                      class="width-full"
@@ -144,7 +144,7 @@
 							</el-col>
 							<el-col :span="14">
 							  	<el-form-item label="Observación / Referencia">
-							    	<el-input v-model="form.observacion" size="small" prefix-icon="el-icon-edit"></el-input>
+							    	<el-input v-model="form.observation" size="small" prefix-icon="el-icon-edit"></el-input>
 							  	</el-form-item>
 							</el-col>
 						</el-row>
@@ -159,7 +159,7 @@
 		  	</el-row>
 		</el-card>
 		<el-dialog title="Agregar cliente" :visible.sync="dialogFormVisible" top width="35%">
-			<form-module @refresh=""></form-module>
+			<form-module @refresh="" @save="handleSelect($event)"></form-module>
 		</el-dialog>
 	</div>
 </template>
@@ -169,24 +169,21 @@ import Totals from './Totals'
 import Detail from './Detail'
 import FormModule from '@/views/tercero/Form'
 import { searchThird } from '@/api/document'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     Totals, Detail, FormModule
   },
-	mounted(){
-		this.form.fecha = new Date();
-		this.form.fecha_recibido = new Date();
-	},
   data(){
   	return {
   		form: {
-  			fecha: null,
+  			date: null,
         client_id: null,
-        dias: null,
-        fecha_recibido: null,
-        vendedor_id: null,
-        observacion: null,
-        pormayor: null,
+        days: null,
+        date_receip: null,
+        seller_id: null,
+        observation: null
   		},
 			result: [],
 			resultSeller: [],
@@ -195,37 +192,44 @@ export default {
 			dialogFormVisible: false,
   	}
   },
+	computed:{
+		...mapGetters(['form_document'])
+	},
+	watch:{
+		form_document:{
+			deep: true,
+			handler(val, oldVal){
+				if(val == null){
+					this.resetForm()
+				}
+			}
+		},
+		form:{
+			deep: true,
+			handler(val, oldVal){
+				this.$store.commit('SET_FORM_DOCUMENT', val)
+			}
+		}
+	},
+	mounted(){
+		this.form.fecha = new Date();
+		this.form.fecha_recibido = new Date();
+	},
   methods:{
 		expirationDate(){
-			console.log(this.form.fecha);
-			var fecha = new Date(this.form.fecha);
-			var dias = this.form.dias; // Número de días a agregar
+			var fecha = new Date(this.form.date);
+			var dias = this.form.days; // Número de días a agregar
 			if (dias == '') {
 					dias = 0;
 			}
 			fecha.setDate(fecha.getDate() + (parseInt(dias) + 1));
-
 			var d = new Date(fecha);
-
 			var month = d.getMonth() + 1;
 			var day = d.getDate();
-
 			var output = d.getFullYear() + '-' +
 							(month < 10 ? '0' : '') + month + '-' +
 							(day < 10 ? '0' : '') + day;
-
-			this.form.fecha_recibido = output;
-
-			/* CALCULAR DIFERENCIA DE DIAS */
-			// var fecha1 = moment();
-			// var fecha2 = moment($('#fecha_entrega').val());
-			//
-			// var dif = fecha2.diff(fecha1, 'days');
-			// if (dif < 0) {
-			// 		$('#fecha_entrega').css('border-color', '#ed5565');
-			// } else {
-			// 		$('#fecha_entrega').css('border-color', '');
-			// }
+			this.form.date_receip = output;
 		},
 	 querySearch(queryString, cb) {
 			searchThird(queryString, 'cliente').then(({data}) => {
@@ -251,10 +255,21 @@ export default {
 		},
 		handleSelectSeller(item) {
 			this.seller = item.nombre
-			this.form.vendedor_id = item.id
+			this.form.seller_id = item.id
 		},
 		handleIconClickSeller(ev) {
 			console.log(ev);
+		},
+		getDescription(){
+			var data = JSON.parse(localStorage.getItem('setup'));
+			return data.type.descripcion
+		},
+		resetForm(){
+			this.form = {}
+			this.result = []
+			this.resultSeller = []
+			this.client = {}
+			this.seller = ''
 		}
   }
 }
