@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Document;
 use App\Cupons;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
@@ -29,9 +30,11 @@ class DocumentController extends Controller
     $answer = array(
       'code'  => $code,
       'data' => $datos,
-      'msg' => $msg
+      'msg' => $msg,
+      'user' => Auth::user()
     );
 
     return \Response::json($answer);
   }
+
 }
