@@ -212,8 +212,8 @@ export default {
 		}
 	},
 	mounted(){
-		this.form.fecha = new Date();
-		this.form.fecha_recibido = new Date();
+		this.form.date = new Date();
+		this.form.date_receip = new Date();
 	},
   methods:{
 		expirationDate(){

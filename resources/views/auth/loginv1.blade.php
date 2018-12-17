@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<title>Entrar</title>
 	<meta charset="UTF-8">
@@ -7,6 +7,7 @@
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
   <link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.css') }}">
   <link rel="stylesheet" href="{{ asset('css/loginv1.css') }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -24,7 +25,10 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "El correo es requerido">
-						<input class="input100" type="text" name="email" placeholder="Correo" value="{{ old('email') }}">
+            <div class="input-group">
+              <input class="input100 input-group-input" type="text" name="email" placeholder="Correo" value="{{ old('email') }}">
+              <i class="fa fa-envelope input-group-icon" aria-hidden="true"></i>
+            </div>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -50,7 +54,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button type="submit" class="login100-form-btn">
+						<button type="button" id="loginBtn" class="login100-form-btn">
 							Entrar
 						</button>
 					</div>
@@ -78,6 +82,45 @@
   $('.js-tilt').tilt({
     scale: 1.1
   })
+  $(document).ready(function() {
+    $("#loginBtn").click(function(e) {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        e.preventDefault();
+        var email = $("input[name='email']").val();
+        var password = $("input[name='password']").val();
+
+        $.ajax({
+            url: '{{ route('login') }}',
+            type: 'POST',
+            data: {
+                email: email,
+                password: password
+            },
+            success: function(data) {
+                if ($.isEmptyObject(data.error)) {
+                    window.location.href = '{{ url('/') }}';
+                } else {
+                    printErrorMsg(data.error);
+                }
+            }
+        });
+
+    });
+
+    function printErrorMsg(msg) {
+        $(".print-error-msg-login").find("ul").html('');
+        $(".print-error-msg-login").css('display', 'block');
+        $.each(msg, function(key, value) {
+            $(".print-error-msg-login").find("ul").append('<li>' + value + '</li>');
+        });
+    }
+});
 </script>
 
 </body>

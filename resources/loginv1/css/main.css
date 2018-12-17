@@ -130,6 +130,10 @@ iframe {
 	border: none !important;
 }
 
+.input-group-icon{
+    margin-top: auto;
+    margin-left: 5px;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/

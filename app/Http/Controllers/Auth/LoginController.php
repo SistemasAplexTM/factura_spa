@@ -39,10 +39,33 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function showLoginForm()
-    // {
-    //     return view('auth.loginv1');
-    // }
+    public function showLoginForm()
+    {
+        return view('auth.loginv1');
+    }
+
+    protected function login(Request $request)
+    {
+      $validator = \Validator::make($request->all(), [
+         'email' => 'required|email',
+          'password' => 'required',
+      ]);
+
+      if ($validator->passes()) {
+          if (auth()->attempt(array('email' => $request->input('email'),
+            'password' => $request->input('password')),true))
+          {
+              return response()->json('success');
+          }
+          return response()->json([
+              'error' => [
+                  'email' => 'Sorry User not found.'
+              ]
+          ]);
+      }
+
+      return response()->json(['error'=>$validator->errors()->all()]);
+    }
 
     protected function sendFailedLoginResponse(Request $request)
     {
