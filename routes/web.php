@@ -16,6 +16,9 @@
 // });
 
 Auth::routes();
+Route::get('loginv1', function(){
+  return view('auth.loginv1');
+});
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{any}', 'HomeController@index')->where('any', '.*');

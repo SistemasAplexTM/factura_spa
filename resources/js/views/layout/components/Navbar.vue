@@ -25,6 +25,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { logout } from '@/api/auth'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
@@ -47,10 +48,14 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('toggleSideBar')
     },
-    logout() {
-      this.$store.dispatch('logoutAction').then(() => {
-        this.$router.push({ path: '/login' })
-        // location.reload() // Se crea una nueva instancia de vue-router para evitar errores
+    logout(){
+      logout().then(({data}) => {
+        if (data.code == 200) {
+          localStorage.removeItem('setup')
+          location.reload(true)
+        }
+      }).catch(error => {
+        console.log(error);
       })
     },
     refresh(){

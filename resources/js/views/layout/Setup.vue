@@ -19,7 +19,7 @@ export default {
       setup().then(({data}) => {
         localStorage.setItem('setup', JSON.stringify(data.data))
         setTimeout(function () {
-          var route = (me.$route.query.route) ? me.$route.query.route : '/'
+          var route = (me.$route.query.route && me.$route.query.route.indexOf("js") > -1) ? me.$route.query.route : '/'
           me.$router.push({path: route })
         }, 300);
       }).catch( error => { console.log(error); })

@@ -1,4 +1,5 @@
 window._ = require('lodash');
+import { logout } from '@/api/auth'
 import Vue from 'vue'
 window.axios = require('axios')
 
@@ -34,6 +35,18 @@ Vue.use(VTooltip)
 
 import IconAplex from '@/components/Icon/Icon'
 Vue.component('icon-aplex', IconAplex)
+
+// window.onbeforeunload = function() {
+//   alert('Cerrar?')
+//   logout().then(({data}) => {
+//     if (data.code == 200) {
+//       localStorage.removeItem('setup')
+//     }
+//   }).catch(error => {
+//     console.log(error);
+//   })
+//   return;
+// };
 
 const app = new Vue({
     el: '#app',
