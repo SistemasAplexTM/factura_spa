@@ -8,21 +8,21 @@ class DocumentDetail extends Model
 {
     public $table = "detalle";
     protected $dates = ['deleted_at'];
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id', 
+        'id',
         'documento_id',
         'producto_id',
         'descripcion',
         'transaccion',
         'bodega_id',
         'cantidad',
-        'cantidad_final',
+        'cant_final',
         'precio',
         'costo',
         'venta',

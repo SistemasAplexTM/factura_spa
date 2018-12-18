@@ -47,7 +47,7 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'totals', 'table_detail', 'form_document'
+      'totals', 'table_detail', 'form_document', 'wholesale'
     ])
   },
   methods:{
@@ -59,7 +59,8 @@ export default {
       let data = {
         form_document: this.form_document,
         table_detail: this.table_detail,
-        totals: this.totals
+        totals: this.totals,
+        wholesale: this.wholesale
       }
       save(data).then(response => {
         // this.$store.dispatch('defaultAll')
