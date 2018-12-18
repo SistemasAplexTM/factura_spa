@@ -14,30 +14,30 @@ class DocumentController extends Controller
 {
   public function save(Request $request)
   {
-    $type = $this->getType(Auth::user()->sucursal_id);
-    DB::beginTransaction();
-    try {
-        $document = $this->saveHeadboard($request, $type);
-        //INSERT DETAIL
-        $this->saveDetail($request['table_detail'], $document->id, $type);
-        $answer = array(
-            "code"   => 200
-        );
-        DB::commit();
-        return $answer;
-    } catch (Exception $e) {
-        DB::rollback();
-        $answer = array(
-            "error" => $e,
-            "code"  => 600,
-        );
-        return $answer;
-    }
+    return array("code" => 200, "consecutivo" => 213135);
+    // $type = $this->getType(Auth::user()->sucursal_id);
+    // DB::beginTransaction();
+    // try {
+    //     $document = $this->saveHeadboard($request, $type);
+    //     //INSERT DETAIL
+    //     $this->saveDetail($request['table_detail'], $document->id, $type);
+    //     $answer = array(
+    //         "code"   => 200
+    //     );
+    //     DB::commit();
+    //     return $answer;
+    // } catch (Exception $e) {
+    //     DB::rollback();
+    //     $answer = array(
+    //         "error" => $e,
+    //         "code"  => 600,
+    //     );
+    //     return $answer;
+    // }
   }
 
   public function saveHeadboard($request, $type)
   {
-    DB::beginTransaction();
     try {
       $data = Document::create([
         'usuario_id' => Auth::id(),
@@ -62,10 +62,8 @@ class DocumentController extends Controller
       ]);
       $consecutive = DB::select("CALL sp_getConsecutivo(?,?,?)", array($type->id, $data->id, date('Y-m-d')));
       Document::where('id', $data->id)->update(['consecutivo' => $consecutive[0]->consecutivo]);
-      DB::commit();
       return $data;
     } catch (Exception $e) {
-        DB::rollback();
         $answer = array(
             "error" => $e,
             "code"  => 600,

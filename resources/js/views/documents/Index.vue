@@ -25,7 +25,47 @@
       </sticky>
 
       <form-document></form-document>
-
+      <el-dialog
+        title="Finalizar venta"
+        :visible.sync="modalFP"
+        width="30%"
+        center>
+        <el-tabs type="" tab-position="left">
+          <h1>Factura de venta N° <strong>{{ consecutivo }}</strong></h1>
+          <hr>
+          <el-tab-pane>
+            <span slot="label">
+              Efectivo
+              <icon-aplex name="money-bill-alt" :type="'awesome'"/>
+            </span>
+            <div class="">
+              <el-input placeholder="Valor a pagar" v-model="input">
+                <template slot="prepend">
+                  <icon-aplex name="dollar-sign" :type="'awesome'"/>
+                </template>
+              </el-input>
+              <hr>
+              <el-tag type="info" class="pointer">$ 10.000</el-tag>
+              <el-tag type="info" class="pointer">$ 10.000</el-tag>
+              <el-tag type="info" class="pointer">$ 10.000</el-tag>
+              <el-tag type="info" class="pointer">$ 10.000</el-tag>
+              <el-tag type="info" class="pointer">$ 10.000</el-tag>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="Tarjeta">
+            <span slot="label">
+              Tarjeta
+              <icon-aplex name="credit-card" :type="'awesome'"/>
+            </span>
+          </el-tab-pane>
+          <el-tab-pane label="Otro">Role</el-tab-pane>
+          <el-tab-pane label="Otro">Task</el-tab-pane>
+        </el-tabs>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">Cerrar</el-button>
+          <el-button type="primary" @click="dialogVisible = false">Finalizar</el-button>
+        </span>
+      </el-dialog>
   </div>
 </template>
 
@@ -42,7 +82,10 @@ export default {
   data(){
   	return {
   		editing: false,
-        loading: false,
+      loading: false,
+      modalFP: false,
+      input: null,
+      consecutivo: ''
   	}
   },
   computed:{
@@ -62,8 +105,10 @@ export default {
         totals: this.totals,
         wholesale: this.wholesale
       }
-      save(data).then(response => {
+      save(data).then(({data}) => {
         // this.$store.dispatch('defaultAll')
+        this.consecutivo = data.consecutivo
+        this.modalFP = true
       }).catch(error => {
         console.log(error)
       })

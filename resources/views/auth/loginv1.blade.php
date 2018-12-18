@@ -25,32 +25,19 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "El correo es requerido">
-            <div class="input-group">
-              <input class="input100 input-group-input" type="text" name="email" placeholder="Correo" value="{{ old('email') }}">
-              <i class="fa fa-envelope input-group-icon" aria-hidden="true"></i>
-            </div>
+            <input class="input100 input-group-input" type="text" name="email" placeholder="Correo" value="{{ old('email') }}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-envelope icon-input" aria-hidden="true"></i>
 						</span>
-            @if ($errors->has('email'))
-            <span role="alert">
-              <strong> dsadas{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "La contraseña es requerida">
 						<input class="input100" type="password" name="password" placeholder="Contraseña">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+							<i class="fa fa-lock icon-input" aria-hidden="true"></i>
 						</span>
-            @if ($errors->has('password'))
-  						<span class="" role="alert">
-  							<strong>{{ $errors->first('password') }}</strong>
-  						</span>
-  					@endif
 					</div>
 
 					<div class="container-login100-form-btn">
@@ -64,6 +51,12 @@
               Olvidé mi contraseña
 						</a>
 					</div>
+					<br>
+					<span role="alert" class="print-error-msg-login text-danger">
+						<ul>
+
+						</ul>
+					</span>
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="#">
@@ -79,49 +72,60 @@
 
 	<script src="{{ asset('js/loginv1.js') }}"></script>
   <script >
-  $('.js-tilt').tilt({
-    scale: 1.1
-  })
-  $(document).ready(function() {
-    $("#loginBtn").click(function(e) {
+	  $('.js-tilt').tilt({
+	    scale: 1.1
+	  })
+	  $(document).ready(function() {
+	    $("#loginBtn").click(function(e) {
+				e.preventDefault();
+				login();
+	    });
+      $(document).keypress(function(event){
+          var keycode = (event.keyCode ? event.keyCode : event.which);
+          if(keycode == '13'){
+              login();
+          }
+      });
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+		});
 
-        e.preventDefault();
-        var email = $("input[name='email']").val();
-        var password = $("input[name='password']").val();
+		function login(){
+			$(".icon-input").removeClass("text-danger");
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
 
-        $.ajax({
-            url: '{{ route('login') }}',
-            type: 'POST',
-            data: {
-                email: email,
-                password: password
-            },
-            success: function(data) {
-                if ($.isEmptyObject(data.error)) {
-                    window.location.href = '{{ url('/') }}';
-                } else {
-                    printErrorMsg(data.error);
-                }
-            }
-        });
+			var email = $("input[name='email']").val();
+			var password = $("input[name='password']").val();
 
-    });
+			$.ajax({
+				url: '{{ route('login') }}',
+				type: 'POST',
+				data: {
+					email: email,
+					password: password
+				},
+				success: function(data) {
+					if ($.isEmptyObject(data.error)) {
+						window.location.href = '{{ url('/') }}';
+					} else {
+						printErrorMsg(data.error);
+					}
+				}
+			});
+		}
 
-    function printErrorMsg(msg) {
-        $(".print-error-msg-login").find("ul").html('');
-        $(".print-error-msg-login").css('display', 'block');
-        $.each(msg, function(key, value) {
-            $(".print-error-msg-login").find("ul").append('<li>' + value + '</li>');
-        });
-    }
-});
-</script>
+		function printErrorMsg(msg) {
+			$(".icon-input").addClass("text-danger");
+			$(".print-error-msg-login").find("ul").html('');
+			$(".print-error-msg-login").css('display', 'block');
+			$.each(msg, function(key, value) {
+				$(".print-error-msg-login").find("ul").append('<li>' + value + '</li>');
+			});
+		}
+	</script>
 
 </body>
 </html>

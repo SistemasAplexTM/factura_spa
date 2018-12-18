@@ -59,7 +59,7 @@ class LoginController extends Controller
           }
           return response()->json([
               'error' => [
-                  'email' => 'Sorry User not found.'
+                  'email' => 'Correo o contraseña incorrectos'
               ]
           ]);
       }
