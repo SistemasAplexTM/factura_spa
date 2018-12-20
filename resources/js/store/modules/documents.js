@@ -36,6 +36,12 @@ const documents = {
 		},
 		SET_FORM_DOCUMENT:(state, form) => {
 			state.form_document = form
+		},
+		SET_RECEIVED:(state, val) => {
+			state.totals.recibido = val
+		},
+		SET_RETURN:(state, val) => {
+			state.totals.devolucion = val
 		}
 	},
 	actions:{
