@@ -39,10 +39,7 @@
               <icon-aplex name="money-bill-alt" :type="'awesome'"/>
             </span>
             <div class="">
-              <el-input placeholder="Valor a pagar" v-model="input">
-                <template slot="prepend">
-                  <icon-aplex name="dollar-sign" :type="'awesome'"/>
-                </template>
+              <el-input placeholder="Valor a pagar" v-model="input" v-money="money">
               </el-input>
               <hr>
               <el-tag type="info" class="pointer">$ 10.000</el-tag>
@@ -62,8 +59,8 @@
           <el-tab-pane label="Otro">Task</el-tab-pane>
         </el-tabs>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">Cerrar</el-button>
-          <el-button type="primary" @click="dialogVisible = false">Finalizar</el-button>
+          <el-button @click="modalFP = false">Cerrar</el-button>
+          <el-button type="primary" @click="modalFP = false">Finalizar</el-button>
         </span>
       </el-dialog>
   </div>
@@ -74,7 +71,6 @@ import FormDocument from './Form'
 import Sticky from '@/components/Sticky'
 import { save } from '@/api/document'
 import { mapGetters } from 'vuex'
-
 export default {
   components: {
     Sticky, FormDocument
@@ -90,7 +86,7 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'totals', 'table_detail', 'form_document', 'wholesale'
+      'totals', 'table_detail', 'form_document', 'wholesale', 'money'
     ])
   },
   methods:{

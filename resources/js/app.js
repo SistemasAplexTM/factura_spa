@@ -36,6 +36,22 @@ Vue.use(VTooltip)
 import IconAplex from '@/components/Icon/Icon'
 Vue.component('icon-aplex', IconAplex)
 
+import money from 'v-money'
+// register directive v-money and component <money>
+Vue.use(money, {
+  decimal: ',',
+  thousands: '.',
+  prefix: '$ ',
+  suffix: '',
+  precision: 0,
+  masked: false /* doesn't work with directive */
+})
+
+// As a plugin
+// import VueMask from 'v-mask'
+// Vue.use(VueMask);
+
+
 // window.onbeforeunload = function() {
 //   alert('Cerrar?')
 //   logout().then(({data}) => {
