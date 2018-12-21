@@ -92,6 +92,8 @@
 	  		handler(val, oldVal){
 					if(val.length == 0){
 						this.tableData = []
+					}else{
+						this.tableData = val
 					}
 				}
 			},
@@ -112,7 +114,7 @@
 				getProductByCode(code, this.wholesale).then(({data}) => {
 					if(data.data.length > 0){
 						let datos = this.tableData;
-						let position_search = datos.findIndex( buscar => buscar.id === data.data[0].id );
+						let position_search = datos.findIndex( buscar => buscar.product_id === data.data[0].product_id );
 						if(position_search < 0){
 	            this.tableData.push(data.data[0])
 	            this.generateTotals(this.tableData);

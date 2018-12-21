@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Document;
 use App\DocumentDetail;
+use App\PaymentDetail;
 use App\Cupons;
 use App\Type;
 use Illuminate\Support\Facades\DB;
@@ -14,55 +15,43 @@ class DocumentController extends Controller
 {
   public function save(Request $request)
   {
-    return array("code" => 200, "consecutivo" => 213135);
-    // $type = $this->getType(Auth::user()->sucursal_id);
-    // DB::beginTransaction();
-    // try {
-    //     $document = $this->saveHeadboard($request, $type);
-    //     //INSERT DETAIL
-    //     $this->saveDetail($request['table_detail'], $document->id, $type);
-    //     $answer = array(
-    //         "code"   => 200
-    //     );
-    //     DB::commit();
-    //     return $answer;
-    // } catch (Exception $e) {
-    //     DB::rollback();
-    //     $answer = array(
-    //         "error" => $e,
-    //         "code"  => 600,
-    //     );
-    //     return $answer;
-    // }
+    $type = $this->getType(Auth::user()->sucursal_id);
+    DB::beginTransaction();
+    try {
+        $document = $this->saveHeadboard($request, $type);
+        $detail = $this->saveDetail($request['table_detail'], $document['id'], $type);
+        $table_detail = $request['table_detail'];
+        foreach ($detail as $key => $value) {
+          $table_detail[$key]['id'] = $value->id;
+        }
+        $answer = array(
+            "code"   => 200,
+            "consecutive" => $document['consecutive'],
+            "id" => $document['id'],
+            "table_detail" => $table_detail
+        );
+        DB::commit();
+        return $answer;
+    } catch (Exception $e) {
+        DB::rollback();
+        $answer = array(
+            "error" => $e,
+            "code"  => 600,
+        );
+        return $answer;
+    }
   }
 
   public function saveHeadboard($request, $type)
   {
     try {
-      $data = Document::create([
-        'usuario_id' => Auth::id(),
-        'tipo_id' => $type->id,
-        'fecha' => date('Y-m-d', strtotime($request['form_document']['date'])),
-        'fecha_recibido' => date('Y-m-d', strtotime($request['form_document']['date_receip'])),
-        'terceros_id' => $request['form_document']['client_id'],
-        'dias' => $request['form_document']['days'],
-        'descuento' => $request['totals']['descuento_2'],
-        'valor_iva' => $request['totals']['iva'],
-        'anticipo' => $request['totals']['anticipo'],
-        'vendedor_id' => $request['form_document']['seller_id'],
-        'estatus' => 2,
-        'retefuente' => $request['totals']['retefuente'],
-        'reteica' => $request['totals']['reteica'],
-        // 'descuentos_id' => $request['form_document']['i']d
-        'impresion' => 0,
-        'observacion' => $request['form_document']['observation'],
-        'descuento_valor' => $request['totals']['descuento_1'],
-        'pormayor' => $request['wholesale'],
-        'sucursal_id' => Auth::user()->sucursal_id
-      ]);
+      $data = Document::create($this->dataHeadboard($request, $type));
       $consecutive = DB::select("CALL sp_getConsecutivo(?,?,?)", array($type->id, $data->id, date('Y-m-d')));
       Document::where('id', $data->id)->update(['consecutivo' => $consecutive[0]->consecutivo]);
-      return $data;
+      return [
+        'id' => $data->id,
+        'consecutive' => $consecutive[0]->consecutivo,
+      ];
     } catch (Exception $e) {
         $answer = array(
             "error" => $e,
@@ -72,32 +61,108 @@ class DocumentController extends Controller
     }
   }
 
+  public function update(Request $request, $id)
+  {
+    $type = $this->getType(Auth::user()->sucursal_id);
+    DB::beginTransaction();
+    try {
+        $document = $this->updateHeadboard($id, $request, $type);
+        $this->updateDetail($request['table_detail'], $id, $type);
+        $answer = array(
+            "code"   => 200
+        );
+        DB::commit();
+        return $answer;
+    } catch (Exception $e) {
+        DB::rollback();
+        $answer = array(
+            "error" => $e,
+            "code"  => 600,
+        );
+        return $answer;
+    }
+  }
+
+  public function updateHeadboard($id, $request, $type)
+  {
+    try {
+      return Document::where('id', $id)->update($this->dataHeadboard($request, $type));
+    } catch (Exception $e) {
+        $answer = array(
+            "error" => $e,
+            "code"  => 600,
+        );
+        return $answer;
+    }
+  }
+
+  public function dataHeadboard($request, $type)
+  {
+    return [
+      'usuario_id' => Auth::id(),
+      'tipo_id' => $type->id,
+      'fecha' => date('Y-m-d', strtotime($request['form_document']['date'])),
+      'fecha_recibido' => date('Y-m-d', strtotime($request['form_document']['date_receip'])),
+      'terceros_id' => $request['form_document']['client_id'],
+      'dias' => $request['form_document']['days'],
+      'descuento' => $request['totals']['descuento_2'],
+      'valor_iva' => $request['totals']['iva'],
+      'anticipo' => $request['totals']['anticipo'],
+      'vendedor_id' => $request['form_document']['seller_id'],
+      'estatus' => 1,
+      'retefuente' => $request['totals']['retefuente'],
+      'reteica' => $request['totals']['reteica'],
+      // 'descuentos_id' => $request['form_document']['i']d
+      'impresion' => 0,
+      'observacion' => $request['form_document']['observation'],
+      'descuento_valor' => $request['totals']['descuento_1'],
+      'pormayor' => $request['wholesale'],
+      'sucursal_id' => Auth::user()->sucursal_id
+    ];
+  }
+
+  public function savePaymentMethod(Request $request)
+  {
+    DB::beginTransaction();
+    try {
+      PaymentDetail::where('documento_id', $request->id_document)->delete();
+      foreach ($request->all() as $key => $value) {
+        if($value['valor'] != 0){
+          PaymentDetail::create($value);
+        }
+      }
+      Document::where('id', $request->id_document)->update(['estatus' => 2]);
+      $answer = array(
+          "code"   => 200
+      );
+      DB::commit();
+      return $answer;
+    } catch (Exception $e) {
+        DB::rollback();
+        $answer = array(
+            "error" => $e,
+            "code"  => 600,
+        );
+        return $answer;
+    }
+  }
+
+  // FUNCIONES DEL DETALLE
+
+  public function getDataDetail()
+  {
+    return $users = DocumentDetail::select(
+
+      )->whereIn('id', [1, 2, 3])->get()->toJson();
+  }
+
   public function saveDetail($detail, $document_id, $type)
   {
     try {
       foreach ($detail as $key) {
-        $data[] = DocumentDetail::create([
-          'documento_id' => $document_id,
-          'producto_id' => $key['id'],
-          'descripcion' => $key['producto'],
-          'transaccion' => $type->id_transaccion,
-          'bodega_id' => Auth::user()->sucursal_id,
-          'cantidad' => $key['cantidad'],
-          'cant_final' => $this->getQuantityFinal($key['cantidad'], $type->id_transaccion, 0),
-          'precio' => $key['precio'],
-          'costo' => $this->getCost($type->genera_utilidad, $key['precio']),
-          'venta' => $this->getPrice($key['precio'],$type),
-          'total_desto' => $key['id'],
-          'total_costo' => $this->getTotalCost($type, $key),
-          'total_venta' => ($type->genera_utilidad == 0) ? 0 : $key['cantidad'] * $key['precio'],
-          'descuento' => $key['descuento'],
-          'iva' => $key['iva']
-          // 'doc_cruce' => $key['id'],
-          // 'fecha_recibido' => $key['id'],
-          // 'id_cruce' => $key['id'],
-        ]);
+        $data[] = DocumentDetail::create($this->dataDetail($document_id, $key, $type));
       }
-      return true;
+      return $data;
     } catch (Exception $e) {
       $answer = array(
           "error" => $e,
@@ -106,6 +171,51 @@ class DocumentController extends Controller
       return $answer;
     }
 
+  }
+
+  public function updateDetail($detail, $document_id, $type)
+  {
+    try {
+      foreach ($detail as $key) {
+        if(isset($key['id'])){
+          $data[] = DocumentDetail::where('id', $key['id'])->update($this->dataDetail($document_id, $key, $type));
+        }else{
+          $this->saveDetail($detail, $document_id, $type);
+        }
+      }
+      return $data;
+    } catch (Exception $e) {
+      $answer = array(
+          "error" => $e,
+          "code"  => 600,
+      );
+      return $answer;
+    }
+
+  }
+
+  public function dataDetail($document_id, $key, $type)
+  {
+    return [
+      'documento_id' => $document_id,
+      'producto_id' => $key['product_id'],
+      'descripcion' => $key['producto'],
+      'transaccion' => $type->id_transaccion,
+      'bodega_id' => Auth::user()->sucursal_id,
+      'cantidad' => $key['cantidad'],
+      'cant_final' => $this->getQuantityFinal($key['cantidad'], $type->id_transaccion, 0),
+      'precio' => $key['precio'],
+      'costo' => $this->getCost($type->genera_utilidad, $key['precio']),
+      'venta' => $this->getPrice($key['precio'],$type),
+      'total_desto' => $key['descuento'] * $key['cantidad'],
+      'total_costo' => $this->getTotalCost($type, $key),
+      'total_venta' => ($type->genera_utilidad == 0) ? 0 : $key['cantidad'] * $key['precio'],
+      'descuento' => $key['descuento'],
+      'iva' => $key['porcentaje_iva']
+      // 'doc_cruce' => $key['id'],
+      // 'fecha_recibido' => $key['id'],
+      // 'id_cruce' => $key['id'],
+    ];
   }
 
   public function getQuantityFinal($quantity, $transaction, $return)

@@ -15,7 +15,7 @@ class DocumentDetailController extends Controller
       }
     	$data = DB::select(
                 DB::raw("SELECT
-						a.id,
+						a.id AS product_id,
 						a.descripcion AS producto,
 						a.precio_venta AS precio,
 						a.precio_pormayor,
