@@ -180,6 +180,7 @@ export default {
   		form: {
   			date: null,
         client_id: null,
+        client_name: null,
         days: null,
         date_receip: null,
         seller_id: null,
@@ -249,6 +250,7 @@ export default {
 			this.client.address = item.direccion
 			this.client.phone = item.telefono
 			this.form.client_id = item.id
+			this.form.client_name = item.nombre
 		},
 		handleIconClick(ev) {
 			console.log(ev);
