@@ -281,7 +281,7 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'totals', 'table_detail', 'form_document', 'wholesale', 'money'
+      'totals', 'table_detail', 'form_document', 'wholesale', 'money', 'editing_document'
     ]),
     disabled(){
       if(this.totals.devolucion >= 0){
@@ -291,6 +291,17 @@ export default {
     }
   },
   watch:{
+    editing_document:{
+			deep: true,
+			handler(val, oldVal){
+				if(val != null){
+          this.id_document = val.document.id
+					this.editing = true
+				}else{
+          this.editing = false
+        }
+			}
+		},
     id_document(val){
       this.cash.documento_id = val;
       this.td.documento_id = val;

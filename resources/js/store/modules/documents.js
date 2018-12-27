@@ -2,7 +2,7 @@ import { documentById } from '@/api/document'
 
 const documents = {
 	state: {
-		editing: {},
+		editing_document: {},
 		totals:{
 			subtotal_1: 0,
 			descuento_1: 0,
@@ -23,8 +23,8 @@ const documents = {
 		list: false,
 	},
 	mutations:{
-		SET_EDITING: (state, editing) => {
-      state.editing = editing
+		SET_EDITING: (state, editing_document) => {
+      state.editing_document = editing_document
     },
 		SET_TOTALS:(state, obj) => {
 			state.totals  = obj
@@ -121,7 +121,7 @@ const documents = {
 			dispatch('defaultTotals')
 
 		},
-		editing({ commit }, id){
+		editing_document({ commit }, id){
       if (!id) {
         commit('SET_EDITING', '')
         return false

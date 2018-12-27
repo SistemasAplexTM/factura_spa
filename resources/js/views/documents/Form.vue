@@ -194,7 +194,7 @@ export default {
   	}
   },
 	computed:{
-		...mapGetters(['form_document', 'editing'])
+		...mapGetters(['form_document', 'editing_document'])
 	},
 	watch:{
 		form_document:{
@@ -211,7 +211,7 @@ export default {
 				this.$store.commit('SET_FORM_DOCUMENT', val)
 			}
 		},
-		editing:{
+		editing_document:{
 			deep: true,
 			handler(val, oldVal){
 				if(val != null){

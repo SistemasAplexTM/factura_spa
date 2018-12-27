@@ -5,11 +5,11 @@ const getters = {
   tercero_editing: 	state => state.terceros.tercero_editing,
   cupons_editing: 	state => state.cupons.cupons_editing,
   // documentos
-  totals: 			  state => state.documents.totals,
-  wholesale:      state => state.documents.wholesale,
-  form_document:  state => state.documents.form_document,
-  table_detail:   state => state.documents.table_detail,
-  list:           state => state.documents.list,
-  editing:        state => state.documents.editing,
+  totals: 			    state => state.documents.totals,
+  wholesale:        state => state.documents.wholesale,
+  form_document:    state => state.documents.form_document,
+  table_detail:     state => state.documents.table_detail,
+  list:             state => state.documents.list,
+  editing_document: state => state.documents.editing_document,
 }
 export default getters

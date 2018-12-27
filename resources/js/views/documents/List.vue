@@ -47,7 +47,7 @@ export default {
         this.$store.commit('SET_LIST', false)
       },
       editDocument(val){
-        this.$store.dispatch('editing', val.dtRowId)
+        this.$store.dispatch('editing_document', val.dtRowId)
       },
       deleteDocument(val){
         console.log(val.dtRowId);
