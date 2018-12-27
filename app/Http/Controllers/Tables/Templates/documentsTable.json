@@ -1,0 +1,60 @@
+{
+    "routePrefix": "document",
+    "readSuffix": "data",
+    "crtNo": false,
+    "lengthMenu": [5, 10, 15, 20, 25, 30, 50],
+    "buttons": [
+        {
+            "type": "row",
+            "icon": "el-icon-edit",
+            "class": "el-button el-button--primary el-button--small is-circle",
+            "event": "edit",
+            "label": "Editar"
+        },
+        {
+            "type": "row",
+            "icon": "el-icon-delete",
+            "class": "el-button el-button--danger el-button--small is-circle",
+            "event": "destroy",
+            "confirmation": true
+        }
+    ],
+    "columns": [
+        {
+            "label": "#Doc.",
+            "data": "consecutivo",
+            "name": "consecutivo",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Fecha",
+            "data": "fecha",
+            "name": "fecha",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Reg. / Cant.",
+            "data": "quantity",
+            "name": "quantity",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Cliente",
+            "data": "nombre",
+            "name": "nombre",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Valor",
+            "data": "total_sale",
+            "name": "total_sale",
+            "meta": ["searchable", "sortable"]
+        },
+        {
+            "label": "Recibido",
+            "data": "total_payment",
+            "name": "total_payment",
+            "meta": ["searchable", "sortable", "slot"]
+        }
+    ]
+}

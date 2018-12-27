@@ -2,7 +2,7 @@
   <div>
       <sticky :className="'sub-navbar draft'">
       	<div class="text-right">
-          <el-button id="cancelButton" type="default" size="small" icon="el-icon-tickets" @click="">Listar</el-button>
+          <el-button type="default" size="small" icon="el-icon-tickets" @click="listDocuments">Listar</el-button>
           <el-dropdown v-if="!editing" split-button type="success"
           :loading="loading"
           @click="submit"
@@ -25,6 +25,9 @@
       </sticky>
 
       <form-document></form-document>
+
+      <list-documents></list-documents>
+
       <el-dialog
         :visible.sync="modalFP"
         width="40%"
@@ -206,13 +209,14 @@
 
 <script>
 import FormDocument from './Form'
+import ListDocuments from './List'
 import Sticky from '@/components/Sticky'
 import accounting from 'accounting-js'
 import { save, update, savePaymentMethod } from '@/api/document'
 import { mapGetters } from 'vuex'
 export default {
   components: {
-    Sticky, FormDocument
+    Sticky, FormDocument, ListDocuments
   },
   data(){
   	return {
@@ -358,6 +362,9 @@ export default {
     refreshTable(){
       this.$refs.list.refresh()
     },
+    listDocuments(){
+        this.$store.commit('SET_LIST', true)
+    },
     submit(){
       let setup = JSON.parse(localStorage.getItem('setup'))
       let data = {
@@ -401,13 +408,13 @@ export default {
         'code': 200
       };
       if(data.form_document.client_id == null){
-        response.data = 'Debe selecciionar un cliente'
+        response.data = 'Debe seleccionar un cliente'
         response.code = 600
       }else if(data.form_document.date == null){
-          response.data = 'Debe selecciionar una fecha'
+          response.data = 'Debe seleccionar una fecha'
           response.code = 600
         }else if(data.form_document.seller_id == null){
-        response.data = 'Debe selecciionar un vendedor'
+        response.data = 'Debe seleccionar un vendedor'
         response.code = 600
       }else if(data.table_detail.length == 0){
         response.data = 'Debe ingresar datos en el detalle'

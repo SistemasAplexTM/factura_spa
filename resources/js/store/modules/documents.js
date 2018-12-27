@@ -16,7 +16,8 @@ const documents = {
   	},
 		wholesale: false,
 		form_document: {},
-		table_detail: []
+		table_detail: [],
+		list: false
 	},
 	mutations:{
 		SET_TOTALS:(state, obj) => {
@@ -42,6 +43,9 @@ const documents = {
 		},
 		SET_RETURN:(state, val) => {
 			state.totals.devolucion = val
+		},
+		SET_LIST:(state, val) => {
+			state.list = val
 		}
 	},
 	actions:{

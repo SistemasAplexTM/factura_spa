@@ -8,11 +8,17 @@ use App\DocumentDetail;
 use App\PaymentDetail;
 use App\Cupons;
 use App\Type;
+use LaravelEnso\VueDatatable\app\Traits\Datatable;
+use App\Http\Controllers\Tables\Builders\DocumentsTable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
+  use Datatable;
+
+  protected $tableClass = DocumentsTable::class;
+
   public function save(Request $request)
   {
     $type = $this->getType(Auth::user()->sucursal_id);
