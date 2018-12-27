@@ -9,6 +9,7 @@ const getters = {
   wholesale:      state => state.documents.wholesale,
   form_document:  state => state.documents.form_document,
   table_detail:   state => state.documents.table_detail,
-  list:   state => state.documents.list,
+  list:           state => state.documents.list,
+  editing:        state => state.documents.editing,
 }
 export default getters

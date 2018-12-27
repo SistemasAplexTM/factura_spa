@@ -142,6 +142,7 @@ export default {
   			this.iva 					= val.iva;
   			this.total 				= val.total;
   			this.neto 				= val.neto;
+  			this.anticipo 		= val.anticipo;
 
 				this.animateNumber(val.neto, oldVal.neto, 'neto')
 				this.animateNumber(val.subtotal_1, oldVal.subtotal_1, 'subtotal_1')

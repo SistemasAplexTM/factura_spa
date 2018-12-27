@@ -1,5 +1,8 @@
+import { documentById } from '@/api/document'
+
 const documents = {
 	state: {
+		editing: {},
 		totals:{
 			subtotal_1: 0,
 			descuento_1: 0,
@@ -17,9 +20,12 @@ const documents = {
 		wholesale: false,
 		form_document: {},
 		table_detail: [],
-		list: false
+		list: false,
 	},
 	mutations:{
+		SET_EDITING: (state, editing) => {
+      state.editing = editing
+    },
 		SET_TOTALS:(state, obj) => {
 			state.totals  = obj
 		},
@@ -27,7 +33,7 @@ const documents = {
 			state.totals.descuento_2  = descuento_2
 		},
 		SET_ANTICIPO:(state, anticipo) => {
-			state.totals.anticipo  = (anticipo == '') ? 0 : anticipo
+			state.totals.anticipo  = (anticipo == '') ? 0 : Math.round(anticipo, 0)
 		},
 		SET_WHOLESALE:(state, wholesale) => {
 			state.wholesale = wholesale
@@ -46,7 +52,7 @@ const documents = {
 		},
 		SET_LIST:(state, val) => {
 			state.list = val
-		}
+		},
 	},
 	actions:{
 		updateSubtotal({ commit, state }, data){
@@ -114,7 +120,24 @@ const documents = {
 			commit('SET_FORM_DOCUMENT', null)
 			dispatch('defaultTotals')
 
-		}
+		},
+		editing({ commit }, id){
+      if (!id) {
+        commit('SET_EDITING', '')
+        return false
+      }else{
+        return new Promise((resolve, reject) => {
+          documentById(id).then(response => {
+            if (!response.data) {
+              reject('error')
+            }
+            commit('SET_EDITING', response.data)
+          }).catch(error => {
+            reject(error)
+          })
+        })
+      }
+    }
 	}
 }
 

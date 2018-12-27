@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Document;
 use App\DocumentDetail;
 use App\PaymentDetail;
+use App\Tercero;
 use App\Cupons;
 use App\Type;
 use LaravelEnso\VueDatatable\app\Traits\Datatable;
@@ -102,6 +103,34 @@ class DocumentController extends Controller
     }
   }
 
+  public function documentById($id)
+  {
+    DB::beginTransaction();
+    try {
+      $document   = Document::findOrFail($id);
+      $client     = Tercero::findOrFail($document->terceros_id);
+      $seller     = Tercero::findOrFail($document->vendedor_id);
+      $detail     = $this->getDataDetailByIdDocument($id);
+      DB::commit();
+      $answer = array(
+          "code"      => 200,
+          "document"  => $document,
+          "detail"    => $detail,
+          "client"    => $client,
+          "seller"    => $seller,
+          "totals"    => ''
+      );
+      return $answer;
+    } catch (Exception $e) {
+        DB::rollback();
+        $answer = array(
+            "error" => $e,
+            "code"  => 600,
+        );
+        return $answer;
+    }
+  }
+
   public function dataHeadboard($request, $type)
   {
     return [
@@ -155,11 +184,22 @@ class DocumentController extends Controller
 
   // FUNCIONES DEL DETALLE
 
-  public function getDataDetail()
+  public function getDataDetailByIdDocument($id_document)
   {
-    return $users = DocumentDetail::select(
-
-      )->whereIn('id', [1, 2, 3])->get()->toJson();
+    return DocumentDetail::select(
+      'detalle.id',
+      'detalle.producto_id AS product_id',
+      'detalle.cantidad',
+      'detalle.costo',
+      'detalle.precio',
+      'detalle.descuento',
+      'detalle.iva AS porcentaje_iva',
+      DB::raw('0 AS precio_con_iva'),
+      DB::raw('0 AS precio_pormayor'),
+      'detalle.descripcion AS producto',
+      DB::raw('ROUND((detalle.precio * detalle.cantidad) * detalle.iva / 100) AS iva'),
+      DB::raw('(ROUND((detalle.precio * detalle.cantidad) * detalle.iva / 100) + (detalle.precio * detalle.cantidad))  AS monto_total')
+      )->where('documento_id', $id_document)->get();
   }
 
   public function saveDetail($detail, $document_id, $type)

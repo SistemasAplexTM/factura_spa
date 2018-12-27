@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="container">
-    <el-dialog title="Facturas registradas" :visible.sync="dialogTableVisible" @close="closeDialog" width="70%">
-      <vue-table class="box" path="api/document/init" id="documents" ref="tblDocuments">
+    <el-dialog title="Facturas registradas" :visible.sync="dialogTableVisible" @close="closeDialog" width="70%" top="10px">
+      <vue-table class="" path="api/document/init" id="documents" ref="tblDocuments" @destroy="deleteDocument" @edit="editDocument">
         <div slot="total_payment" slot-scope="props">
           {{ validatePayment(props.row) }}
         </div>
@@ -38,13 +38,6 @@ export default {
         this.textColor = null;
         let total_payment = row.total_payment;
         let total_sale = row.total_sale;
-        // if(total_payment  === null){
-        //   total_payment = 0;
-        // }
-        // if(total_sale  === null){
-        //   total_sale = 0;
-        // }
-
         if(parseFloat(total_payment) < parseFloat(total_sale)){
           this.textColor = 'text-danger';
         }
@@ -53,8 +46,13 @@ export default {
       closeDialog(){
         this.$store.commit('SET_LIST', false)
       },
+      editDocument(val){
+        this.$store.dispatch('editing', val.dtRowId)
+      },
+      deleteDocument(val){
+        console.log(val.dtRowId);
+      }
     }
-
 }
 </script>
 

@@ -194,7 +194,7 @@ export default {
   	}
   },
 	computed:{
-		...mapGetters(['form_document'])
+		...mapGetters(['form_document', 'editing'])
 	},
 	watch:{
 		form_document:{
@@ -210,6 +210,14 @@ export default {
 			handler(val, oldVal){
 				this.$store.commit('SET_FORM_DOCUMENT', val)
 			}
+		},
+		editing:{
+			deep: true,
+			handler(val, oldVal){
+				if(val != null){
+					this.setDataDocument(val)
+				}
+			}
 		}
 	},
 	mounted(){
@@ -217,6 +225,27 @@ export default {
 		this.form.date_receip = new Date();
 	},
   methods:{
+		setDataDocument(data){
+			this.$store.commit('SET_WHOLESALE', data.document.pormayor)
+			this.$store.commit('SET_TABLE_DETAIL', data.detail)
+			let date = new Date(data.document.fecha)
+			date.setDate(date.getDate() + 1)
+			this.form.date = date
+			if(data.client != null){
+				this.handleSelect(data.client)
+			}
+			if(data.seller != null){
+				this.handleSelectSeller(data.seller)
+			}
+			this.form.days = data.document.dias
+			let date_r = new Date(data.document.fecha_recibido)
+			date_r.setDate(date_r.getDate() - 1)
+			this.form.date_receip = date_r
+			this.form.observation = data.document.observacion
+			this.$store.dispatch('updateSubtotal', { data:data.detail, wholesale: data.document.pormayor})
+			this.$store.commit('SET_ANTICIPO', data.document.anticipo)
+			this.$store.commit('SET_LIST', false)
+		},
 		expirationDate(){
 			var fecha = new Date(this.form.date);
 			var dias = this.form.days; // Número de días a agregar
@@ -224,20 +253,28 @@ export default {
 					dias = 0;
 			}
 			fecha.setDate(fecha.getDate() + (parseInt(dias) + 1));
+			let res = this.formatDate(fecha)
+			this.form.date_receip = res.output;
+		},
+		formatDate(fecha){
 			var d = new Date(fecha);
 			var month = d.getMonth() + 1;
 			var day = d.getDate();
 			var output = d.getFullYear() + '-' +
 							(month < 10 ? '0' : '') + month + '-' +
 							(day < 10 ? '0' : '') + day;
-			this.form.date_receip = output;
+			return {
+				'output': output,
+				'day': day,
+				'month': month
+			}
 		},
-	 querySearch(queryString, cb) {
+	 	querySearch(queryString, cb) {
 			searchThird(queryString, 'cliente').then(({data}) => {
 					cb(data.data);
 			}).catch( error => { console.log(error) })
 		},
-	 querySearchSeller(queryString, cb) {
+	 	querySearchSeller(queryString, cb) {
 			searchThird(queryString, 'vendedor').then(({data}) => {
 					cb(data.data);
 			}).catch( error => { console.log(error) })

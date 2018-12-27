@@ -44,3 +44,10 @@ export function searchThird(data, type) {
     method: 'get'
   })
 }
+
+export function documentById(id) {
+  return request({
+    url: 'api/document/documentById/' + id,
+    method: 'get'
+  })
+}

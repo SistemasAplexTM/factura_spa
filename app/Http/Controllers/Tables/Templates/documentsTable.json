@@ -2,7 +2,7 @@
     "routePrefix": "document",
     "readSuffix": "data",
     "crtNo": false,
-    "lengthMenu": [5, 10, 15, 20, 25, 30, 50],
+    "lengthMenu": [10, 15, 20, 25, 30, 50, 100],
     "buttons": [
         {
             "type": "row",
@@ -36,7 +36,7 @@
             "label": "Reg. / Cant.",
             "data": "quantity",
             "name": "quantity",
-            "meta": ["searchable", "sortable"]
+            "meta": ["sortable"]
         },
         {
             "label": "Cliente",
@@ -48,13 +48,13 @@
             "label": "Valor",
             "data": "total_sale",
             "name": "total_sale",
-            "meta": ["searchable", "sortable"]
+            "meta": ["sortable"]
         },
         {
             "label": "Recibido",
             "data": "total_payment",
             "name": "total_payment",
-            "meta": ["searchable", "sortable", "slot"]
+            "meta": ["sortable", "slot"]
         }
     ]
 }
