@@ -1,5 +1,6 @@
 <template lang="html">
-  	<vue-table class="box" path="api/payments/init" id="payments" ref="tblPayment" @updateCell="updateForm" @destroy="deleteForm" @edit="editForm"></vue-table>
+  	<vue-table class="box" path="api/payments/init" id="payments" ref="tblPayment" @updateCell="updateForm" @destroy="deleteForm" @edit="editForm">
+    </vue-table>
 </template>
 
 <script>
