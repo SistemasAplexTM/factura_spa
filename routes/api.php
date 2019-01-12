@@ -31,6 +31,8 @@ Route::prefix('cupons')->as('cupons.')->group(function(){
 });
 
 Route::prefix('document')->as('document.')->group(function(){
+	Route::get('init', 'DocumentController@init')->name('init');
+	Route::get('data', 'DocumentController@data')->name('data');
 	Route::post('save', 'DocumentController@save')->name('save');
 	Route::post('savePaymentMethod', 'DocumentController@savePaymentMethod')->name('savePaymentMethod');
 	Route::put('update/{id}', 'DocumentController@update')->name('update');
