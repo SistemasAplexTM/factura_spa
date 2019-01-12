@@ -43,7 +43,7 @@
             "label": "Descripción",
             "data": "descripcion",
             "name": "descripcion",
-            "meta": ["searchable", "sortable", "clickable"]
+            "meta": ["searchable", "sortable", "slot"]
         },
         {
             "label": "Fecha inicio",
@@ -63,6 +63,6 @@
             "name": "cantidad",
             "meta": ["searchable", "sortable", "clickable"]
         }
-        
+
     ]
 }

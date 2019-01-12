@@ -24,7 +24,7 @@
             "label": "Descripción",
             "data": "descripcion",
             "name": "descripcion",
-            "meta": ["searchable", "sortable", "clickable"]
+            "meta": ["searchable", "sortable"]
         }
     ]
 }
